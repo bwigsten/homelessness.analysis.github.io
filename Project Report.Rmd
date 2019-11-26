@@ -209,7 +209,8 @@ total_data = total_data %>%
          total_veterans = as.numeric(total_veterans), 
          sheltered_veterans = as.numeric(sheltered_veterans), 
          unsheltered_veterans = as.numeric(unsheltered_veterans), 
-         youth = as.numeric(youth))
+         youth = as.numeric(youth)) %>%
+  separate(coc_number, into = c("state", "number"))
 total_data
 ```
 
