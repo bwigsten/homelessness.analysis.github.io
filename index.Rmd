@@ -6,6 +6,6 @@ output:
     toc_float: true
     theme: cerulean
 ---
-
+e
 ### An analysis of homelessness in San Francisco and New York City
 ![](images/Homelessness_SF.jpg)
