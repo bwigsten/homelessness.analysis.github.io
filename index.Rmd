@@ -4,14 +4,25 @@ output:
   html_document:
     toc: true
     toc_float: true
-    theme: cerulean
+    theme: flatly
 ---
 
-e
-
-r
-
-hello
-
-### An analysis of homelessness in San Francisco and New York City
+### Analysis of Homelessness in the US and a Case Study of California and New York
+#### December 5th, 2019
 ![](images/Homelessness_SF.jpg)
+Despite efforts to decrease rates of homelessness in the past decade, homelessness continues to be a pervasive public health issue.
+
+Image: [The New York Times](https://www.nytimes.com/2019/11/14/reader-center/homeless-in-california.html)
+
+### Introduction
+
+
+### Data Source
+
+
+### Website Overview
+
+
+To view a brief overview of our website, and its visualization functionalities, view our screencast here.
+
+#### Contributors: Kristi Chau, Blair Wigsten, Alicia Yang, Nora Zakaria
