@@ -6,7 +6,6 @@ output: html_document
 ---
 
 ```{r}
-library(dplyr)
 library(tidyverse)
 library(readxl)
 ```
@@ -177,15 +176,14 @@ total_data = total_data %>%
   rename(coc_number = co_c_number, 
          coc_name = co_c_name, 
          total_homeless = overall_homeless, 
-         total_sheltered = sheltered_total_homeless, 
-         total_unsheltered = unsheltered_homeless, 
-         people_in_families = homeless_people_in_families, 
+         sheltered_homeless = sheltered_total_homeless, 
+         total_in_families = homeless_people_in_families, 
          sheltered_in_families = sheltered_total_homeless_people_in_families, 
          unsheltered_in_families = unsheltered_homeless_people_in_families, 
          total_households = homeless_family_households, 
          sheltered_households = sheltered_total_homeless_family_households, 
          unsheltered_households = unsheltered_homeless_family_households, 
-         chronic = chronically_homeless, 
+         total_chronic = chronically_homeless, 
          sheltered_chronic = sheltered_total_chronically_homeless, 
          unsheltered_chronic = unsheltered_chronically_homeless, 
          total_veterans = homeless_veterans, 
@@ -194,16 +192,16 @@ total_data = total_data %>%
          youth = homeless_unaccompanied_youth_under_18, 
          coc_category = co_c_category) %>%
   mutate(total_homeless = as.numeric(total_homeless), 
-         total_sheltered = as.numeric(total_sheltered), 
-         total_unsheltered = as.numeric(total_unsheltered), 
-         people_in_families = as.numeric(people_in_families), 
+         sheltered_homeless = as.numeric(sheltered_homeless), 
+         unsheltered_homeless = as.numeric(unsheltered_homeless), 
+         total_in_families = as.numeric(total_in_families), 
          sheltered_in_families = as.numeric(sheltered_in_families), 
          unsheltered_in_families = as.numeric(unsheltered_in_families), 
          total_households = as.numeric(total_households), 
          sheltered_households = as.numeric(sheltered_households), 
          unsheltered_households = as.numeric(unsheltered_households), 
          year = as.numeric(year), 
-         chronic = as.numeric(chronic), 
+         total_chronic = as.numeric(total_chronic), 
          sheltered_chronic = as.numeric(sheltered_chronic), 
          unsheltered_chronic = as.numeric(unsheltered_chronic), 
          total_veterans = as.numeric(total_veterans), 

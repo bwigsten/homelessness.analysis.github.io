@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Blair Wigsten" />
+
+<meta name="date" content="2019-11-21" />
+
+<title>Project Report</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="mailto:&lt;niz2000@cumc.columbia.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/bwigsten/homelessness.anaylsis.github.io">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Project Report</h1>
+<h4 class="author">Blair Wigsten</h4>
+<h4 class="date">11/21/2019</h4>
+
+</div>
+
+
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ----------------------------------------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.2.1     v readr   1.3.1
+## v tibble  2.1.3     v purrr   0.3.3
+## v tidyr   1.0.0     v stringr 1.4.0
+## v ggplot2 3.2.1     v forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts -------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(readxl)</code></pre>
+<div id="import-all-the-data" class="section level1">
+<h1>Import all the data</h1>
+<pre class="r"><code>home_data_2018 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 1)
+home_data_2017 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 2)
+home_data_2016 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 3)
+home_data_2015 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 4)
+home_data_2014 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 5)
+home_data_2013 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 6)
+home_data_2012 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 7)
+home_data_2011 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 8)
+home_data_2010 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 9)
+home_data_2009 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 10)
+home_data_2008 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 11)
+home_data_2007 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 12)</code></pre>
+</div>
+<div id="clean-names-add-year-variable-remove-_year-from-name-to-merge-later-and-select-variables-of-interest-for-all-years" class="section level1">
+<h1>Clean names, add year variable, remove _year from name to merge later, and select variables of interest for all years</h1>
+<pre class="r"><code>home_data_2018 = home_data_2018 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2018) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2018&quot;)),
+            .funs = funs(sub(&quot;[_]2018$&quot;, &quot;&quot;, .))) %&gt;%
+  select(co_c_number, co_c_name, co_c_category, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)</code></pre>
+<pre><code>## Warning: funs() is soft deprecated as of dplyr 0.8.0
+## Please use a list of either functions or lambdas: 
+## 
+##   # Simple named list: 
+##   list(mean = mean, median = median)
+## 
+##   # Auto named with `tibble::lst()`: 
+##   tibble::lst(mean, median)
+## 
+##   # Using lambdas
+##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+## This warning is displayed once per session.</code></pre>
+<pre class="r"><code>home_data_2018</code></pre>
+<pre><code>## # A tibble: 401 x 20
+##    co_c_number co_c_name co_c_category overall_homeless sheltered_total~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ Other Urban ~ 1094             1000            
+##  2 AK-501      Alaska B~ Rural CoCs    922              707             
+##  3 AL-500      Birmingh~ Suburban CoCs 901              682             
+##  4 AL-501      Mobile C~ Other Urban ~ 551              318             
+##  5 AL-502      Florence~ Rural CoCs    256              234             
+##  6 AL-503      Huntsvil~ Other Urban ~ 424              308             
+##  7 AL-504      Montgome~ Other Urban ~ 369              300             
+##  8 AL-505      Gadsden/~ Rural CoCs    146              86              
+##  9 AL-506      Tuscaloo~ Other Urban ~ 57               56              
+## 10 AL-507      Alabama ~ Rural CoCs    730              440             
+## # ... with 391 more rows, and 15 more variables:
+## #   unsheltered_homeless &lt;chr&gt;, homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;,
+## #   chronically_homeless &lt;chr&gt;,
+## #   sheltered_total_chronically_homeless &lt;chr&gt;,
+## #   unsheltered_chronically_homeless &lt;chr&gt;, homeless_veterans &lt;chr&gt;,
+## #   sheltered_total_homeless_veterans &lt;chr&gt;,
+## #   unsheltered_homeless_veterans &lt;chr&gt;,
+## #   homeless_unaccompanied_youth_under_18 &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2017 = home_data_2017 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2017) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2017&quot;)),
+            .funs = funs(sub(&quot;[_]2017$&quot;, &quot;&quot;, .))) %&gt;%
+  select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
+home_data_2017</code></pre>
+<pre><code>## # A tibble: 400 x 19
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ 1128             973              155             
+##  2 AK-501      Alaska B~ 717              578              139             
+##  3 AL-500      Birmingh~ 1092             875              217             
+##  4 AL-501      Mobile C~ 606              341              265             
+##  5 AL-502      Florence~ 155              133              22              
+##  6 AL-503      Huntsvil~ 436              337              99              
+##  7 AL-504      Montgome~ 377              314              63              
+##  8 AL-505      Gadsden/~ 163              103              60              
+##  9 AL-506      Tuscaloo~ 200              137              63              
+## 10 AL-507      Alabama ~ 764              416              348             
+## # ... with 390 more rows, and 14 more variables:
+## #   homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;,
+## #   chronically_homeless &lt;chr&gt;,
+## #   sheltered_total_chronically_homeless &lt;chr&gt;,
+## #   unsheltered_chronically_homeless &lt;chr&gt;, homeless_veterans &lt;chr&gt;,
+## #   sheltered_total_homeless_veterans &lt;chr&gt;,
+## #   unsheltered_homeless_veterans &lt;chr&gt;,
+## #   homeless_unaccompanied_youth_under_18 &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2016 = home_data_2016 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2016) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2016&quot;)),
+            .funs = funs(sub(&quot;[_]2016$&quot;, &quot;&quot;, .))) %&gt;%
+  select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
+home_data_2016</code></pre>
+<pre><code>## # A tibble: 399 x 19
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ 1105             865              240             
+##  2 AK-501      Alaska B~ 835              633              202             
+##  3 AL-500      Birmingh~ 1228             1032             196             
+##  4 AL-501      Mobile C~ 623              387              236             
+##  5 AL-502      Florence~ 337              286              51              
+##  6 AL-503      Huntsvil~ 385              298              87              
+##  7 AL-504      Montgome~ 367              293              74              
+##  8 AL-505      Gadsden/~ 167              91               76              
+##  9 AL-506      Tuscaloo~ 177              47               130             
+## 10 AL-507      Alabama ~ 827              459              368             
+## # ... with 389 more rows, and 14 more variables:
+## #   homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;,
+## #   chronically_homeless &lt;chr&gt;,
+## #   sheltered_total_chronically_homeless &lt;chr&gt;,
+## #   unsheltered_chronically_homeless &lt;chr&gt;, homeless_veterans &lt;chr&gt;,
+## #   sheltered_total_homeless_veterans &lt;chr&gt;,
+## #   unsheltered_homeless_veterans &lt;chr&gt;,
+## #   homeless_unaccompanied_youth_under_18 &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2015 = home_data_2015 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2015) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2015&quot;)),
+            .funs = funs(sub(&quot;[_]2015$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
+home_data_2015</code></pre>
+<pre><code>## # A tibble: 400 x 19
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ 1208             1029             179             
+##  2 AK-501      Alaska B~ 748              610              138             
+##  3 AL-500      Birmingh~ 1153             916              237             
+##  4 AL-501      Mobile C~ 578              364              214             
+##  5 AL-502      Florence~ 245              214              31              
+##  6 AL-503      Huntsvil~ 420              357              63              
+##  7 AL-504      Montgome~ 441              373              68              
+##  8 AL-505      Gadsden/~ 156              103              53              
+##  9 AL-506      Tuscaloo~ 339              144              195             
+## 10 AL-507      Alabama ~ 638              472              166             
+## # ... with 390 more rows, and 14 more variables:
+## #   homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;,
+## #   chronically_homeless &lt;chr&gt;,
+## #   sheltered_total_chronically_homeless &lt;chr&gt;,
+## #   unsheltered_chronically_homeless &lt;chr&gt;, homeless_veterans &lt;chr&gt;,
+## #   sheltered_total_homeless_veterans &lt;chr&gt;,
+## #   unsheltered_homeless_veterans &lt;chr&gt;,
+## #   homeless_unaccompanied_youth_under_18 &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2014 = home_data_2014 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2014) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2014&quot;)),
+            .funs = funs(sub(&quot;[_]2014$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
+home_data_2014</code></pre>
+<pre><code>## # A tibble: 396 x 18
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ 1023             970              53              
+##  2 AK-501      Alaska B~ 761              669              92              
+##  3 AL-500      Birmingh~ 1329             915              414             
+##  4 AL-501      Mobile C~ 598              461              137             
+##  5 AL-502      Florence~ 209              189              20              
+##  6 AL-503      Huntsvil~ 536              499              37              
+##  7 AL-504      Montgome~ 490              409              81              
+##  8 AL-505      Gadsden/~ 438              368              70              
+##  9 AL-506      Tuscaloo~ 245              133              112             
+## 10 AL-507      Alabama ~ 716              544              172             
+## # ... with 386 more rows, and 13 more variables:
+## #   homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;,
+## #   chronically_homeless &lt;chr&gt;,
+## #   sheltered_total_chronically_homeless &lt;chr&gt;,
+## #   unsheltered_chronically_homeless &lt;chr&gt;, homeless_veterans &lt;chr&gt;,
+## #   sheltered_total_homeless_veterans &lt;chr&gt;,
+## #   unsheltered_homeless_veterans &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2013 = home_data_2013 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2013) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2013&quot;)),
+            .funs = funs(sub(&quot;[_]2013$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
+home_data_2013</code></pre>
+<pre><code>## # A tibble: 397 x 18
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ 1122             1070             52              
+##  2 AK-501      Alaska B~ 824              671              153             
+##  3 AL-500      Birmingh~ 1469             960              509             
+##  4 AL-501      Mobile C~ 493              260              233             
+##  5 AL-502      Florence~ 223              197              26              
+##  6 AL-503      Huntsvil~ 586              409              177             
+##  7 AL-504      Montgome~ 515              399              116             
+##  8 AL-505      Gadsden/~ 399              329              70              
+##  9 AL-506      Tuscaloo~ 99               95               4               
+## 10 AL-507      Alabama ~ 905              597              308             
+## # ... with 387 more rows, and 13 more variables:
+## #   homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;,
+## #   chronically_homeless &lt;chr&gt;,
+## #   sheltered_total_chronically_homeless &lt;chr&gt;,
+## #   unsheltered_chronically_homeless &lt;chr&gt;, homeless_veterans &lt;chr&gt;,
+## #   sheltered_total_homeless_veterans &lt;chr&gt;,
+## #   unsheltered_homeless_veterans &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2012 = home_data_2012 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2012) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2012&quot;)),
+            .funs = funs(sub(&quot;[_]2012$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
+home_data_2012</code></pre>
+<pre><code>## # A tibble: 396 x 18
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ 1147             1097             50              
+##  2 AK-501      Alaska B~ 766              619              147             
+##  3 AL-500      Birmingh~ 1707             1009             698             
+##  4 AL-501      Mobile C~ 634              324              310             
+##  5 AL-502      Florence~ 192              188              4               
+##  6 AL-503      Huntsvil~ 607              432              175             
+##  7 AL-504      Montgome~ 487              343              144             
+##  8 AL-505      Gadsden/~ 544              424              120             
+##  9 AL-506      Tuscaloo~ 152              128              24              
+## 10 AL-507      Alabama ~ 886              816              70              
+## # ... with 386 more rows, and 13 more variables:
+## #   homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;,
+## #   chronically_homeless &lt;chr&gt;,
+## #   sheltered_total_chronically_homeless &lt;chr&gt;,
+## #   unsheltered_chronically_homeless &lt;chr&gt;, homeless_veterans &lt;chr&gt;,
+## #   sheltered_total_homeless_veterans &lt;chr&gt;,
+## #   unsheltered_homeless_veterans &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2011 = home_data_2011 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2011) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2011&quot;)),
+            .funs = funs(sub(&quot;[_]2011$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
+home_data_2011</code></pre>
+<pre><code>## # A tibble: 398 x 18
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ 1223             1082             141             
+##  2 AK-501      Alaska B~ 905              678              227             
+##  3 AL-500      Birmingh~ 1950             1024             926             
+##  4 AL-501      Mobile C~ 718              407              311             
+##  5 AL-502      Florence~ 244              234              10              
+##  6 AL-503      Huntsvil~ 656              481              175             
+##  7 AL-504      Montgome~ 433              287              146             
+##  8 AL-505      Gadsden/~ 495              353              142             
+##  9 AL-506      Tuscaloo~ 265              236              29              
+## 10 AL-507      Alabama ~ 797              727              70              
+## # ... with 388 more rows, and 13 more variables:
+## #   homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;,
+## #   chronically_homeless &lt;chr&gt;,
+## #   sheltered_total_chronically_homeless &lt;chr&gt;,
+## #   unsheltered_chronically_homeless &lt;chr&gt;, homeless_veterans &lt;chr&gt;,
+## #   sheltered_total_homeless_veterans &lt;chr&gt;,
+## #   unsheltered_homeless_veterans &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2010 = home_data_2010 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2010) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2010&quot;)),
+            .funs = funs(sub(&quot;[_]2010$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
+home_data_2010</code></pre>
+<pre><code>## # A tibble: 395 x 12
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;                &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1 AK-500      Anchorag~             1231             1113              118
+##  2 AK-501      Alaska B~              632              558               74
+##  3 AL-500      Birmingh~             2273             1069             1204
+##  4 AL-501      Mobile C~              883              482              401
+##  5 AL-502      Florence~              170              162                8
+##  6 AL-503      Huntsvil~              819              645              174
+##  7 AL-504      Montgome~              444              294              150
+##  8 AL-505      Gadsden/~              370              294               76
+##  9 AL-506      Tuscaloo~              278              263               15
+## 10 AL-507      Alabama ~              809              682              127
+## # ... with 385 more rows, and 7 more variables:
+## #   homeless_people_in_families &lt;dbl&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;dbl&gt;,
+## #   unsheltered_homeless_people_in_families &lt;dbl&gt;,
+## #   homeless_family_households &lt;dbl&gt;,
+## #   sheltered_total_homeless_family_households &lt;dbl&gt;,
+## #   unsheltered_homeless_family_households &lt;dbl&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2009 = home_data_2009 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2009) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2009&quot;)),
+            .funs = funs(sub(&quot;[_]2009$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
+home_data_2009</code></pre>
+<pre><code>## # A tibble: 395 x 12
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;                &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1 AK-500      Anchorag~             1267             1110              157
+##  2 AK-501      Alaska B~              725              555              170
+##  3 AL-500      Birmingh~             2273             1069             1204
+##  4 AL-501      Mobile C~              747              411              336
+##  5 AL-502      Florence~              281              213               68
+##  6 AL-503      Huntsvil~              664              574               90
+##  7 AL-504      Montgome~              377              263              114
+##  8 AL-505      Gadsden/~              433              307              126
+##  9 AL-506      Tuscaloo~              270              261                9
+## 10 AL-507      Alabama ~             1035              815              220
+## # ... with 385 more rows, and 7 more variables:
+## #   homeless_people_in_families &lt;dbl&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;dbl&gt;,
+## #   unsheltered_homeless_people_in_families &lt;dbl&gt;,
+## #   homeless_family_households &lt;dbl&gt;,
+## #   sheltered_total_homeless_family_households &lt;dbl&gt;,
+## #   unsheltered_homeless_family_households &lt;dbl&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2008 = home_data_2008 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2008) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2008&quot;)),
+            .funs = funs(sub(&quot;[_]2008$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
+home_data_2008</code></pre>
+<pre><code>## # A tibble: 394 x 12
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;                &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1 AK-500      Anchorag~             1023              921              102
+##  2 AK-501      Alaska B~              623              531               92
+##  3 AL-500      Birmingh~             2104             1240              864
+##  4 AL-501      Mobile C~              524              341              183
+##  5 AL-502      Florence~              249              178               71
+##  6 AL-503      Huntsvil~              714              637               77
+##  7 AL-504      Montgome~              444              327              117
+##  8 AL-505      Gadsden/~              298              262               36
+##  9 AL-506      Tuscaloo~              196              192                4
+## 10 AL-507      Alabama ~              858              666              192
+## # ... with 384 more rows, and 7 more variables:
+## #   homeless_people_in_families &lt;dbl&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;dbl&gt;,
+## #   unsheltered_homeless_people_in_families &lt;dbl&gt;,
+## #   homeless_family_households &lt;dbl&gt;,
+## #   sheltered_total_homeless_family_households &lt;dbl&gt;,
+## #   unsheltered_homeless_family_households &lt;dbl&gt;, year &lt;dbl&gt;</code></pre>
+<pre class="r"><code>home_data_2007 = home_data_2007 %&gt;%
+  janitor::clean_names() %&gt;%
+  mutate(year = 2007) %&gt;%
+  rename_at(.vars = vars(ends_with(&quot;_2007&quot;)),
+            .funs = funs(sub(&quot;[_]2007$&quot;, &quot;&quot;, .))) %&gt;%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
+
+home_data_2007</code></pre>
+<pre><code>## # A tibble: 399 x 12
+##    co_c_number co_c_name overall_homeless sheltered_total~ unsheltered_hom~
+##    &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;            &lt;chr&gt;            &lt;chr&gt;           
+##  1 AK-500      Anchorag~ 974              842              132             
+##  2 AK-501      Alaska B~ 668              545              123             
+##  3 AL-500      Birmingh~ 2104             1240             864             
+##  4 AL-501      Mobile C~ 649              410              239             
+##  5 AL-502      Florence~ 265              131              134             
+##  6 AL-503      Huntsvil~ 830              756              74              
+##  7 AL-504      Montgome~ 456              331              125             
+##  8 AL-505      Gadsden/~ 119              104              15              
+##  9 AL-506      Tuscaloo~ 345              332              13              
+## 10 AL-507      Alabama ~ 684              492              192             
+## # ... with 389 more rows, and 7 more variables:
+## #   homeless_people_in_families &lt;chr&gt;,
+## #   sheltered_total_homeless_people_in_families &lt;chr&gt;,
+## #   unsheltered_homeless_people_in_families &lt;chr&gt;,
+## #   homeless_family_households &lt;chr&gt;,
+## #   sheltered_total_homeless_family_households &lt;chr&gt;,
+## #   unsheltered_homeless_family_households &lt;chr&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+<div id="bind-rows-for-all-12-datasets-produced-above" class="section level1">
+<h1>Bind rows for all 12 datasets produced above</h1>
+<pre class="r"><code>library(dplyr)
+total_data = 
+bind_rows(mutate_all(home_data_2007, as.character), mutate_all(home_data_2008, as.character), mutate_all(home_data_2009, as.character), mutate_all(home_data_2010, as.character), mutate_all(home_data_2011, as.character), mutate_all(home_data_2012, as.character), mutate_all(home_data_2013, as.character), mutate_all(home_data_2014, as.character), mutate_all(home_data_2015, as.character), mutate_all(home_data_2016, as.character), mutate_all(home_data_2017, as.character), mutate_all(home_data_2018, as.character))</code></pre>
+</div>
+<div id="clean-up-variable-names" class="section level1">
+<h1>Clean up variable names</h1>
+<pre class="r"><code>total_data = total_data %&gt;%
+  rename(coc_number = co_c_number, 
+         coc_name = co_c_name, 
+         total_homeless = overall_homeless, 
+         sheltered_homeless = sheltered_total_homeless, 
+         total_in_families = homeless_people_in_families, 
+         sheltered_in_families = sheltered_total_homeless_people_in_families, 
+         unsheltered_in_families = unsheltered_homeless_people_in_families, 
+         total_households = homeless_family_households, 
+         sheltered_households = sheltered_total_homeless_family_households, 
+         unsheltered_households = unsheltered_homeless_family_households, 
+         total_chronic = chronically_homeless, 
+         sheltered_chronic = sheltered_total_chronically_homeless, 
+         unsheltered_chronic = unsheltered_chronically_homeless, 
+         total_veterans = homeless_veterans, 
+         sheltered_veterans = sheltered_total_homeless_veterans, 
+         unsheltered_veterans = unsheltered_homeless_veterans, 
+         youth = homeless_unaccompanied_youth_under_18, 
+         coc_category = co_c_category) %&gt;%
+  mutate(total_homeless = as.numeric(total_homeless), 
+         sheltered_homeless = as.numeric(sheltered_homeless), 
+         unsheltered_homeless = as.numeric(unsheltered_homeless), 
+         total_in_families = as.numeric(total_in_families), 
+         sheltered_in_families = as.numeric(sheltered_in_families), 
+         unsheltered_in_families = as.numeric(unsheltered_in_families), 
+         total_households = as.numeric(total_households), 
+         sheltered_households = as.numeric(sheltered_households), 
+         unsheltered_households = as.numeric(unsheltered_households), 
+         year = as.numeric(year), 
+         total_chronic = as.numeric(total_chronic), 
+         sheltered_chronic = as.numeric(sheltered_chronic), 
+         unsheltered_chronic = as.numeric(unsheltered_chronic), 
+         total_veterans = as.numeric(total_veterans), 
+         sheltered_veterans = as.numeric(sheltered_veterans), 
+         unsheltered_veterans = as.numeric(unsheltered_veterans), 
+         youth = as.numeric(youth)) %&gt;%
+  separate(coc_number, into = c(&quot;state&quot;, &quot;number&quot;))</code></pre>
+<pre><code>## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion
+
+## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 12 rows [399,
+## 793, 1188, 1583, 1981, 2377, 2774, 3170, 3570, 3969, 4369, 4770].</code></pre>
+<pre class="r"><code>total_data</code></pre>
+<pre><code>## # A tibble: 4,770 x 21
+##    state number coc_name total_homeless sheltered_homel~ unsheltered_hom~
+##    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+##  1 AK    500    Anchora~            974              842              132
+##  2 AK    501    Alaska ~            668              545              123
+##  3 AL    500    Birming~           2104             1240              864
+##  4 AL    501    Mobile ~            649              410              239
+##  5 AL    502    Florenc~            265              131              134
+##  6 AL    503    Huntsvi~            830              756               74
+##  7 AL    504    Montgom~            456              331              125
+##  8 AL    505    Gadsden~            119              104               15
+##  9 AL    506    Tuscalo~            345              332               13
+## 10 AL    507    Alabama~            684              492              192
+## # ... with 4,760 more rows, and 15 more variables:
+## #   total_in_families &lt;dbl&gt;, sheltered_in_families &lt;dbl&gt;,
+## #   unsheltered_in_families &lt;dbl&gt;, total_households &lt;dbl&gt;,
+## #   sheltered_households &lt;dbl&gt;, unsheltered_households &lt;dbl&gt;, year &lt;dbl&gt;,
+## #   total_chronic &lt;dbl&gt;, sheltered_chronic &lt;dbl&gt;,
+## #   unsheltered_chronic &lt;dbl&gt;, total_veterans &lt;dbl&gt;,
+## #   sheltered_veterans &lt;dbl&gt;, unsheltered_veterans &lt;dbl&gt;, youth &lt;dbl&gt;,
+## #   coc_category &lt;chr&gt;</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,8 +1,10 @@
 ---
-title: "kristi"
-author: "Kristi Chau"
-date: "11/26/2019"
-output: html_document
+title: "Shiny Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
