@@ -205,7 +205,7 @@ total_data
 
 # Saving cleaned and compiled dataset as a csv file
 ```{r}
-write.csv(total_data,  "./data/us_homelessness_07_18.csv")
+write.csv(total_data, "./data/us_homelessness_07_18.csv")
 ```
 
 

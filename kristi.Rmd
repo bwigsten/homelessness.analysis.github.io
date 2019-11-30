@@ -11,18 +11,39 @@ runtime: shiny
 library(flexdashboard)
 library(shiny)
 library(tidyverse)
+library(forcats)
 library(viridis)
 library(plotly)
 ```
 
 ```{r}
+homelessness = 
+  read.csv("./data/us_homelessness_07_18.csv")
+```
+
+```{r}
 # calculating total percentage per state by year
 count_total_state = 
-  total_data %>% 
-  group_by (year, state) %>% 
+  homelessness %>% 
+  mutate(state = fct_explicit_na(state)) %>% 
+  group_by(year, state) %>% 
   mutate(
-    th_state = sum(total_homeless) ## need to do this for each varaible of interest, then get breakdown of other variables based on state's overall percentage
-  )
+    tot_hmls_st = sum(total_homeless),
+    shel_hmls_st = sum(sheltered_homeless),
+    unshel_hmls_st = sum(unsheltered_homeless),
+    tot_hous_st = sum(total_households),
+    shel_hous_st = sum(sheltered_households),
+    unshel_hous_st = sum(unsheltered_households),
+    tot_chr_st = sum(total_chronic),
+    shel_chr_st = sum(sheltered_chronic),
+    unshel_chr_st = sum(unsheltered_chronic),
+    tot_vet_st = sum(total_veterans),
+    shel_vet_st = sum(sheltered_veterans),
+    unshel_vet_st = sum(unsheltered_veterans),
+    tot_youth_st = sum(youth)
+    ## need to do this for each variable of interest, then get breakdown of other variables based on state's overall percentage
+  ) %>%
+  distinct(year, state, tot_hmls_st, shel_hmls_st, unshel_hmls_st, tot_hous_st, shel_hous_st, unshel_hous_st, tot_chr_st, shel_chr_st, unshel_chr_st, tot_vet_st, shel_vet_st, unshel_vet_st, tot_youth_st)
 ```
 
 Column {.sidebar}
@@ -37,5 +58,8 @@ Column {data-width=1000}
 
 ### Homelessness Distributions in the United States
 
+```{r}
+
+```
 
 
