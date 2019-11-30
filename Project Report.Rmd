@@ -208,7 +208,9 @@ total_data = total_data %>%
          sheltered_veterans = as.numeric(sheltered_veterans), 
          unsheltered_veterans = as.numeric(unsheltered_veterans), 
          youth = as.numeric(youth)) %>%
-  separate(coc_number, into = c("state", "number"))
+  separate(coc_number, into = c("state", "number")) %>% 
+  ## removing those 2 random blank rows that appear at the end of every dataset after the total
+  subset(coc_name != "NA")
 total_data
 ```
 
