@@ -36,7 +36,6 @@ home_data_2018 = home_data_2018 %>%
   rename_at(.vars = vars(ends_with("_2018")),
             .funs = funs(sub("[_]2018$", "", .))) %>%
   select(co_c_number, co_c_name, co_c_category, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
-home_data_2018
 ```
 
 
@@ -47,7 +46,6 @@ home_data_2017 = home_data_2017 %>%
   rename_at(.vars = vars(ends_with("_2017")),
             .funs = funs(sub("[_]2017$", "", .))) %>%
   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
-home_data_2017
 ```
 
 
@@ -58,7 +56,6 @@ home_data_2016 = home_data_2016 %>%
   rename_at(.vars = vars(ends_with("_2016")),
             .funs = funs(sub("[_]2016$", "", .))) %>%
   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
-home_data_2016
 ```
 
 
@@ -69,7 +66,6 @@ home_data_2015 = home_data_2015 %>%
   rename_at(.vars = vars(ends_with("_2015")),
             .funs = funs(sub("[_]2015$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
-home_data_2015
 ```
 
 
@@ -80,7 +76,6 @@ home_data_2014 = home_data_2014 %>%
   rename_at(.vars = vars(ends_with("_2014")),
             .funs = funs(sub("[_]2014$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
-home_data_2014
 ```
 
 
@@ -91,7 +86,6 @@ home_data_2013 = home_data_2013 %>%
   rename_at(.vars = vars(ends_with("_2013")),
             .funs = funs(sub("[_]2013$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
-home_data_2013
 ```
 
 
@@ -102,7 +96,6 @@ home_data_2012 = home_data_2012 %>%
   rename_at(.vars = vars(ends_with("_2012")),
             .funs = funs(sub("[_]2012$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
-home_data_2012
 ```
 
 
@@ -113,7 +106,6 @@ home_data_2011 = home_data_2011 %>%
   rename_at(.vars = vars(ends_with("_2011")),
             .funs = funs(sub("[_]2011$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
-home_data_2011
 ```
 
 
@@ -124,7 +116,6 @@ home_data_2010 = home_data_2010 %>%
   rename_at(.vars = vars(ends_with("_2010")),
             .funs = funs(sub("[_]2010$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
-home_data_2010
 ```
 
 
@@ -135,7 +126,6 @@ home_data_2009 = home_data_2009 %>%
   rename_at(.vars = vars(ends_with("_2009")),
             .funs = funs(sub("[_]2009$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
-home_data_2009
 ```
 
 
@@ -146,7 +136,6 @@ home_data_2008 = home_data_2008 %>%
   rename_at(.vars = vars(ends_with("_2008")),
             .funs = funs(sub("[_]2008$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
-home_data_2008
 ```
 
 
@@ -157,8 +146,6 @@ home_data_2007 = home_data_2007 %>%
   rename_at(.vars = vars(ends_with("_2007")),
             .funs = funs(sub("[_]2007$", "", .))) %>%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
-
-home_data_2007
 ```
 
 
@@ -211,6 +198,7 @@ total_data = total_data %>%
   separate(coc_number, into = c("state", "number")) %>% 
   ## removing those 2 random blank rows that appear at the end of every dataset after the total
   subset(coc_name != "NA")
+
 total_data
 ```
 
