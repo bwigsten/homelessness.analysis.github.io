@@ -159,7 +159,7 @@ bind_rows(mutate_all(home_data_2007, as.character), mutate_all(home_data_2008, a
 
 # Clean up variable names
 ```{r}
-total_data = total_data %>%
+homelessness_all = total_data %>%
   rename(coc_number = co_c_number, 
          coc_name = co_c_name, 
          total_homeless = overall_homeless, 
@@ -193,19 +193,20 @@ total_data = total_data %>%
          unsheltered_chronic = as.numeric(unsheltered_chronic), 
          total_veterans = as.numeric(total_veterans), 
          sheltered_veterans = as.numeric(sheltered_veterans), 
-         unsheltered_veterans = as.numeric(unsheltered_veterans), 
+         unsheltered_veterans = as.numeric(unsheltered_veterans),
          youth = as.numeric(youth)) %>%
   separate(coc_number, into = c("state", "number")) %>% 
   ## removing those 2 random blank rows that appear at the end of every dataset after the total
-  subset(coc_name != "NA")
+  ## also removing DC, GU, PR, and VI
+  subset(coc_name != "NA" & !(state %in% c("DC","GU","PR","VI")))
 
-total_data
+homelessness_all
 ```
 
 
 # Saving cleaned and compiled dataset as a csv file
 ```{r}
-write.csv(total_data, "./data/us_homelessness_07_18.csv")
+write.csv(homelessness_all, "./data/us_homelessness_07_18.csv")
 ```
 
 
