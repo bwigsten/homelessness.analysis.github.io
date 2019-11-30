@@ -19,9 +19,7 @@ library(plotly)
 ```{r}
 homelessness = 
   read.csv("./data/us_homelessness_07_18.csv")
-```
 
-```{r}
 # calculating total percentage per state by year
 count_total_state = 
   homelessness %>% 
@@ -43,14 +41,51 @@ count_total_state =
     tot_youth_st = sum(youth)
     ## need to do this for each variable of interest, then get breakdown of other variables based on state's overall percentage
   ) %>%
-  distinct(year, state, tot_hmls_st, shel_hmls_st, unshel_hmls_st, tot_hous_st, shel_hous_st, unshel_hous_st, tot_chr_st, shel_chr_st, unshel_chr_st, tot_vet_st, shel_vet_st, unshel_vet_st, tot_youth_st)
+  distinct(year, state, tot_hmls_st, shel_hmls_st, unshel_hmls_st, tot_hous_st, shel_hous_st, unshel_hous_st, tot_chr_st, shel_chr_st, unshel_chr_st, tot_vet_st, shel_vet_st, unshel_vet_st, tot_youth_st) %>% 
+  ungroup()
 ```
 
 Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
+years = 
+  count_total_state %>% 
+  distinct(year) %>% 
+  pull()
 
+variables = 
+  count_total_state %>% 
+  select(tot_hmls_st:tot_youth_st) %>% 
+  rename(
+    "Total Homeless" = tot_hmls_st,
+    "Sheltered Homeless" = shel_hmls_st,
+    "Unsheltered Homeless" = unshel_hmls_st,
+    "Total Households" = tot_hous_st,
+    "Sheltered Households" = shel_hous_st,
+    "Unsheltered Households" = unshel_hous_st,
+    "Total Chronic" = tot_chr_st,
+    "Sheltered Chronic" = shel_chr_st,
+    "Unsheltered Chronic" = unshel_chr_st,
+    "Total Veterans" = tot_vet_st,
+    "Sheltered Veterans" = shel_vet_st,
+    "Unsheltered Veterans" = unshel_vet_st,
+    "Total Youth" = tot_youth_st
+  ) %>% 
+  colnames()
+
+# select years
+selectInput(
+  "year_choice",
+  label = h3("Select year"),
+  choices = years, selected = "2018"
+  )
+
+selectInput(
+  "variable_type",
+  label = h3("Select variable"),
+  choices = variables, selected = "Total Homeless"
+  )
 ```
 
 Column {data-width=1000}
@@ -59,7 +94,33 @@ Column {data-width=1000}
 ### Homelessness Distributions in the United States
 
 ```{r}
-
+renderPlotly({
+	# map plot setting
+	geo1 <- list(
+	scope = "usa",
+	projection = list(type = "state"),
+	showlakes = TRUE,
+	lakecolor = toRGB("white")
+	)
+	
+	# display value using color intensity
+	merged_data %>% 
+	filter(type_variable == input$variable_type, year == input$year_1) %>% 
+	plot_geo(locationmode = "USA-states") %>% 
+	add_trace(
+		z = ~Statistics,
+		locations = ~state,
+		color = ~Statistics,
+		colors = "Reds",
+		# add text
+		text = ~paste(type_variable, state_abb[state], sep = "")
+		) %>%
+	layout(
+		geo = geo1,
+		title = "US Map - State Statistics",
+		legend = list(x = 100, y = 0.5)
+	)
+})
 ```
 
 
