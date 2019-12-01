@@ -7,7 +7,7 @@ navbar:
       href: Project-Report.html
     - text: "Trends Over Time"
       href: Homelessness-Dashboard.html  
-    - text: "Homlessness by State"
+    - text: "Homelessness by State"
       href: .html  
     - text: "Covariate Analysis"
       href: .html  
