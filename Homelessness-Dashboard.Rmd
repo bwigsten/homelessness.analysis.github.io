@@ -1,5 +1,5 @@
 ---
-title: "Homelessness-Dashboard"
+title: "Homelessness Dashboard"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -108,5 +108,4 @@ chronic_over_time = homelessness_all %>%
          yaxis = list(side = 'left', title = "Number"))
 chronic_over_time
 ```
-
 
