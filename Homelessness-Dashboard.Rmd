@@ -85,8 +85,7 @@ veterans_over_time = homelessness_all %>%
   plot_ly() %>%
     add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Veterans Sheltered") %>%
     add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Veterans Unsheltered") %>%
-  layout(title = "Total Veterans Homeless Sheltered and Unsheltered Over Time",
-         xaxis = list(title = "Year"),
+  layout(xaxis = list(title = "Year"),
          yaxis = list(side = 'left', title = "Number")) 
 veterans_over_time
 ```
@@ -103,8 +102,7 @@ chronic_over_time = homelessness_all %>%
   plot_ly() %>%
     add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Chronic Sheltered") %>%
     add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Chronic Unsheltered") %>%
-  layout(title = "Total Chronically Homeless Sheltered and Unsheltered Over Time",
-         xaxis = list(title = "Year"),
+  layout(xaxis = list(title = "Year"),
          yaxis = list(side = 'left', title = "Number"))
 chronic_over_time
 ```
