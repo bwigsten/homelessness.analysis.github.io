@@ -28,7 +28,7 @@ Due to a lack of accessible mental health resources, rising cost of living with 
 homelessness_all %>%
   select(state, total_homeless) %>%
   group_by(state) %>% 
-  summarise(total = sum(total_homeless, na.rm = TRUE)) %>%
+  summarize(total = sum(total_homeless, na.rm = TRUE)) %>%
   mutate(state = fct_reorder(state, total)) %>%
   plot_ly(
     x = ~state, 
@@ -63,8 +63,7 @@ homelessness_all %>%
       
 ## Introduction to the Data Used for This Project
 
-* Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data. The data can be accessed [here](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). Following the definitions outlined in the [2018 Annual Homelessness Assessment Report to Congress](https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf), we used the following variable definitions:
-      * 
+* Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data. The data can be accessed [here](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). Variable definitions can be found in the [2018 Annual Homelessness Assessment Report to Congress](https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf). 
 * Below is the complete process for cleaning this dataset. 
     
 ### Import all the data
@@ -83,7 +82,6 @@ home_data_2008 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 11)
 home_data_2007 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 12)
 
 ```
-
 
 ### Clean names, add year variable, remove _year from name to merge later, and select variables of interest for all years
 ```{r}
@@ -266,8 +264,50 @@ homelessness_all
 write.csv(homelessness_all, "./data/us_homelessness_07_18.csv")
 ```
 
+## Exploratory Data Analysis
+
+```{r}
+homelessness_all
+```
 
 
+
+### Total Homelessness Over Time Graph
+```{r}
+total_over_time = homelessness_all %>%
+  group_by(year) %>%
+  summarize(total = sum(total_homeless, na.rm = TRUE)) %>%
+  plot_ly(
+    x = ~year, 
+    y = ~total, 
+    type = "scatter", 
+    mode = "lines") 
+
+total_over_time
+```
+
+## Total Homelessness Over Time Stratified by Shelter Status
+```{r}
+total_stratified = homelessness_all %>%
+  group_by(year) %>%
+  summarize(
+    sheltered = sum(sheltered_homeless, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_homeless, na.rm = TRUE)) %>%
+  plot_ly() %>%
+    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Sheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Unsheltered") %>%
+  layout(title = "Total Sheltered and Unsheltered Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number"))
+total_stratified
+
+```
+
+
+## Chronic Homelessness Over Time Stratified by Shelter Status
+```{r}
+
+```
 
 
 
