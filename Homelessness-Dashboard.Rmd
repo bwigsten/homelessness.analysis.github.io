@@ -49,7 +49,6 @@ total_over_time = homelessness_all %>%
 total_over_time
 ```
 
-
 Column {data-width=350}
 -----------------------------------------------------------------------
 
@@ -69,7 +68,6 @@ total_stratified = homelessness_all %>%
          yaxis = list(side = 'left', title = "Number"))
 total_stratified
 ```
-
 
 ### Chronic Homelessness Over Time
 
