@@ -26,6 +26,13 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -347,7 +354,16 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="about.html">About</a>
+  <a href="Project-Report.html">Report</a>
+</li>
+<li>
+  <a href="Homelessness-Dashboard.html">Trends Over Time</a>
+</li>
+<li>
+  <a href=".html">Homlessness by State</a>
+</li>
+<li>
+  <a href=".html">Covariate Analysis</a>
 </li>
 <li>
   <a href="mailto:&lt;niz2000@cumc.columbia.edu&gt;">
@@ -382,10 +398,45 @@ div.tocify {
 </div>
 <div id="december-5th-2019" class="section level3">
 <h3>December 5th, 2019</h3>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ──────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
+## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
+## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
+## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
+<pre><code>## ── Conflicts ─────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(readxl)
+library(plotly)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
 </div>
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
-<p>Due to a lack of accessible mental health resources, rising cost of living with stagnant wages, and housing insecurity, homelessness is on the rise in the United States. Data from the Department of Housing and Urban Development has shown that homelessness was declining historically, but has risen every year since 2016. Seemingly declaring war on homelessness after this rise, President Donald Trump argues that the homeless individuals are living in “our best highways, our best highways, our best streets, our best entrances to building”. While countrywide data on this issue is presented by the US government each year, deep analysis into state stratification and potential correlating factors is rarely performed. As a group consisting of California and New York residents, where homelessness is thought to be the highest in the country, we set out to explain trends in homelessness over the last 12 years.</p>
+<p>Due to a lack of accessible mental health resources, rising cost of living with stagnant wages, and housing insecurity, homelessness is on the rise in the United States. Data from the Department of Housing and Urban Development (HUD) has shown that homelessness was declining historically, but has risen every year since 2016. Seemingly declaring war on homelessness after this rise, President Donald Trump argues that the homeless individuals are living in “our best highways, our best highways, our best streets, our best entrances to building”. While countrywide data on this issue is presented by the US government each year, deep analysis into state stratification and potential correlating factors is rarely performed. As a group consisting of California and New York residents, where homelessness is thought to be the highest in the country, we set out to explain trends in homelessness over the last 12 years.</p>
+</div>
+<div id="related-work" class="section level2">
+<h2>Related Work</h2>
+<ul>
+<li>As a group consisting of California and New York residents, homelessness as a public health issue is at the forefront. Throughout coursework at Columbia, we have all been exposed to this glaring issue, and chose to analyze available public data to see the magnitude of the problem firsthand. Recent statements by President Trump on <a href="https://www.washingtonpost.com/business/2019/09/18/surprising-holes-our-knowledge-americas-homeless-population/">homelessness</a> have made headlines, and definitely caught our attention. Shown in the figure below, New York and California have the highest sum of total homelessness over the 12-year period of 2007 to 2018. This, along with the political relevance of homelessness as a public health issue, compelled us to focus our final project on this topic.</li>
+</ul>
+</div>
+<div id="initial-questions" class="section level2">
+<h2>Initial Questions</h2>
+<ul>
+<li>Without individual level data, we cannot hypothesize risk factors for homelessness in this report. We can, however, analyze current prevalences in homelessness and show trends between homelessness and other demographics (like state, employment rate, prevalence of veterans, and education level). We aimed to show interactive maps to show prevalences of homelessness types, in relation to other search variables like year, and further categories of homelessness (sheltered/unsheltered, household, chronic, veterans, youth).</li>
+<li>Our initial questions included: * What is the distribution of homelessness by state and year over the period of 2007 to 2008? * Are there certain subsets of homelessness (among the search variables listed above) that contribute more or less towards overall homelessness over time? * Are there correlations between demographics (listed above) and homelessness</li>
+</ul>
 </div>
 <div id="facts-about-homelessness" class="section level2">
 <h2>Facts About Homelessness</h2>
@@ -400,35 +451,19 @@ div.tocify {
 <div id="goals-of-this-project" class="section level2">
 <h2>Goals of This Project</h2>
 <ul>
-<li>Analyze broad trends in homelessness in each state from 2007 to 2018</li>
+<li>Analyze trends in homelessness in each state from 2007 to 2018</li>
 <li>Display trends in categories of homelessness</li>
 <li>Analyze trends in factors that may influence homelessness * Employment, number of veterans, education level distribution</li>
 </ul>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<<<<<<< HEAD
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
-## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
-## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
-## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-=======
-<pre><code>## -- Attaching packages --------------------------------- tidyverse 1.2.1 --</code></pre>
-<pre><code>## v ggplot2 3.2.1     v purrr   0.3.3
-## v tibble  2.1.3     v dplyr   0.8.3
-## v tidyr   1.0.0     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.4.0</code></pre>
-<pre><code>## -- Conflicts ------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
->>>>>>> d3464249e723fdd5f828be826dc568a44e5461b4
-<pre class="r"><code>library(readxl)</code></pre>
 </div>
-</div>
-<div id="import-all-the-data" class="section level1">
-<h1>Import all the data</h1>
+<div id="introduction-to-the-data-used-for-this-project" class="section level2">
+<h2>Introduction to the Data Used for This Project</h2>
+<ul>
+<li>Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data. The data can be accessed <a href="https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/">here</a>. Variable definitions can be found in the <a href="https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf">2018 Annual Homelessness Assessment Report to Congress</a>.</li>
+<li>Below is the complete process for cleaning this dataset.</li>
+</ul>
+<div id="import-all-the-data" class="section level3">
+<h3>Import all the data</h3>
 <pre class="r"><code>home_data_2018 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 1)
 home_data_2017 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 2)
 home_data_2016 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 3)
@@ -442,8 +477,8 @@ home_data_2009 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 1
 home_data_2008 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 11)
 home_data_2007 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 12)</code></pre>
 </div>
-<div id="clean-names-add-year-variable-remove-_year-from-name-to-merge-later-and-select-variables-of-interest-for-all-years" class="section level1">
-<h1>Clean names, add year variable, remove _year from name to merge later, and select variables of interest for all years</h1>
+<div id="clean-names-add-year-variable-remove-_year-from-name-to-merge-later-and-select-variables-of-interest-for-all-years" class="section level3">
+<h3>Clean names, add year variable, remove _year from name to merge later, and select variables of interest for all years</h3>
 <pre class="r"><code>home_data_2018 = home_data_2018 %&gt;%
   janitor::clean_names() %&gt;%
   mutate(year = 2018) %&gt;%
@@ -529,14 +564,14 @@ home_data_2007 = read_excel(&quot;data/2007-2018-PIT-Counts-by-CoC.xlsx&quot;, 1
             .funs = funs(sub(&quot;[_]2007$&quot;, &quot;&quot;, .))) %&gt;%
    select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)</code></pre>
 </div>
-<div id="bind-rows-for-all-12-datasets-produced-above" class="section level1">
-<h1>Bind rows for all 12 datasets produced above</h1>
+<div id="bind-rows-for-all-12-datasets-produced-above" class="section level3">
+<h3>Bind rows for all 12 datasets produced above</h3>
 <pre class="r"><code>library(dplyr)
 total_data = 
 bind_rows(mutate_all(home_data_2007, as.character), mutate_all(home_data_2008, as.character), mutate_all(home_data_2009, as.character), mutate_all(home_data_2010, as.character), mutate_all(home_data_2011, as.character), mutate_all(home_data_2012, as.character), mutate_all(home_data_2013, as.character), mutate_all(home_data_2014, as.character), mutate_all(home_data_2015, as.character), mutate_all(home_data_2016, as.character), mutate_all(home_data_2017, as.character), mutate_all(home_data_2018, as.character))</code></pre>
 </div>
-<div id="clean-up-variable-names" class="section level1">
-<h1>Clean up variable names</h1>
+<div id="clean-up-variable-names" class="section level3">
+<h3>Clean up variable names</h3>
 <pre class="r"><code>homelessness_all = total_data %&gt;%
   rename(coc_number = co_c_number, 
          coc_name = co_c_name, 
@@ -611,8 +646,7 @@ bind_rows(mutate_all(home_data_2007, as.character), mutate_all(home_data_2008, a
 <pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 12 rows [399,
 ## 793, 1188, 1583, 1981, 2377, 2774, 3170, 3570, 3969, 4369, 4770].</code></pre>
 <pre class="r"><code>homelessness_all</code></pre>
-<<<<<<< HEAD
-<pre><code>## # A tibble: 4,686 x 21
+<pre><code>## # A tibble: 4,684 x 21
 ##    state number coc_name total_homeless sheltered_homel… unsheltered_hom…
 ##    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
 ##  1 AK    500    Anchora…            974              842              132
@@ -625,40 +659,72 @@ bind_rows(mutate_all(home_data_2007, as.character), mutate_all(home_data_2008, a
 ##  8 AL    505    Gadsden…            119              104               15
 ##  9 AL    506    Tuscalo…            345              332               13
 ## 10 AL    507    Alabama…            684              492              192
-## # … with 4,676 more rows, and 15 more variables: total_in_families &lt;dbl&gt;,
+## # … with 4,674 more rows, and 15 more variables: total_in_families &lt;dbl&gt;,
 ## #   sheltered_in_families &lt;dbl&gt;, unsheltered_in_families &lt;dbl&gt;,
 ## #   total_households &lt;dbl&gt;, sheltered_households &lt;dbl&gt;,
 ## #   unsheltered_households &lt;dbl&gt;, year &lt;dbl&gt;, total_chronic &lt;dbl&gt;,
 ## #   sheltered_chronic &lt;dbl&gt;, unsheltered_chronic &lt;dbl&gt;,
 ## #   total_veterans &lt;dbl&gt;, sheltered_veterans &lt;dbl&gt;,
 ## #   unsheltered_veterans &lt;dbl&gt;, youth &lt;dbl&gt;, coc_category &lt;chr&gt;</code></pre>
-=======
-<pre><code>## # A tibble: 4,684 x 21
-##    state number coc_name total_homeless sheltered_homel~ unsheltered_hom~
-##    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-##  1 AK    500    Anchora~            974              842              132
-##  2 AK    501    Alaska ~            668              545              123
-##  3 AL    500    Birming~           2104             1240              864
-##  4 AL    501    Mobile ~            649              410              239
-##  5 AL    502    Florenc~            265              131              134
-##  6 AL    503    Huntsvi~            830              756               74
-##  7 AL    504    Montgom~            456              331              125
-##  8 AL    505    Gadsden~            119              104               15
-##  9 AL    506    Tuscalo~            345              332               13
-## 10 AL    507    Alabama~            684              492              192
-## # ... with 4,674 more rows, and 15 more variables:
-## #   total_in_families &lt;dbl&gt;, sheltered_in_families &lt;dbl&gt;,
-## #   unsheltered_in_families &lt;dbl&gt;, total_households &lt;dbl&gt;,
-## #   sheltered_households &lt;dbl&gt;, unsheltered_households &lt;dbl&gt;, year &lt;dbl&gt;,
-## #   total_chronic &lt;dbl&gt;, sheltered_chronic &lt;dbl&gt;,
-## #   unsheltered_chronic &lt;dbl&gt;, total_veterans &lt;dbl&gt;,
-## #   sheltered_veterans &lt;dbl&gt;, unsheltered_veterans &lt;dbl&gt;, youth &lt;dbl&gt;,
-## #   coc_category &lt;chr&gt;</code></pre>
->>>>>>> d3464249e723fdd5f828be826dc568a44e5461b4
 </div>
-<div id="saving-cleaned-and-compiled-dataset-as-a-csv-file" class="section level1">
-<h1>Saving cleaned and compiled dataset as a csv file</h1>
+<div id="saving-cleaned-and-compiled-dataset-as-a-csv-file" class="section level3">
+<h3>Saving cleaned and compiled dataset as a csv file</h3>
 <pre class="r"><code>write.csv(homelessness_all, &quot;./data/us_homelessness_07_18.csv&quot;)</code></pre>
+</div>
+</div>
+<div id="exploratory-data-analysis" class="section level2">
+<h2>Exploratory Data Analysis</h2>
+<div id="total-homelessness-over-time-graph" class="section level3">
+<h3>Total Homelessness Over Time Graph</h3>
+<pre class="r"><code>total_over_time = homelessness_all %&gt;%
+  group_by(year) %&gt;%
+  summarize(total = sum(total_homeless, na.rm = TRUE)) %&gt;%
+  plot_ly(
+    x = ~year, 
+    y = ~total, 
+    type = &quot;scatter&quot;, 
+    mode = &quot;lines&quot;) 
+
+total_over_time</code></pre>
+<div id="htmlwidget-57a5a733652f2f873b1e" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-57a5a733652f2f873b1e">{"x":{"visdat":{"62d932089497":["function () ","plotlyVisDat"]},"cur_data":"62d932089497","attrs":{"62d932089497":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"year"},"yaxis":{"domain":[0,1],"automargin":true,"title":"total"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[1283603,1269185,1248597,1261344,1235853,1231155,1167982,1139216,1115983,1085662,1089089,1093190],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="total-homelessness-over-time-stratified-by-shelter-status" class="section level2">
+<h2>Total Homelessness Over Time Stratified by Shelter Status</h2>
+<pre class="r"><code>total_stratified = homelessness_all %&gt;%
+  group_by(year) %&gt;%
+  summarize(
+    sheltered = sum(sheltered_homeless, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_homeless, na.rm = TRUE)) %&gt;%
+  plot_ly() %&gt;%
+    add_trace(x = ~year, y = ~sheltered, type = &quot;scatter&quot;, mode = &quot;lines&quot;, name = &quot;Total Sheltered&quot;) %&gt;%
+    add_trace(x = ~year, y = ~unsheltered, type = &quot;scatter&quot;, mode = &quot;lines&quot;, name = &quot;Total Unsheltered&quot;) %&gt;%
+  layout(title = &quot;Total Sheltered and Unsheltered Over Time&quot;,
+         xaxis = list(title = &quot;Year&quot;),
+         yaxis = list(side = &#39;left&#39;, title = &quot;Number&quot;))
+total_stratified</code></pre>
+<div id="htmlwidget-d6881255274573dbda7d" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d6881255274573dbda7d">{"x":{"visdat":{"62d9322263a2":["function () ","plotlyVisDat"]},"cur_data":"62d9322263a2","attrs":{"62d9322263a2":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Sheltered","inherit":true},"62d9322263a2.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[776279,766028,799126,799299,776999,772396,781394,793133,774533,737588,713960,709424],"type":"scatter","mode":"lines","name":"Total Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[507324,503157,449471,462045,458854,458759,386588,346083,341450,348074,375129,383766],"type":"scatter","mode":"lines","name":"Total Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="chronic-homelessness-over-time-stratified-by-shelter-status" class="section level2">
+<h2>Chronic Homelessness Over Time Stratified by Shelter Status</h2>
+<pre class="r"><code>chronic_over_time = homelessness_all %&gt;%
+  group_by(year) %&gt;%
+  filter(year %in% c(&quot;2011&quot;, &quot;2012&quot;, &quot;2013&quot;, &quot;2014&quot;, &quot;2015&quot;, &quot;2016&quot;, &quot;2017&quot;, &quot;2018&quot;)) %&gt;%
+  summarize(
+    sheltered = sum(sheltered_chronic, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_chronic, na.rm = TRUE)) %&gt;%
+  plot_ly() %&gt;%
+    add_trace(x = ~year, y = ~sheltered, type = &quot;scatter&quot;, mode = &quot;lines&quot;, name = &quot;Total Chronic Sheltered&quot;) %&gt;%
+    add_trace(x = ~year, y = ~unsheltered, type = &quot;scatter&quot;, mode = &quot;lines&quot;, name = &quot;Total Chrinic Unsheltered&quot;) %&gt;%
+  layout(title = &quot;Total Chronically Homeless Sheltered and Unsheltered Over Time&quot;,
+         xaxis = list(title = &quot;Year&quot;),
+         yaxis = list(side = &#39;left&#39;, title = &quot;Number&quot;))
+chronic_over_time</code></pre>
+<div id="htmlwidget-92b62832606f6891e279" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-92b62832606f6891e279">{"x":{"visdat":{"62d93f67243c":["function () ","plotlyVisDat"]},"cur_data":"62d93f67243c","attrs":{"62d93f67243c":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Chronic Sheltered","inherit":true},"62d93f67243c.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Chrinic Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Chronically Homeless Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[89536,77094,73308,79241,71865,58640,63706,71514],"type":"scatter","mode":"lines","name":"Total Chronic Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[141892,140995,127814,114776,116964,110174,123121,119067],"type":"scatter","mode":"lines","name":"Total Chrinic Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
 </div>
 
 
