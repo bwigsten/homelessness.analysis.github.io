@@ -5,11 +5,11 @@ navbar:
   right:
     - text: "Report"
       href: Project-Report.html
-    - text: ""
+    - text: "Trends Over Time"
+      href: Homelessness-Dashboard.html  
+    - text: "Homlessness by State"
       href: .html  
-    - text: ""
-      href: .html  
-    - text: ""
+    - text: "Covariate Analysis"
       href: .html  
     - icon: fa-envelope fa-lg
       href: mailto:<niz2000@cumc.columbia.edu>
