@@ -1,8 +1,9 @@
 ---
 title: "Project Report"
-author: "Blair Wigsten"
-date: "11/21/2019"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
 
 ```{r}

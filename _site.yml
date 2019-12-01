@@ -2,11 +2,7 @@ name: "Homelessness Final"
 output_dir: "."
 navbar:
   title: "Home"
-  menu:
-    - text: "US Homelessness Distribution"
-      href: kristi.html
-    - text: "Plots!"
-      href: dashboard.html
+  left:
   right:
     - text: "About"
       href: about.html
