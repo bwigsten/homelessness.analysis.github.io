@@ -36,7 +36,7 @@ _**Trends Over Time**_: This dashboard displays trends in homelessness counts fr
 _**Homelessness by State**_: This ShinyApp displays a map of the United States, with tools to search for homelessness counts and additional HUD variables by state and by year.
 
 
-_**Covariates**_: This ShinyApp links the HUD homelessness data with several covariates of interest, employment and education, using the years 2009 and 2018 as interactive comparisons. 
+_**Covariate Analysis**_: This ShinyApp links the HUD homelessness data with several covariates of interest, employment and education, using the years 2009 and 2018 as interactive comparisons. 
 
 
 To view a brief overview of our website, and its visualization functionalities, view our screencast here.
