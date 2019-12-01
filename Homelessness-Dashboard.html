@@ -12,7 +12,7 @@
 
 
 
-<title>Homelessness as a Public Health Epidemic</title>
+<title>Homelessness-Dashboard</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,9 +20,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -253,63 +250,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -317,16 +257,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -379,46 +309,20 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Homelessness as a Public Health Epidemic</h1>
+<h1 class="title toc-ignore">Homelessness-Dashboard</h1>
 
 </div>
 
 
-<div id="an-analysis-of-homelessness-in-the-united-states-and-a-case-study-of-california-and-new-york" class="section level4">
-<h4><em>An Analysis of Homelessness in the United States and a Case Study of California and New York</em></h4>
-<p><strong>December 5th, 2019</strong></p>
-<p><img src="Images/Homelessness_SF.jpg" /></p>
-<p><em>Despite efforts to decrease rates of homelessness in the past decade, homelessness continues to be a pervasive public health issue.</em></p>
-<p>Image: <a href="https://www.nytimes.com/2019/11/14/reader-center/homeless-in-california.html">The New York Times</a></p>
+<div id="column" class="section level2" data-width="650">
+<h2>Column</h2>
 </div>
-<div id="introduction" class="section level3">
-<h3>Introduction</h3>
-<p>Over 500,000 individuals experience homelessness in the United States on a daily basis. Homelessness continues to be a recalcitrant public health epidemic in the United States, as barriers to health care and affordable housing results in high rates of chronic physical and mental health conditions, comorbid disorders, and overuse of emergency services, driving increased treatment costs. Additionally, homelessness varies by geographic regions, concentrated in populous states, and states with the highest housing costs in the country. Throughout the past decade, national counts of individuals experiencing homelessness have trended downward over time, with more substantial progress evidence within subgroups. The purpose of this analysis is to examine trends in homelessness over time, and explore the influence of various covariates and rates of homelessness. Understanding where homelessness is located and the various factors at play can identify points for public health intervention.</p>
-</div>
-<div id="data-source" class="section level3">
-<h3>Data Source</h3>
-<<<<<<< HEAD
-<p>The primary data source for this analysis comes the United States Department of Housing and Urban Development <a href="https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/">HUD Exchange</a>. This dataset spans from 2007-2018, and includes point-in-time and housing inventory counts at the national and state level, as well as information on the national Continuum of Care (CoC) Program, designed to promote communitywide commitment to the goal of ending homelessness through providing funding for for nonprofit providers, rehousing individuals experiencing homelessness, and increase access and utilization of existing programs. In addition to estimates of homelessness, HUD also collects estimates on sheltered vs unsheltered homelessness, homeless family, chronic homeless, homeless veterans, and homeless youth. Additional employment and education covariates used in secondary analysis were pulled from the United State’s Census Bureau’s <a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml">American Factfinder</a>.</p>
-=======
-<p>The primary data source for this analysis comes the United States Department of Housing and Urban Development <a href="https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/">HUD Exchange</a>. This dataset spans from 2007-2018, and includes point-in-time and housing inventory counts at the national and state level, as well as information on the national Continuum of Care (CoC) Program, designed to promote communitywide commitment to the goal of ending homelessness through providing funding for for nonprofit providers, rehousing individuals experiencing homelessness, and increase access and utilization of existing programs. In addition to estimates of homelessness, HUD also collects estimates on sheltered vs unsheltered homelessness, homeless family, chronic homeless, homeless veterans, and homeless youth. Additional employment and education covariates used in secondary analysis were pulled from the United State’s Census Bureau’s <a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml">American FactFinder</a>.</p>
->>>>>>> 8fe90a4fcade4938c7d9d1cf50b2f5e79a524bc2
-</div>
-<div id="website-overview" class="section level3">
-<h3>Website Overview</h3>
-<p><em><strong>Report</strong></em>: Includes the motivation driving this analysis, related work, initial study questions, the data source cleaning analysis and visualizations, statistical analyses, and a discussion.</p>
-<p><em><strong>Trends Over Time</strong></em>: This dashboard displays trends in homelessness counts from 2007 to 2018.</p>
-<p><em><strong>Homelessness by State</strong></em>: This ShinyApp displays a map of the United States, with tools to search for homelessness counts and additional HUD variables by state and by year.</p>
-<p><em><strong>Covariates</strong></em>: This ShinyApp links the HUD homelessness data with several covariates of interest, employment and education, using the years 2009 and 2018 as interactive comparisons.</p>
-<p>To view a brief overview of our website, and its visualization functionalities, view our screencast here.</p>
-<div id="contributors-kristi-chau-blair-wigsten-alicia-yang-nora-zakaria" class="section level4">
-<h4>Contributors: Kristi Chau, Blair Wigsten, Alicia Yang, Nora Zakaria</h4>
-</div>
+<div id="column-1" class="section level2" data-width="350">
+<h2>Column</h2>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -451,32 +355,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

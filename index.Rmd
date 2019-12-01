@@ -7,20 +7,36 @@ output:
     theme: flatly
 ---
 
-### Analysis of Homelessness in the US and a Case Study of California and New York
-#### December 5th, 2019
+#### _An Analysis of Homelessness in the United States and a Case Study of California and New York_
+**December 5th, 2019**
+
 ![](images/Homelessness_SF.jpg)
-Despite efforts to decrease rates of homelessness in the past decade, homelessness continues to be a pervasive public health issue.
+
+_Despite efforts to decrease rates of homelessness in the past decade, homelessness continues to be a pervasive public health issue._
 
 Image: [The New York Times](https://www.nytimes.com/2019/11/14/reader-center/homeless-in-california.html)
 
+
 ### Introduction
+Over 500,000 individuals experience homelessness in the United States on a daily basis. Homelessness continues to be a recalcitrant public health epidemic in the United States, as barriers to health care and affordable housing results in high rates of chronic physical and mental health conditions, comorbid disorders, and overuse of emergency services, driving increased treatment costs. Additionally, homelessness varies by geographic regions, concentrated in populous states, and states with the highest housing costs in the country. Throughout the past decade, national counts of individuals experiencing homelessness have trended downward over time, with more substantial progress evidence within subgroups. The purpose of this analysis is to examine trends in homelessness over time, and explore the influence of various covariates and rates of homelessness. Understanding where homelessness is located and the various factors at play can identify points for public health intervention.
 
 
 ### Data Source
-The primary data source for this analysis comes the United States Department of Housing and Urban Development [HUD Exchange](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). This dataset spans from 2007-2018, and includes point-in-time and housing inventory counts at the national and state level, as well as information on the national Continuum of Care (CoC) Program, designed to promote communitywide commitment to the goal of ending homelessness through providing funding for for nonprofit providers, rehousing individuals experiencing homelessness, and increase access and utilization of existing programs. In addition to estimates of homelessness, HUD also collects estimates on sheltered vs unsheltered homelessness, homeless family, chronic homeless, homeless veterans, and homeless youth. Additional employment and education covariates used in secondary analysis were pulled from the United State's Census Bureau's [American Factfinder](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).
+The primary data source for this analysis comes the United States Department of Housing and Urban Development [HUD Exchange](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). This dataset spans from 2007-2018, and includes point-in-time and housing inventory counts at the national and state level, as well as information on the national Continuum of Care (CoC) Program, designed to promote communitywide commitment to the goal of ending homelessness through providing funding for for nonprofit providers, rehousing individuals experiencing homelessness, and increase access and utilization of existing programs. In addition to estimates of homelessness, HUD also collects estimates on sheltered vs unsheltered homelessness, homeless family, chronic homeless, homeless veterans, and homeless youth. Additional employment and education covariates used in secondary analysis were pulled from the United State's Census Bureau's [American FactFinder](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).
+
 
 ### Website Overview
+
+_**Report**_: Includes the motivation driving this analysis, related work, initial study questions, the data source cleaning analysis and visualizations, statistical analyses, and a discussion.
+
+
+_**Trends Over Time**_: This dashboard displays trends in homelessness counts from 2007 to 2018.
+
+
+_**Homelessness by State**_: This ShinyApp displays a map of the United States, with tools to search for homelessness counts and additional HUD variables by state and by year.
+
+
+_**Covariates**_: This ShinyApp links the HUD homelessness data with several covariates of interest, employment and education, using the years 2009 and 2018 as interactive comparisons. 
 
 
 To view a brief overview of our website, and its visualization functionalities, view our screencast here.
