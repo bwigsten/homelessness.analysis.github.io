@@ -34,7 +34,7 @@ homelessness_all %>%
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### 
+### Total Homelessness Over Time
 
 ```{r}
 total_over_time = homelessness_all %>%
@@ -45,13 +45,14 @@ total_over_time = homelessness_all %>%
     y = ~total, 
     type = "scatter", 
     mode = "lines")
+total_over_time
 ```
 
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-###
+### Total Homelessness Stratified by Shelter Status
 
 ```{r}
 total_stratified = homelessness_all %>%
@@ -65,10 +66,11 @@ total_stratified = homelessness_all %>%
   layout(title = "Total Sheltered and Unsheltered Over Time",
          xaxis = list(title = "Year"),
          yaxis = list(side = 'left', title = "Number"))
+total_stratified
 ```
 
 
-###
+### Chronic Homelessness Over Time
 
 ```{r}
 chronic_over_time = homelessness_all %>%
@@ -83,6 +85,7 @@ chronic_over_time = homelessness_all %>%
   layout(title = "Total Chronically Homeless Sheltered and Unsheltered Over Time",
          xaxis = list(title = "Year"),
          yaxis = list(side = 'left', title = "Number"))
+chronic_over_time
 ```
 
 
