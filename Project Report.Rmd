@@ -198,8 +198,8 @@ homelessness_all = total_data %>%
          youth = as.numeric(youth)) %>%
   separate(coc_number, into = c("state", "number")) %>% 
   ## removing those 2 random blank rows that appear at the end of every dataset after the total
-  ## also removing DC, GU, PR, and VI
-  subset(coc_name != "NA" & !(state %in% c("DC","GU","PR","VI")))
+  ## also removing DC, GU, MP, PR, and VI
+  subset(coc_name != "NA" & !(state %in% c("DC","GU","MP","PR","VI")))
 
 homelessness_all
 ```
