@@ -29,6 +29,27 @@ homelessness_all %>%
     y = ~total, 
     type = "bar", 
     title = "Total Homelessness in 2018 by State")
+
+total_over_time = homelessness_all %>%
+  group_by(year) %>%
+  summarize(total = sum(total_homeless, na.rm = TRUE)) %>%
+  plot_ly(
+    x = ~year, 
+    y = ~total, 
+    type = "scatter", 
+    mode = "lines") 
+
+total_stratified = homelessness_all %>%
+  group_by(year) %>%
+  summarize(
+    sheltered = sum(sheltered_homeless, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_homeless, na.rm = TRUE)) %>%
+  plot_ly() %>%
+    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Sheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Unsheltered") %>%
+  layout(title = "Total Sheltered and Unsheltered Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number"))
 ```
 
 
@@ -52,21 +73,22 @@ total_over_time
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Total Homelessness Stratified by Shelter Status
+### Veteran Homelessness Over Time
 
 ```{r}
-total_stratified = homelessness_all %>%
+veterans_over_time = homelessness_all %>%
   group_by(year) %>%
+  filter(year %in% c("2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")) %>%
   summarize(
-    sheltered = sum(sheltered_homeless, na.rm = TRUE), 
-    unsheltered = sum(unsheltered_homeless, na.rm = TRUE)) %>%
+    sheltered = sum(sheltered_veterans, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_veterans, na.rm = TRUE)) %>%
   plot_ly() %>%
-    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Sheltered") %>%
-    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Unsheltered") %>%
-  layout(title = "Total Sheltered and Unsheltered Over Time",
+    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Veterans Sheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Veterans Unsheltered") %>%
+  layout(title = "Total Veterans Homeless Sheltered and Unsheltered Over Time",
          xaxis = list(title = "Year"),
-         yaxis = list(side = 'left', title = "Number"))
-total_stratified
+         yaxis = list(side = 'left', title = "Number")) 
+veterans_over_time
 ```
 
 ### Chronic Homelessness Over Time
@@ -80,7 +102,7 @@ chronic_over_time = homelessness_all %>%
     unsheltered = sum(unsheltered_chronic, na.rm = TRUE)) %>%
   plot_ly() %>%
     add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Chronic Sheltered") %>%
-    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Chrinic Unsheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Chronic Unsheltered") %>%
   layout(title = "Total Chronically Homeless Sheltered and Unsheltered Over Time",
          xaxis = list(title = "Year"),
          yaxis = list(side = 'left', title = "Number"))
