@@ -27,16 +27,16 @@ The primary data source for this analysis comes the United States Department of 
 
 ### Website Overview
 
-**Report**
+**Report**: 
 
 
-**Trends Over Time**
+**Trends Over Time**:
 
 
-**Homelessness by State**
+**Homelessness by State**:
 
 
-**Covariates**
+**Covariates**:
 
 
 To view a brief overview of our website, and its visualization functionalities, view our screencast here.
