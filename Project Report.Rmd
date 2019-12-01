@@ -256,7 +256,7 @@ write.csv(homelessness_all, "./data/us_homelessness_07_18.csv")
 
 ### Figure 1: Summed Homelessness Over 12 Years by State
 ```{r}
-homelessness_all %>%
+total_by_state = homelessness_all %>%
   select(state, total_homeless) %>%
   group_by(state) %>% 
   summarize(total = sum(total_homeless, na.rm = TRUE)) %>%
@@ -265,7 +265,11 @@ homelessness_all %>%
     x = ~state, 
     y = ~total, 
     type = "bar", 
-    title = "Total Homelessness in 2018 by State")
+    title = "Total Homelessness in 2018 by State") %>% 
+    layout(title = "Total Homelessness From 2007-2018 by State", 
+         xaxis = list(title = "State"),
+         yaxis = list(side = 'left', title = "Number Homeless"))
+total_by_state
 ```
 
 ### Total Homelessness Over Time Graph
@@ -277,7 +281,10 @@ total_over_time = homelessness_all %>%
     x = ~year, 
     y = ~total, 
     type = "scatter", 
-    mode = "lines") 
+    mode = "lines") %>% 
+    layout(title = "Total Homelessness Over Time", 
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number Homeless")) 
 
 total_over_time
 ```
