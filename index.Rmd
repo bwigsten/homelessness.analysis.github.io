@@ -27,16 +27,16 @@ The primary data source for this analysis comes the United States Department of 
 
 ### Website Overview
 
-**Report**: 
+_**Report**_: Includes the motivation driving this analysis, related work, initial study questions, the data source cleaning analysis and visualizations, statistical analyses, and a discussion.
 
 
-**Trends Over Time**:
+_**Trends Over Time**_: This dashboard displays trends in homelessness counts from 2007 to 2018.
 
 
-**Homelessness by State**:
+_**Homelessness by State**_: This ShinyApp displays a map of the United States, with tools to search for homelessness counts and additional HUD variables by state and by year.
 
 
-**Covariates**:
+_**Covariates**_: This ShinyApp links the HUD homelessness data with several covariates of interest, employment and education, using the years 2009 and 2018 as interactive comparisons. 
 
 
 To view a brief overview of our website, and its visualization functionalities, view our screencast here.
