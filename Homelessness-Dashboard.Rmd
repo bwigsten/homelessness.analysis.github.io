@@ -12,29 +12,77 @@ library(readxl)
 library(plotly)
 ```
 
+```{r include=FALSE}
+write.csv(homelessness_all, "./data/us_homelessness_07_18.csv")
+```
+
 
 ```{r include=FALSE}
-
+homelessness_all %>%
+  select(state, total_homeless) %>%
+  group_by(state) %>% 
+  summarize(total = sum(total_homeless, na.rm = TRUE)) %>%
+  mutate(state = fct_reorder(state, total)) %>%
+  plot_ly(
+    x = ~state, 
+    y = ~total, 
+    type = "bar", 
+    title = "Total Homelessness in 2018 by State")
 ```
 
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-```{r}
+### 
 
+```{r}
+total_over_time = homelessness_all %>%
+  group_by(year) %>%
+  summarize(total = sum(total_homeless, na.rm = TRUE)) %>%
+  plot_ly(
+    x = ~year, 
+    y = ~total, 
+    type = "scatter", 
+    mode = "lines")
 ```
 
 
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-```{r}
+###
 
+```{r}
+total_stratified = homelessness_all %>%
+  group_by(year) %>%
+  summarize(
+    sheltered = sum(sheltered_homeless, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_homeless, na.rm = TRUE)) %>%
+  plot_ly() %>%
+    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Sheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Unsheltered") %>%
+  layout(title = "Total Sheltered and Unsheltered Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number"))
 ```
 
-```{r}
 
+###
+
+```{r}
+chronic_over_time = homelessness_all %>%
+  group_by(year) %>%
+  filter(year %in% c("2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")) %>%
+  summarize(
+    sheltered = sum(sheltered_chronic, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_chronic, na.rm = TRUE)) %>%
+  plot_ly() %>%
+    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Chronic Sheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Chrinic Unsheltered") %>%
+  layout(title = "Total Chronically Homeless Sheltered and Unsheltered Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number"))
 ```
 
 
