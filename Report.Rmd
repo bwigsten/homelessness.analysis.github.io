@@ -2,6 +2,7 @@
 title: "Report"
 output: 
   html_document:
+    code_folding: hide
     toc: true
     toc_float: true
 ---
@@ -10,11 +11,13 @@ output:
 
 December 5th, 2019
 
-```{r}
+```{r results = FALSE, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(readxl)
 library(plotly)
+library(viridis)
 ```
+
 
 ## Motivation
 
@@ -25,7 +28,7 @@ As a group consisting of California and New York residents, homelessness as a pu
 
 
 ## Initial Questions
-Without individual level data, we cannot hypothesize risk factors for homelessness in this report. We can, however, analyze current prevalences in homelessness and show trends between homelessness and other demographics (like state, employment rate, prevalence of veterans, and education level). We aimed to show interactive maps to show prevalences of homelessness types, in relation to other search variables like year, and further categories of homelessness (sheltered/unsheltered, household, chronic, veterans, youth).
+Without individual level data, we cannot hypothesize risk factors for homelessness in this report. We can, however, analyze current prevalences in homelessness and show trends between homelessness and other demographics (like state, employment, prevalence of veterans, and education level). We aimed to show interactive maps to show prevalences of homelessness types, in relation to other search variables like year, and further categories of homelessness (sheltered/unsheltered, household, chronic, veterans, youth).
 Our initial questions included:
 
 * What is the distribution of homelessness by state and year over the period of 2007 to 2008?
@@ -54,11 +57,12 @@ Our original project goals were to compare rates of homelessness and weather pat
       
 ## Introduction to the Data Used for This Project
 
-* Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data on homelessness. The data can be accessed [here](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). Variable definitions can be found in the [2018 Annual Homelessness Assessment Report to Congress](https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf). 
+* Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data on homelessness. The data can be accessed [here](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). Variable definitions can be found in the [2018 Annual Homelessness Assessment Report to Congress](https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf). Data cleaning involved cleaning variable names, fixing the format of the year variable, and selecting variables of interest for future analysis. We chose to analyze total homeless, total sheltered, total unsheltered, total homeless in families, chronically homeless, homeless veterans, and homeless youth. Note: not all variables selected during data cleaning process were displayed or used during the exploratory analysis section. We decided which variables to keep before choosing which relationships to display. 
+
 * Below is the complete process for cleaning this dataset. 
     
 ### Import all the data
-```{r}
+```{r results = FALSE, message = FALSE, warning = FALSE}
 home_data_2018 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 1)
 home_data_2017 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 2)
 home_data_2016 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 3)
@@ -208,18 +212,100 @@ homelessness_all = total_data %>%
   ## also removing DC, GU, MP, PR, and VI
   subset(coc_name != "NA" & !(state %in% c("DC","GU","MP","PR","VI")))
 
-homelessness_all
-
 ### Saving cleaned and compiled dataset as a csv file
 
 write.csv(homelessness_all, "./data/us_homelessness_07_18.csv")
 ```
 
+* Employment and education covariates used in secondary analysis were pulled from the United State's Census Bureau's [American FactFinder](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml). The full data cleaning process is shown below. We chose to seek data on employment and education because we thought those two would have the most interesting relationships to homelessness across the US. 
 
+````{r results = FALSE, message = FALSE, warning = FALSE}
+#Loading and tidying datasets
+
+Edu_Employ_09 = 
+  read.csv("./data/2009_Edu_Employ.csv") %>%
+  janitor::clean_names() %>%
+  rename(
+    state = geo_display_label, 
+    total_employ = hc01_est_vc01, 
+    employ_ratio = hc03_est_vc01, 
+    total_edu = hc01_est_vc31
+    ) %>%
+  select(
+    state, 
+    total_employ, 
+    total_edu
+  ) %>% 
+  mutate(
+    year = 2009, 
+    state = recode(state, "Arkansas" = "AK", "Alabama" = "AL", "Alaska" = "AK", "Arizona" = "AZ", "California" = "CA", "Colorado" = "CO", "Connecticut" = "CT", "Delaware" = "DE", "Florida" = "FL", "Georgia" = "GA", "Hawaii" = "HI", "Idaho" = "ID", "Illinois" = "ID", "Indiana" = "IN", "Iowa" = "IA", "Kansas" = "KS", "Kentucky" = "KY", "Louisiana" = "LA", "Maine" = "ME", "Maryland" = "MD", "Massachusetts" = "MA", "Michigan" = "MI", "Minnesota" = "MN", "Mississippi" = "MS", "Missouri" = "MO", "Montana" = "MT", "Nebraska" = "NE", "Nevada" = "NV", "New Hampshire" = "NH", "New Jersey" = "NJ", "New Mexico" = "NM", "New York" = "NY", "North Carolina" = "NC", "North Dakota" = "ND", "Ohio" = "OH", "Oklahoma" = "OK", "Oregon" = "OR", "Pennsylvania" = "PA", "Rhode Island" = "RI", "South Carolina" = "SC", "South Dakota" = "SD", "Tennessee" = "TN", "Texas" = "TX", "Utah" = "UT", "Vermont" = "VT", "Virginia" = "VA", "Washington" = "WA", "West Virginia" = "WV", "Wisconsin" = "WI", "Wyoming" = "WY"))
+  
+Edu_Employ_09 =   
+  Edu_Employ_09[-c(52),]
+
+Edu_Employ_09 = 
+  Edu_Employ_09[-c(9),]
+
+  
+
+Edu_Employ_17 = 
+  read.csv("./data/2017_Edu_Employ.csv") %>%
+  janitor::clean_names() %>%
+  rename(
+    state = geo_display_label, 
+    total_employ = hc01_est_vc01, 
+    employ_ratio = hc03_est_vc01, 
+    total_edu = hc01_est_vc43
+    ) %>%
+  select(
+    state, total_employ, total_edu
+  ) %>%
+mutate (
+  year = 2017,
+  state = recode(state, "Arkansas" = "AK", "Alabama" = "AL", "Alaska" = "AK", "Arizona" = "AZ", "California" = "CA", "Colorado" = "CO", "Connecticut" = "CT", "Delaware" = "DE", "Florida" = "FL", "Georgia" = "GA", "Hawaii" = "HI", "Idaho" = "ID", "Illinois" = "ID", "Indiana" = "IN", "Iowa" = "IA", "Kansas" = "KS", "Kentucky" = "KY", "Louisiana" = "LA", "Maine" = "ME", "Maryland" = "MD", "Massachusetts" = "MA", "Michigan" = "MI", "Minnesota" = "MN", "Mississippi" = "MS", "Missouri" = "MO", "Montana" = "MT", "Nebraska" = "NE", "Nevada" = "NV", "New Hampshire" = "NH", "New Jersey" = "NJ", "New Mexico" = "NM", "New York" = "NY", "North Carolina" = "NC", "North Dakota" = "ND", "Ohio" = "OH", "Oklahoma" = "OK", "Oregon" = "OR", "Pennsylvania" = "PA", "Rhode Island" = "RI", "South Carolina" = "SC", "South Dakota" = "SD", "Tennessee" = "TN", "Texas" = "TX", "Utah" = "UT", "Vermont" = "VT", "Virginia" = "VA", "Washington" = "WA", "West Virginia" = "WV", "Wisconsin" = "WI", "Wyoming" = "WY"))
+
+Edu_Employ_17 = 
+  Edu_Employ_17 [-c(1),] 
+
+Edu_Employ_17 = 
+  Edu_Employ_17[-c(53),]
+
+Edu_Employ_17 = 
+  Edu_Employ_17[-c(10),]
+
+  
+Homelessness = 
+  read.csv("./data/us_homelessness_07_18.csv") %>%
+  select(state, year, total_homeless)
+
+
+# Merging datasets 
+Edu_Employ = rbind(Edu_Employ_09, Edu_Employ_17)
+  
+HEE_merged = 
+  inner_join(Homelessness, Edu_Employ) %>%
+  mutate(
+    total_homeless = as.numeric(total_homeless), 
+    total_employ = as.numeric(total_employ), 
+    total_edu = as.numeric(total_edu)
+  ) %>%
+  pivot_longer(
+    total_homeless:total_edu,
+    names_to = "covariates",
+    values_to = "stats"
+  ) %>%
+  mutate(
+    covariates = case_when(
+      covariates == "total_homeless" ~ "Homeless",
+      covariates == "total_employ" ~"Employment",
+      covariates == "total_edu" ~ "Education"
+    )
+  )
+```
 
 
 ## Exploratory Data Analysis
-
+Over the course of the 12 years included in the homelessness analysis (excluding covariates of education and employment), California and New York had the highest numbers of homeless individuals. This matches the HUD reports, as these two states are consistently the highest contributors to homelessness in the US. We chose to model several trends in homelessness over time
 
 ### Figure 1: Summed Homelessness Over 12 Years by State
 ```{r}
