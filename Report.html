@@ -27,7 +27,7 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <script src="site_libs/plotly-binding-4.9.0/plotly.js"></script>
 <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
@@ -406,28 +406,10 @@ div.tocify {
 <div id="blair-wigsten-nora-zakaria-kristi-chau-and-alicia-yang" class="section level4">
 <h4>Blair Wigsten, Nora Zakaria, Kristi Chau, and Alicia Yang</h4>
 <p>December 5th, 2019</p>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
-<pre><code>## ✔ ggplot2 3.2.1     ✔ purrr   0.3.2
-## ✔ tibble  2.1.3     ✔ dplyr   0.8.3
-## ✔ tidyr   1.0.0     ✔ stringr 1.4.0
-## ✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(readxl)
-library(plotly)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;plotly&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     last_plot</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     layout</code></pre>
+<pre class="r"><code>library(tidyverse)
+library(readxl)
+library(plotly)
+library(viridis)</code></pre>
 </div>
 <div id="motivation" class="section level2">
 <h2>Motivation</h2>
@@ -468,8 +450,8 @@ library(plotly)</code></pre>
 <div id="introduction-to-the-data-used-for-this-project" class="section level2">
 <h2>Introduction to the Data Used for This Project</h2>
 <ul>
-<li>Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data on homelessness. The data can be accessed <a href="https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/">here</a>. Variable definitions can be found in the <a href="https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf">2018 Annual Homelessness Assessment Report to Congress</a>.</li>
-<li>Below is the complete process for cleaning this dataset.</li>
+<li><p>Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data on homelessness. The data can be accessed <a href="https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/">here</a>. Variable definitions can be found in the <a href="https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf">2018 Annual Homelessness Assessment Report to Congress</a>. Data cleaning involved cleaning variable names, fixing the format of the year variable, and selecting variables of interest for future analysis. We chose to analyze total homeless, total sheltered, total unsheltered, total homeless in families, chronically homeless, homeless veterans, and homeless youth. Note: not all variables selected during data cleaning process were displayed or used during the exploratory analysis section. We decided which variables to keep before choosing which relationships to display.</p></li>
+<li><p>Below is the complete process for cleaning this dataset.</p></li>
 </ul>
 <div id="import-all-the-data" class="section level3">
 <h3>Import all the data</h3>
@@ -619,57 +601,101 @@ homelessness_all = total_data %&gt;%
          youth = as.numeric(youth)) %&gt;%
   separate(coc_number, into = c(&quot;state&quot;, &quot;number&quot;)) %&gt;% 
   ## removing those 2 random blank rows that appear at the end of every dataset after the total
-  ## also removing DC, GU, MP, PR, and VI
-  subset(coc_name != &quot;NA&quot; &amp; !(state %in% c(&quot;DC&quot;,&quot;GU&quot;,&quot;MP&quot;,&quot;PR&quot;,&quot;VI&quot;)))
+  ## also removing GU, MP, PR, and VI
+  subset(coc_name != &quot;NA&quot; &amp; !(state %in% c(&quot;GU&quot;,&quot;MP&quot;,&quot;PR&quot;,&quot;VI&quot;)))
 
 ### Saving cleaned and compiled dataset as a csv file
 
-<<<<<<< HEAD
 write.csv(homelessness_all, &quot;./data/us_homelessness_07_18.csv&quot;)</code></pre>
 <ul>
-<li>Employment and education covariates used in secondary analysis were pulled from the United State’s Census Bureau’s <a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml">American FactFinder</a>. The full data cleaning process is shown below.</li>
+<li>Employment and education covariates used in secondary analysis were pulled from the United State’s Census Bureau’s <a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml">American FactFinder</a>. The full data cleaning process is shown below. We chose to seek data on employment and education because we thought those two would have the most interesting relationships to homelessness across the US.</li>
 </ul>
-=======
-## Warning: NAs introduced by coercion
+<pre class="r"><code>#Loading and tidying datasets
 
-## Warning: NAs introduced by coercion
+Edu_Employ_09 = 
+  read.csv(&quot;./data/2009_Edu_Employ.csv&quot;) %&gt;%
+  janitor::clean_names() %&gt;%
+  rename(
+    state = geo_display_label, 
+    total_employ = hc01_est_vc01, 
+    employ_ratio = hc03_est_vc01, 
+    total_edu = hc01_est_vc31
+    ) %&gt;%
+  select(
+    state, 
+    total_employ, 
+    total_edu
+  ) %&gt;% 
+  mutate(
+    year = 2009, 
+    state = recode(state, &quot;Arkansas&quot; = &quot;AK&quot;, &quot;Alabama&quot; = &quot;AL&quot;, &quot;Alaska&quot; = &quot;AK&quot;, &quot;Arizona&quot; = &quot;AZ&quot;, &quot;California&quot; = &quot;CA&quot;, &quot;Colorado&quot; = &quot;CO&quot;, &quot;Connecticut&quot; = &quot;CT&quot;, &quot;Delaware&quot; = &quot;DE&quot;, &quot;Florida&quot; = &quot;FL&quot;, &quot;Georgia&quot; = &quot;GA&quot;, &quot;Hawaii&quot; = &quot;HI&quot;, &quot;Idaho&quot; = &quot;ID&quot;, &quot;Illinois&quot; = &quot;ID&quot;, &quot;Indiana&quot; = &quot;IN&quot;, &quot;Iowa&quot; = &quot;IA&quot;, &quot;Kansas&quot; = &quot;KS&quot;, &quot;Kentucky&quot; = &quot;KY&quot;, &quot;Louisiana&quot; = &quot;LA&quot;, &quot;Maine&quot; = &quot;ME&quot;, &quot;Maryland&quot; = &quot;MD&quot;, &quot;Massachusetts&quot; = &quot;MA&quot;, &quot;Michigan&quot; = &quot;MI&quot;, &quot;Minnesota&quot; = &quot;MN&quot;, &quot;Mississippi&quot; = &quot;MS&quot;, &quot;Missouri&quot; = &quot;MO&quot;, &quot;Montana&quot; = &quot;MT&quot;, &quot;Nebraska&quot; = &quot;NE&quot;, &quot;Nevada&quot; = &quot;NV&quot;, &quot;New Hampshire&quot; = &quot;NH&quot;, &quot;New Jersey&quot; = &quot;NJ&quot;, &quot;New Mexico&quot; = &quot;NM&quot;, &quot;New York&quot; = &quot;NY&quot;, &quot;North Carolina&quot; = &quot;NC&quot;, &quot;North Dakota&quot; = &quot;ND&quot;, &quot;Ohio&quot; = &quot;OH&quot;, &quot;Oklahoma&quot; = &quot;OK&quot;, &quot;Oregon&quot; = &quot;OR&quot;, &quot;Pennsylvania&quot; = &quot;PA&quot;, &quot;Rhode Island&quot; = &quot;RI&quot;, &quot;South Carolina&quot; = &quot;SC&quot;, &quot;South Dakota&quot; = &quot;SD&quot;, &quot;Tennessee&quot; = &quot;TN&quot;, &quot;Texas&quot; = &quot;TX&quot;, &quot;Utah&quot; = &quot;UT&quot;, &quot;Vermont&quot; = &quot;VT&quot;, &quot;Virginia&quot; = &quot;VA&quot;, &quot;Washington&quot; = &quot;WA&quot;, &quot;West Virginia&quot; = &quot;WV&quot;, &quot;Wisconsin&quot; = &quot;WI&quot;, &quot;Wyoming&quot; = &quot;WY&quot;))
+  
+Edu_Employ_09 =   
+  Edu_Employ_09[-c(52),]
 
-## Warning: NAs introduced by coercion
+Edu_Employ_09 = 
+  Edu_Employ_09[-c(9),]
 
-## Warning: NAs introduced by coercion
+  
 
-## Warning: NAs introduced by coercion</code></pre>
-<pre><code>## Warning: Expected 2 pieces. Additional pieces discarded in 12 rows [399,
-## 793, 1188, 1583, 1981, 2377, 2774, 3170, 3570, 3969, 4369, 4770].</code></pre>
-<pre class="r"><code>homelessness_all</code></pre>
-<pre><code>## # A tibble: 4,684 x 21
-##    state number coc_name total_homeless sheltered_homel… unsheltered_hom…
-##    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;             &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-##  1 AK    500    Anchora…            974              842              132
-##  2 AK    501    Alaska …            668              545              123
-##  3 AL    500    Birming…           2104             1240              864
-##  4 AL    501    Mobile …            649              410              239
-##  5 AL    502    Florenc…            265              131              134
-##  6 AL    503    Huntsvi…            830              756               74
-##  7 AL    504    Montgom…            456              331              125
-##  8 AL    505    Gadsden…            119              104               15
-##  9 AL    506    Tuscalo…            345              332               13
-## 10 AL    507    Alabama…            684              492              192
-## # … with 4,674 more rows, and 15 more variables: total_in_families &lt;dbl&gt;,
-## #   sheltered_in_families &lt;dbl&gt;, unsheltered_in_families &lt;dbl&gt;,
-## #   total_households &lt;dbl&gt;, sheltered_households &lt;dbl&gt;,
-## #   unsheltered_households &lt;dbl&gt;, year &lt;dbl&gt;, total_chronic &lt;dbl&gt;,
-## #   sheltered_chronic &lt;dbl&gt;, unsheltered_chronic &lt;dbl&gt;,
-## #   total_veterans &lt;dbl&gt;, sheltered_veterans &lt;dbl&gt;,
-## #   unsheltered_veterans &lt;dbl&gt;, youth &lt;dbl&gt;, coc_category &lt;chr&gt;</code></pre>
-<pre class="r"><code>### Saving cleaned and compiled dataset as a csv file
+Edu_Employ_17 = 
+  read.csv(&quot;./data/2017_Edu_Employ.csv&quot;) %&gt;%
+  janitor::clean_names() %&gt;%
+  rename(
+    state = geo_display_label, 
+    total_employ = hc01_est_vc01, 
+    employ_ratio = hc03_est_vc01, 
+    total_edu = hc01_est_vc43
+    ) %&gt;%
+  select(
+    state, total_employ, total_edu
+  ) %&gt;%
+mutate (
+  year = 2017,
+  state = recode(state, &quot;Arkansas&quot; = &quot;AK&quot;, &quot;Alabama&quot; = &quot;AL&quot;, &quot;Alaska&quot; = &quot;AK&quot;, &quot;Arizona&quot; = &quot;AZ&quot;, &quot;California&quot; = &quot;CA&quot;, &quot;Colorado&quot; = &quot;CO&quot;, &quot;Connecticut&quot; = &quot;CT&quot;, &quot;Delaware&quot; = &quot;DE&quot;, &quot;Florida&quot; = &quot;FL&quot;, &quot;Georgia&quot; = &quot;GA&quot;, &quot;Hawaii&quot; = &quot;HI&quot;, &quot;Idaho&quot; = &quot;ID&quot;, &quot;Illinois&quot; = &quot;ID&quot;, &quot;Indiana&quot; = &quot;IN&quot;, &quot;Iowa&quot; = &quot;IA&quot;, &quot;Kansas&quot; = &quot;KS&quot;, &quot;Kentucky&quot; = &quot;KY&quot;, &quot;Louisiana&quot; = &quot;LA&quot;, &quot;Maine&quot; = &quot;ME&quot;, &quot;Maryland&quot; = &quot;MD&quot;, &quot;Massachusetts&quot; = &quot;MA&quot;, &quot;Michigan&quot; = &quot;MI&quot;, &quot;Minnesota&quot; = &quot;MN&quot;, &quot;Mississippi&quot; = &quot;MS&quot;, &quot;Missouri&quot; = &quot;MO&quot;, &quot;Montana&quot; = &quot;MT&quot;, &quot;Nebraska&quot; = &quot;NE&quot;, &quot;Nevada&quot; = &quot;NV&quot;, &quot;New Hampshire&quot; = &quot;NH&quot;, &quot;New Jersey&quot; = &quot;NJ&quot;, &quot;New Mexico&quot; = &quot;NM&quot;, &quot;New York&quot; = &quot;NY&quot;, &quot;North Carolina&quot; = &quot;NC&quot;, &quot;North Dakota&quot; = &quot;ND&quot;, &quot;Ohio&quot; = &quot;OH&quot;, &quot;Oklahoma&quot; = &quot;OK&quot;, &quot;Oregon&quot; = &quot;OR&quot;, &quot;Pennsylvania&quot; = &quot;PA&quot;, &quot;Rhode Island&quot; = &quot;RI&quot;, &quot;South Carolina&quot; = &quot;SC&quot;, &quot;South Dakota&quot; = &quot;SD&quot;, &quot;Tennessee&quot; = &quot;TN&quot;, &quot;Texas&quot; = &quot;TX&quot;, &quot;Utah&quot; = &quot;UT&quot;, &quot;Vermont&quot; = &quot;VT&quot;, &quot;Virginia&quot; = &quot;VA&quot;, &quot;Washington&quot; = &quot;WA&quot;, &quot;West Virginia&quot; = &quot;WV&quot;, &quot;Wisconsin&quot; = &quot;WI&quot;, &quot;Wyoming&quot; = &quot;WY&quot;))
 
-write.csv(homelessness_all, &quot;./data/us_homelessness_07_18.csv&quot;)</code></pre>
->>>>>>> c27296102bf849f2eaa85b6d71349b923316af3e
+Edu_Employ_17 = 
+  Edu_Employ_17 [-c(1),] 
+
+Edu_Employ_17 = 
+  Edu_Employ_17[-c(53),]
+
+Edu_Employ_17 = 
+  Edu_Employ_17[-c(10),]
+
+  
+Homelessness = 
+  read.csv(&quot;./data/us_homelessness_07_18.csv&quot;) %&gt;%
+  select(state, year, total_homeless)
+
+
+# Merging datasets 
+Edu_Employ = rbind(Edu_Employ_09, Edu_Employ_17)
+  
+HEE_merged = 
+  inner_join(Homelessness, Edu_Employ) %&gt;%
+  mutate(
+    total_homeless = as.numeric(total_homeless), 
+    total_employ = as.numeric(total_employ), 
+    total_edu = as.numeric(total_edu)
+  ) %&gt;%
+  pivot_longer(
+    total_homeless:total_edu,
+    names_to = &quot;covariates&quot;,
+    values_to = &quot;stats&quot;
+  ) %&gt;%
+  mutate(
+    covariates = case_when(
+      covariates == &quot;total_homeless&quot; ~ &quot;Homeless&quot;,
+      covariates == &quot;total_employ&quot; ~&quot;Employment&quot;,
+      covariates == &quot;total_edu&quot; ~ &quot;Education&quot;
+    )
+  )</code></pre>
 </div>
 </div>
 <div id="exploratory-data-analysis" class="section level2">
 <h2>Exploratory Data Analysis</h2>
+<p>Over the course of the 12 years included in the homelessness analysis (excluding covariates of education and employment), California and New York had the highest numbers of homeless individuals. This matches the HUD reports, as these two states are consistently the highest contributors to homelessness in the US. We chose to model several trends in homelessness over time</p>
 <div id="figure-1-summed-homelessness-over-12-years-by-state" class="section level3">
 <h3>Figure 1: Summed Homelessness Over 12 Years by State</h3>
 <pre class="r"><code>total_by_state = homelessness_all %&gt;%
@@ -690,13 +716,8 @@ total_by_state</code></pre>
 <pre><code>## Warning: &#39;bar&#39; objects don&#39;t have these attributes: &#39;title&#39;
 ## Valid attributes include:
 ## &#39;type&#39;, &#39;visible&#39;, &#39;showlegend&#39;, &#39;legendgroup&#39;, &#39;opacity&#39;, &#39;name&#39;, &#39;uid&#39;, &#39;ids&#39;, &#39;customdata&#39;, &#39;selectedpoints&#39;, &#39;hoverinfo&#39;, &#39;hoverlabel&#39;, &#39;stream&#39;, &#39;transforms&#39;, &#39;uirevision&#39;, &#39;x&#39;, &#39;x0&#39;, &#39;dx&#39;, &#39;y&#39;, &#39;y0&#39;, &#39;dy&#39;, &#39;text&#39;, &#39;hovertext&#39;, &#39;hovertemplate&#39;, &#39;textposition&#39;, &#39;textfont&#39;, &#39;insidetextfont&#39;, &#39;outsidetextfont&#39;, &#39;constraintext&#39;, &#39;cliponaxis&#39;, &#39;orientation&#39;, &#39;base&#39;, &#39;offset&#39;, &#39;width&#39;, &#39;marker&#39;, &#39;offsetgroup&#39;, &#39;alignmentgroup&#39;, &#39;selected&#39;, &#39;unselected&#39;, &#39;r&#39;, &#39;t&#39;, &#39;_deprecated&#39;, &#39;error_x&#39;, &#39;error_y&#39;, &#39;xcalendar&#39;, &#39;ycalendar&#39;, &#39;xaxis&#39;, &#39;yaxis&#39;, &#39;idssrc&#39;, &#39;customdatasrc&#39;, &#39;hoverinfosrc&#39;, &#39;xsrc&#39;, &#39;ysrc&#39;, &#39;textsrc&#39;, &#39;hovertextsrc&#39;, &#39;hovertemplatesrc&#39;, &#39;textpositionsrc&#39;, &#39;basesrc&#39;, &#39;offsetsrc&#39;, &#39;widthsrc&#39;, &#39;rsrc&#39;, &#39;tsrc&#39;, &#39;key&#39;, &#39;set&#39;, &#39;frame&#39;, &#39;transforms&#39;, &#39;_isNestedKey&#39;, &#39;_isSimpleKey&#39;, &#39;_isGraticule&#39;, &#39;_bbox&#39;</code></pre>
-<<<<<<< HEAD
-<div id="htmlwidget-74325c144f0362bb4bb0" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-74325c144f0362bb4bb0">{"x":{"visdat":{"90af6d6d330d":["function () ","plotlyVisDat"]},"cur_data":"90af6d6d330d","attrs":{"90af6d6d330d":{"x":{},"y":{},"title":"Total Homelessness in 2018 by State","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Homelessness From 2007-2018 by State","xaxis":{"domain":[0,1],"automargin":true,"title":"State","type":"category","categoryorder":"array","categoryarray":["WY","SD","ND","DE","VT","RI","MT","NH","AK","WV","ID","MS","KS","ME","NM","IA","AR","UT","NE","CT","OK","AL","SC","KY","WI","IN","LA","HI","MO","MN","VA","NV","MD","TN","AZ","NC","OH","NJ","CO","IL","MI","PA","OR","GA","MA","WA","TX","FL","NY","CA"]},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number Homeless"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":["AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY"],"y":[22671,58290,37293,136844,1495789,153688,50906,12095,545317,200285,78725,36392,23812,159554,75068,25114,66906,77295,214568,107583,30084,170371,92182,91368,24771,18663,137875,11300,39039,18991,145814,35316,104448,897432,142530,52344,189005,179871,14930,60129,10494,113299,376591,38099,93343,14896,251800,69602,23004,10110],"title":"Total Homelessness in 2018 by State","type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-=======
-<div id="htmlwidget-01d455d4a2b75f6c7fae" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-01d455d4a2b75f6c7fae">{"x":{"visdat":{"172595ce8b44":["function () ","plotlyVisDat"]},"cur_data":"172595ce8b44","attrs":{"172595ce8b44":{"x":{},"y":{},"title":"Total Homelessness in 2018 by State","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Homelessness From 2007-2018 by State","xaxis":{"domain":[0,1],"automargin":true,"title":"State","type":"category","categoryorder":"array","categoryarray":["WY","SD","ND","DE","VT","RI","MT","NH","AK","WV","ID","MS","KS","ME","NM","IA","AR","UT","NE","CT","OK","AL","SC","KY","WI","IN","LA","HI","MO","MN","VA","NV","MD","TN","AZ","NC","OH","NJ","CO","IL","MI","PA","OR","GA","MA","WA","TX","FL","NY","CA"]},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number Homeless"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":["AK","AL","AR","AZ","CA","CO","CT","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY"],"y":[22671,58290,37293,136844,1495789,153688,50906,12095,545317,200285,78725,36392,23812,159554,75068,25114,66906,77295,214568,107583,30084,170371,92182,91368,24771,18663,137875,11300,39039,18991,145814,35316,104448,897432,142530,52344,189005,179871,14930,60129,10494,113299,376591,38099,93343,14896,251800,69602,23004,10110],"title":"Total Homelessness in 2018 by State","type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
->>>>>>> c27296102bf849f2eaa85b6d71349b923316af3e
+<div id="htmlwidget-98f3ed63f12eaf0d509b" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-98f3ed63f12eaf0d509b">{"x":{"visdat":{"1e5c56c93ef6":["function () ","plotlyVisDat"]},"cur_data":"1e5c56c93ef6","attrs":{"1e5c56c93ef6":{"x":{},"y":{},"title":"Total Homelessness in 2018 by State","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Homelessness From 2007-2018 by State","xaxis":{"domain":[0,1],"automargin":true,"title":"State","type":"category","categoryorder":"array","categoryarray":["WY","SD","ND","DE","VT","RI","MT","NH","AK","WV","ID","MS","KS","ME","NM","IA","AR","UT","NE","CT","OK","AL","SC","KY","WI","IN","LA","HI","DC","MO","MN","VA","NV","MD","TN","AZ","NC","OH","NJ","CO","IL","MI","PA","OR","GA","MA","WA","TX","FL","NY","CA"]},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number Homeless"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":["AK","AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","ME","MI","MN","MO","MS","MT","NC","ND","NE","NH","NJ","NM","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA","VT","WA","WI","WV","WY"],"y":[22671,58290,37293,136844,1495789,153688,50906,82269,12095,545317,200285,78725,36392,23812,159554,75068,25114,66906,77295,214568,107583,30084,170371,92182,91368,24771,18663,137875,11300,39039,18991,145814,35316,104448,897432,142530,52344,189005,179871,14930,60129,10494,113299,376591,38099,93343,14896,251800,69602,23004,10110],"title":"Total Homelessness in 2018 by State","type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="figure-2-total-homelessness-over-time" class="section level3">
 <h3>Figure 2: Total Homelessness Over Time</h3>
@@ -713,13 +734,8 @@ total_by_state</code></pre>
          yaxis = list(side = &#39;left&#39;, title = &quot;Number Homeless&quot;)) 
 
 total_over_time</code></pre>
-<<<<<<< HEAD
-<div id="htmlwidget-0ba1cfe3af6922097d96" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0ba1cfe3af6922097d96">{"x":{"visdat":{"90af14bbbb68":["function () ","plotlyVisDat"]},"cur_data":"90af14bbbb68","attrs":{"90af14bbbb68":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Homelessness Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number Homeless"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[1283603,1269185,1248597,1261344,1235853,1231155,1167982,1139216,1115983,1085662,1089089,1093190],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-=======
-<div id="htmlwidget-1e30a435bffa74ca53d7" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1e30a435bffa74ca53d7">{"x":{"visdat":{"17259538c4fe8":["function () ","plotlyVisDat"]},"cur_data":"17259538c4fe8","attrs":{"17259538c4fe8":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Homelessness Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number Homeless"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[1283603,1269185,1248597,1261344,1235853,1231155,1167982,1139216,1115983,1085662,1089089,1093190],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
->>>>>>> c27296102bf849f2eaa85b6d71349b923316af3e
+<div id="htmlwidget-bd44313a9a03b9727862" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bd44313a9a03b9727862">{"x":{"visdat":{"1e5c765114d9":["function () ","plotlyVisDat"]},"cur_data":"1e5c765114d9","attrs":{"1e5c765114d9":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Homelessness Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number Homeless"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[1288923,1275229,1254825,1267883,1242399,1238109,1174847,1146964,1123281,1094012,1096562,1100094],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="figure-3-total-homelessness-over-time-stratified-by-shelter-status" class="section level2">
@@ -736,13 +752,8 @@ total_over_time</code></pre>
          xaxis = list(title = &quot;Year&quot;),
          yaxis = list(side = &#39;left&#39;, title = &quot;Number&quot;))
 total_stratified</code></pre>
-<<<<<<< HEAD
-<div id="htmlwidget-7ca6649c7a66d05467f7" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7ca6649c7a66d05467f7">{"x":{"visdat":{"90af44404bf6":["function () ","plotlyVisDat"]},"cur_data":"90af44404bf6","attrs":{"90af44404bf6":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Sheltered","inherit":true},"90af44404bf6.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[776279,766028,799126,799299,776999,772396,781394,793133,774533,737588,713960,709424],"type":"scatter","mode":"lines","name":"Total Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[507324,503157,449471,462045,458854,458759,386588,346083,341450,348074,375129,383766],"type":"scatter","mode":"lines","name":"Total Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-=======
-<div id="htmlwidget-492ff71bf27df22a76c2" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-492ff71bf27df22a76c2">{"x":{"visdat":{"17259524a69c1":["function () ","plotlyVisDat"]},"cur_data":"17259524a69c1","attrs":{"17259524a69c1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Sheltered","inherit":true},"17259524a69c1.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[776279,766028,799126,799299,776999,772396,781394,793133,774533,737588,713960,709424],"type":"scatter","mode":"lines","name":"Total Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[507324,503157,449471,462045,458854,458759,386588,346083,341450,348074,375129,383766],"type":"scatter","mode":"lines","name":"Total Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
->>>>>>> c27296102bf849f2eaa85b6d71349b923316af3e
+<div id="htmlwidget-4d9c4a5cfc6958d5eaa2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4d9c4a5cfc6958d5eaa2">{"x":{"visdat":{"1e5c7a3872ab":["function () ","plotlyVisDat"]},"cur_data":"1e5c7a3872ab","attrs":{"1e5c7a3872ab":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Sheltered","inherit":true},"1e5c7a3872ab.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[781259,771694,805033,805408,783240,778671,787747,800485,781287,745620,720536,715728],"type":"scatter","mode":"lines","name":"Total Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"y":[507664,503535,449792,462475,459159,459438,387100,346479,341994,348392,376026,384366],"type":"scatter","mode":"lines","name":"Total Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="figure-4-chronic-homelessness-over-time-stratified-by-shelter-status" class="section level2">
 <h2>Figure 4: Chronic Homelessness Over Time Stratified by Shelter Status</h2>
@@ -759,13 +770,8 @@ total_stratified</code></pre>
          xaxis = list(title = &quot;Year&quot;),
          yaxis = list(side = &#39;left&#39;, title = &quot;Number&quot;))
 chronic_over_time</code></pre>
-<<<<<<< HEAD
-<p><div id="htmlwidget-0ac67e774808ec3cd3e9" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0ac67e774808ec3cd3e9">{"x":{"visdat":{"90af256617bd":["function () ","plotlyVisDat"]},"cur_data":"90af256617bd","attrs":{"90af256617bd":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Chronic Sheltered","inherit":true},"90af256617bd.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Chronic Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Chronically Homeless Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[89536,77094,73308,79241,71865,58640,63706,71514],"type":"scatter","mode":"lines","name":"Total Chronic Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[141892,140995,127814,114776,116964,110174,123121,119067],"type":"scatter","mode":"lines","name":"Total Chronic Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script> * no data available for the years 2007-2010</p>
-=======
-<p><div id="htmlwidget-c9c1bdab4652a6910821" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c9c1bdab4652a6910821">{"x":{"visdat":{"17259292b29a7":["function () ","plotlyVisDat"]},"cur_data":"17259292b29a7","attrs":{"17259292b29a7":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Chronic Sheltered","inherit":true},"17259292b29a7.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Chronic Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Chronically Homeless Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[89536,77094,73308,79241,71865,58640,63706,71514],"type":"scatter","mode":"lines","name":"Total Chronic Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[141892,140995,127814,114776,116964,110174,123121,119067],"type":"scatter","mode":"lines","name":"Total Chronic Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script> * no data available for the years 2007-2010</p>
->>>>>>> c27296102bf849f2eaa85b6d71349b923316af3e
+<p><div id="htmlwidget-2be16cd336db204cb205" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2be16cd336db204cb205">{"x":{"visdat":{"1e5c114e682c":["function () ","plotlyVisDat"]},"cur_data":"1e5c114e682c","attrs":{"1e5c114e682c":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Chronic Sheltered","inherit":true},"1e5c114e682c.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Chronic Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Chronically Homeless Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[91770,78867,74874,80935,73335,59997,65049,72995],"type":"scatter","mode":"lines","name":"Total Chronic Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[142167,141537,128275,115111,117284,110414,123659,119367],"type":"scatter","mode":"lines","name":"Total Chronic Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script> * no data available for the years 2007-2010</p>
 </div>
 <div id="figure-5-veteran-homelessness-over-time-by-shelter-status" class="section level2">
 <h2>Figure 5: Veteran Homelessness Over Time by Shelter Status</h2>
@@ -782,13 +788,8 @@ chronic_over_time</code></pre>
          xaxis = list(title = &quot;Year&quot;),
          yaxis = list(side = &#39;left&#39;, title = &quot;Number&quot;)) 
 veterans_over_time</code></pre>
-<<<<<<< HEAD
-<p><div id="htmlwidget-93a5fd408da853e3d495" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-93a5fd408da853e3d495">{"x":{"visdat":{"90af4be9ec49":["function () ","plotlyVisDat"]},"cur_data":"90af4be9ec49","attrs":{"90af4be9ec49":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Veterans Sheltered","inherit":true},"90af4be9ec49.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Veterans Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Veterans Homeless Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[79519,69784,69339,63811,62584,52441,49090,46349],"type":"scatter","mode":"lines","name":"Total Veterans Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[50674,50663,41253,35006,32237,25952,30524,28981],"type":"scatter","mode":"lines","name":"Total Veterans Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script> * no data available for the years 2007-2010</p>
-=======
-<p><div id="htmlwidget-4778e90845b5025d0b95" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4778e90845b5025d0b95">{"x":{"visdat":{"172592d97737a":["function () ","plotlyVisDat"]},"cur_data":"172592d97737a","attrs":{"172592d97737a":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Veterans Sheltered","inherit":true},"172592d97737a.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Veterans Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Veterans Homeless Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[79519,69784,69339,63811,62584,52441,49090,46349],"type":"scatter","mode":"lines","name":"Total Veterans Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[50674,50663,41253,35006,32237,25952,30524,28981],"type":"scatter","mode":"lines","name":"Total Veterans Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script> * no data available for the years 2007-2010</p>
->>>>>>> c27296102bf849f2eaa85b6d71349b923316af3e
+<p><div id="htmlwidget-9ccd868b2cf1264421c3" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9ccd868b2cf1264421c3">{"x":{"visdat":{"1e5c17624273":["function () ","plotlyVisDat"]},"cur_data":"1e5c17624273","attrs":{"1e5c17624273":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Veterans Sheltered","inherit":true},"1e5c17624273.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"lines","name":"Total Veterans Unsheltered","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Total Veterans Homeless Sheltered and Unsheltered Over Time","xaxis":{"domain":[0,1],"automargin":true,"title":"Year"},"yaxis":{"domain":[0,1],"automargin":true,"side":"left","title":"Number"},"hovermode":"closest","showlegend":true},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[80009,70250,69774,64186,62950,52763,49340,46595],"type":"scatter","mode":"lines","name":"Total Veterans Sheltered","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[2011,2012,2013,2014,2015,2016,2017,2018],"y":[50699,50728,41317,35037,32279,25980,30559,29041],"type":"scatter","mode":"lines","name":"Total Veterans Unsheltered","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script> * no data available for the years 2007-2010</p>
 </div>
 <div id="youth-homelessness-over-time-by-shelter-status" class="section level2">
 <h2>Youth Homelessness Over Time by Shelter Status</h2>
@@ -803,13 +804,8 @@ veterans_over_time</code></pre>
     type = &quot;scatter&quot;, 
     mode = &quot;lines&quot;)
 youth_over_time</code></pre>
-<<<<<<< HEAD
-<div id="htmlwidget-1b98c71d5385f3ca3890" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1b98c71d5385f3ca3890">{"x":{"visdat":{"90afb1cedfb":["function () ","plotlyVisDat"]},"cur_data":"90afb1cedfb","attrs":{"90afb1cedfb":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"year"},"yaxis":{"domain":[0,1],"automargin":true,"title":"youth"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2015,2016,2017,2018],"y":[9313,7631,9262,8170],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-=======
-<div id="htmlwidget-77dddb30f4834a4a5fad" style="width:672px;height:480px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-77dddb30f4834a4a5fad">{"x":{"visdat":{"1725951904a4":["function () ","plotlyVisDat"]},"cur_data":"1725951904a4","attrs":{"1725951904a4":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"year"},"yaxis":{"domain":[0,1],"automargin":true,"title":"youth"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2015,2016,2017,2018],"y":[9313,7631,9262,8170],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
->>>>>>> c27296102bf849f2eaa85b6d71349b923316af3e
+<div id="htmlwidget-7e57055a34bfcffcf508" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7e57055a34bfcffcf508">{"x":{"visdat":{"1e5c79591a8d":["function () ","plotlyVisDat"]},"cur_data":"1e5c79591a8d","attrs":{"1e5c79591a8d":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"year"},"yaxis":{"domain":[0,1],"automargin":true,"title":"youth"},"hovermode":"closest","showlegend":false},"source":"A","config":{"showSendToCloud":false},"data":[{"x":[2015,2016,2017,2018],"y":[9320,7641,9267,8179],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 
 

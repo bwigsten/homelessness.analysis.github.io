@@ -1,0 +1,19 @@
+---
+title: "adequacy"
+author: "Nora Zakaria"
+date: "12/2/2019"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+## R Markdown
+
+```{r}
+library(readxl)
+adequacy = read_excel("data/housing_adequacy.xlsx", 1) %>%
+  janitor::clean_names()
+```
+
