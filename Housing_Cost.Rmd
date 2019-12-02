@@ -26,6 +26,8 @@ Housing_Cost =
   ) %>%
   select(-characteristics, -table_description) %>%
   janitor::clean_names()
+
+write.csv(Housing_Cost, "./data/housing_cost.csv")
 ```
 
 ```{r}
