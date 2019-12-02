@@ -17,7 +17,7 @@ output:
 
 **Hobbies Include**: Aerial yoga, playing ukulele, seeing Sleep No More
 
-Kristi's Favorite Internet Cat: 
+_Kristi's Favorite Internet Cat:_ 
 ![](images/kristi_cat.jpg)
 
 
@@ -29,7 +29,7 @@ Kristi's Favorite Internet Cat:
 
 **Hobbies Include**: Dog walking, binge watching Netflix, eating pasta
 
-Blair's Favorite Internet Cat:
+_Blair's Favorite Internet Cat:_
 
 ![](images/blair_cat.jpeg)
 
@@ -42,7 +42,7 @@ Blair's Favorite Internet Cat:
 
 **Hobbies Include**: Dancing, baking/cooking, in search for the best lavendar latte
 
-Alicia's Favorite Internet Cat: 
+_Alicia's Favorite Internet Cat:_ 
 
 ![](Images/alicia_cat.jpg)
 
@@ -55,6 +55,6 @@ Alicia's Favorite Internet Cat:
 
 **Hobbies Include**: An excellent cup of coffee, travel, West Coast sports
 
-Nora's Favorite Internet Cat:
+_Nora's Favorite Internet Cat:_
 
 ![](Images/nora_cat.jpg)
