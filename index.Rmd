@@ -7,7 +7,7 @@ output:
     theme: flatly
 ---
 
-#### _An Analysis of Homelessness in the United States and a Case Study of California and New York_
+#### _An Analysis of Homelessness in the United States_
 **December 5th, 2019**
 
 ![](images/Homelessness_SF.jpg)
