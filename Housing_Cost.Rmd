@@ -1,0 +1,38 @@
+---
+title: "Housing_Cost"
+author: "Alicia Yang"
+date: "12/2/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(plotly)
+library(shiny)
+
+Housing_Cost = 
+  read_csv("./data/2017_Housing_Cost.csv") %>%
+  janitor::clean_names() %>%
+  filter(characteristics == "Median (excludes no cash rent) (dollars)") %>%
+  select(-row_order, -survey, -survey_year, -area, -tenure_filter, -geography_filter) %>%
+  pivot_longer(
+    top_15_metropolitan_areas_new_york_city_metric_estimate:top_15_metropolitan_areas_seattle_metric_estimate, 
+    names_to = "city", 
+    values_to = "median_housing_cost"
+  ) %>%
+  mutate(
+    city = str_remove(city, "top_15_metropolitan_areas_"), 
+    city = str_remove(city, "_metric_estimate")
+  ) %>%
+  select(-characteristics, -table_description) %>%
+  janitor::clean_names()
+```
+
+```{r}
+
+```
+
+
+
+
+
