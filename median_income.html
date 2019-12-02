@@ -10,9 +10,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Nora Zakaria" />
 
 
-<title>About Us</title>
+<title>Median-Income</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,9 +21,6 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -253,63 +251,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -317,16 +258,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -379,50 +310,55 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">About Us</h1>
+<h1 class="title toc-ignore">Median-Income</h1>
+<h4 class="author">Nora Zakaria</h4>
+<h4 class="date">12/2/2019</h4>
 
 </div>
 
 
-<div id="meet-the-contributors" class="section level3">
-<h3><em>Meet the Contributors!</em></h3>
+<div id="load-tidyverse" class="section level1">
+<h1>Load Tidyverse</h1>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<div id="read-in-and-clean-the-medium-income-data" class="section level2">
+<h2>Read in and Clean the Medium Income Data</h2>
+<pre class="r"><code>library(readxl)
+median_income = read_excel(&quot;data/median_income.xlsx&quot;, 1) %&gt;%
+  janitor::clean_names() %&gt;%
+  filter(characteristics == &quot;Median (excludes no cash rent) (dollars)&quot;) %&gt;%
+  select(-tenure_filter, -row_order, -survey, -survey_year, -area, -table_description, - geography_filter, - characteristics) %&gt;%
+  pivot_longer(
+    top_15_metropolitan_areas_new_york_city_metric_estimate:top_15_metropolitan_areas_seattle_metric_estimate,
+    names_to = &quot;city&quot;,
+    values_to = &quot;median_income&quot;) %&gt;%
+  mutate(
+    city = str_remove(city, &quot;top_15_metropolitan_areas_&quot;),
+    city = str_remove(city, &quot;_metric_estimate&quot;))
+median_income</code></pre>
+<pre><code>## # A tibble: 15 x 2
+##    city          median_income
+##    &lt;chr&gt;         &lt;chr&gt;        
+##  1 new_york_city 1549         
+##  2 los_angeles   1529         
+##  3 chicago       1190         
+##  4 dallas        1179         
+##  5 houston       1117         
+##  6 philadelphia  1222         
+##  7 washington_dc 1844         
+##  8 miami         1275         
+##  9 atlanta       1188         
+## 10 boston        1667         
+## 11 san_francisco 2095         
+## 12 phoenix       1150         
+## 13 riverside     1381         
+## 14 detroit       937          
+## 15 seattle       1517</code></pre>
+<pre class="r"><code>write.csv(median_income, &quot;./data/median_income.csv&quot;)</code></pre>
 </div>
-<div id="kristi-chau" class="section level3">
-<h3>Kristi Chau</h3>
-<p><strong>Department</strong>: Epidemiology</p>
-<p><strong>Certificate</strong>: Chronic Disease Epidemiology</p>
-<p><strong>Hobbies Include</strong>: Aerial yoga, playing ukulele, seeing Sleep No More</p>
-<p>Kristi’s Favorite Internet Cat: <img src="kristi_cat.jpg" /></p>
-</div>
-<div id="blair-wigsten" class="section level3">
-<h3>Blair Wigsten</h3>
-<p><strong>Department</strong>: Epidemiology</p>
-<p><strong>Certificate</strong>: Advanced Epidemiology</p>
-<p><strong>Hobbies Include</strong>: Dog walking, binge watching Netflix, eating pasta</p>
-<p>Blair’s Favorite Internet Cat:</p>
-<p><img src="Images/blair_cat.jpeg" /></p>
-</div>
-<div id="alicia-yang" class="section level3">
-<h3>Alicia Yang</h3>
-<p><strong>Department</strong>: Epidemiology</p>
-<p><strong>Certificate</strong>: Infectious Disease Epidemiology</p>
-<p><strong>Hobbies Include</strong>: Dancing, baking/cooking, in search for the best lavendar latte</p>
-<p>Alicia’s Favorite Internet Cat:</p>
-<p><img src="Images/alicia_cat.jpg" /></p>
-</div>
-<div id="nora-zakaria" class="section level3">
-<h3>Nora Zakaria</h3>
-<p><strong>Department</strong>: Epidemiology</p>
-<p><strong>Certificate</strong>: Health Policy and Practice</p>
-<p><strong>Hobbies Include</strong>: An excellent cup of coffee, travel, West Coast sports</p>
-<p>Nora’s Favorite Internet Cat:</p>
-<p><img src="Images/nora_cat.jpg" /></p>
 </div>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -455,32 +391,6 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
