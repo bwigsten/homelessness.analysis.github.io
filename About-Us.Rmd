@@ -18,7 +18,7 @@ output:
 **Hobbies Include**: Aerial yoga, playing ukulele, seeing Sleep No More
 
 Kristi's Favorite Internet Cat: 
-![](kristi_cat.jpg)
+![](images/kristi_cat.jpg)
 
 
 ### Blair Wigsten
