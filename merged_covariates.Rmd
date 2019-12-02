@@ -14,17 +14,20 @@ library(tidyverse)
 
 ```{r}
 median_income = read_csv(file = "./data/median_income.csv")
-```
 
-```{r}
 housing_adequacy = read_csv(file = "./data/housing_adequacy.csv")
-```
 
-```{r}
 housing_cost = read_csv(file = "./data/housing_cost.csv")
 ```
 
-```{r}
 
+```{r}
+merged_income_cost = 
+  inner_join(median_income, housing_cost)
+
+housing = 
+  left_join(merged_income_cost, housing_adequacy, by = "city")
+
+write.csv(housing, "./data/housing.csv")
 ```
 
