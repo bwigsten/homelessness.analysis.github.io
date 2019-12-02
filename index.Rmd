@@ -44,3 +44,4 @@ _**Covariate Analysis**_: This ShinyApp links the HUD homelessness data with sev
 To view a brief overview of our website, and its visualization functionalities, view our screencast here.
 
 #### Contributors: Kristi Chau, Blair Wigsten, Alicia Yang, Nora Zakaria
+Learn more about the contributors [here](about-us.html)!
