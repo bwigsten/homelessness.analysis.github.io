@@ -4,13 +4,13 @@ navbar:
   title: "Home"
   right:
     - text: "Report"
-      href: Project-Report.html
+      href: Report.html
     - text: "Trends Over Time"
       href: Homelessness-Dashboard.html  
     - text: "Homelessness by State"
       href: https://kpc2124.shinyapps.io/homelessness_final_proj/
     - text: "Covariate Analysis"
-      href: .html  
+      href:  https://ay2452.shinyapps.io/homeless_edu_employ_shiny/  
     - icon: fa-envelope fa-lg
       href: mailto:<niz2000@cumc.columbia.edu>
     - icon: fa-github fa-lg

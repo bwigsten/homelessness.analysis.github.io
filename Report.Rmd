@@ -1,15 +1,14 @@
 ---
-title: "Project Report"
+title: "Report"
 output: 
   html_document:
     toc: true
     toc_float: true
 ---
-# Homelessness Project
 
-### Blair Wigsten, Nora Zakaria, Kristi Chau, and Alicia Yang
+#### Blair Wigsten, Nora Zakaria, Kristi Chau, and Alicia Yang
 
-### December 5th, 2019
+December 5th, 2019
 
 ```{r}
 library(tidyverse)
@@ -22,16 +21,17 @@ library(plotly)
 Due to a lack of accessible mental health resources, rising cost of living with stagnant wages, and housing insecurity, homelessness is on the rise in the United States. Data from the Department of Housing and Urban Development (HUD) has shown that homelessness was declining historically, but has risen every year since 2016. Seemingly declaring war on homelessness after this rise, President Donald Trump argues that the homeless individuals are living in "our best highways, our best highways, our best streets, our best entrances to building". While countrywide data on this issue is presented by the US government each year, deep analysis into state stratification and potential correlating factors is rarely performed. As a group consisting of California and New York residents, where homelessness is thought to be the highest in the country, we set out to explain trends in homelessness over the last 12 years. 
 
 ## Related Work 
-* As a group consisting of California and New York residents, homelessness as a public health issue is at the forefront. Throughout coursework at Columbia, we have all been exposed to this glaring issue, and chose to analyze available public data to see the magnitude of the problem firsthand. Recent statements by President Trump on [homelessness](https://www.washingtonpost.com/business/2019/09/18/surprising-holes-our-knowledge-americas-homeless-population/) have made headlines, and definitely caught our attention. Shown in [Figure 1](file:///Users/blairwigsten/Desktop/Data%20Science/homelessness.analysis.github.io/Homelessness-Dashboard.html), New York and California have the highest sum of total homelessness over the 12-year period of 2007 to 2018. This, along with the political relevance of homelessness as a public health issue, compelled us to focus our final project on this topic. 
+As a group consisting of California and New York residents, homelessness as a public health issue is at the forefront. Throughout coursework at Columbia, we have all been exposed to this glaring issue, and chose to analyze available public data to see the magnitude of the problem firsthand. Recent statements by President Trump on [homelessness](https://www.washingtonpost.com/business/2019/09/18/surprising-holes-our-knowledge-americas-homeless-population/) have made headlines, and definitely caught our attention. Shown in [Figure 1](file:///Users/blairwigsten/Desktop/Data%20Science/homelessness.analysis.github.io/Homelessness-Dashboard.html), New York and California have the highest sum of total homelessness over the 12-year period of 2007 to 2018. This, along with the political relevance of homelessness as a public health issue, compelled us to focus our final project on this topic. 
 
 
 ## Initial Questions
-* Without individual level data, we cannot hypothesize risk factors for homelessness in this report. We can, however, analyze current prevalences in homelessness and show trends between homelessness and other demographics (like state, employment rate, prevalence of veterans, and education level). We aimed to show interactive maps to show prevalences of homelessness types, in relation to other search variables like year, and further categories of homelessness (sheltered/unsheltered, household, chronic, veterans, youth).
-* Our initial questions included:
-      * What is the distribution of homelessness by state and year over the period of 2007 to 2008?
-      * Are there certain subsets of homelessness (among the search variables listed above) that contribute 
-        more or less towards overall homelessness over time?
-      * Are there correlations between demographics (listed above) and homelessness
+Without individual level data, we cannot hypothesize risk factors for homelessness in this report. We can, however, analyze current prevalences in homelessness and show trends between homelessness and other demographics (like state, employment rate, prevalence of veterans, and education level). We aimed to show interactive maps to show prevalences of homelessness types, in relation to other search variables like year, and further categories of homelessness (sheltered/unsheltered, household, chronic, veterans, youth).
+Our initial questions included:
+
+* What is the distribution of homelessness by state and year over the period of 2007 to 2008?
+* Are there certain subsets of homelessness (among the search variables listed above) that contribute 
+  more or less towards overall homelessness over time?
+* Are there correlations between demographics (listed above) and homelessness
 
 ## Facts About Homelessness
 
@@ -40,7 +40,7 @@ Due to a lack of accessible mental health resources, rising cost of living with 
 * Government housing regulations have worsened the homelessness problem (rent control, zoning laws, rehabilitation codes, etc.)
 * Housing deregulation could wipe out the majority of homelessness in San Francisco 
  
-* Sources: [here](https://acton.org/publications/transatlantic/2019/09/23/10-facts-about-homelessness-america)
+* Sources [here](https://acton.org/publications/transatlantic/2019/09/23/10-facts-about-homelessness-america)
 
 ## Goals of This Project
 
@@ -254,6 +254,7 @@ write.csv(homelessness_all, "./data/us_homelessness_07_18.csv")
 
 ## Exploratory Data Analysis
 
+
 ### Figure 1: Summed Homelessness Over 12 Years by State
 ```{r}
 total_by_state = homelessness_all %>%
@@ -272,7 +273,7 @@ total_by_state = homelessness_all %>%
 total_by_state
 ```
 
-### Total Homelessness Over Time Graph
+### Total Homelessness Over Time 
 ```{r}
 total_over_time = homelessness_all %>%
   group_by(year) %>%
@@ -357,6 +358,3 @@ youth_over_time = homelessness_all %>%
     mode = "lines")
 youth_over_time
 ```
-
-
-
