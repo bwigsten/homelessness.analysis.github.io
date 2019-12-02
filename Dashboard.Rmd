@@ -214,7 +214,7 @@ total_by_state
 Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Figure 2
+### Figure 2. Total Homelessness Over Time 
 
 ```{r}
 total_over_time = homelessness_all %>%
@@ -232,7 +232,7 @@ total_over_time = homelessness_all %>%
 total_over_time
 ```
 
-### Figure 3
+### Figure 3. Total Homelessness Over Time Stratified by Shelter Status
 
 ```{r}
 total_stratified = homelessness_all %>%
@@ -253,7 +253,7 @@ total_stratified
 Column {data-width=500}
 -----------------------------------------------------------------------
 
-### Figure 4
+### Figure 4. Chronic Homelessness Over Time by Shelter Status
 
 ```{r}
 chronic_over_time = homelessness_all %>%
@@ -271,7 +271,7 @@ chronic_over_time = homelessness_all %>%
 chronic_over_time
 ```
 
-### Figure 5
+### Figure 5. Veteran Homelessness Over Time by Shelter Status
 
 ```{r}
 veterans_over_time = homelessness_all %>%
