@@ -35,6 +35,6 @@ housing_adequacy =
   arrange(city, severely_inadequate, moderately_inadequate, adequate, total_housing_units)
 housing_adequacy
 
-write.csv(housing_adequacy, "./data/housing_adequacy")
+write.csv(housing_adequacy, "./data/housing_adequacy.csv")
 ```
 
