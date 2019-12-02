@@ -1,0 +1,34 @@
+---
+title: "Median-Income"
+author: "Nora Zakaria"
+date: "12/2/2019"
+output: html_document
+---
+
+# Load Tidyverse
+```{r }
+library(tidyverse)
+```
+
+## Read in and Clean the Medium Income Data
+
+```{r}
+library(readxl)
+median_income = read_excel("data/median_income.xlsx", 1) %>%
+  janitor::clean_names() %>%
+  filter(characteristics == "Median (excludes no cash rent) (dollars)") %>%
+  select(-tenure_filter, -row_order, -survey, -survey_year, -area, -table_description, - geography_filter, - characteristics) %>%
+  pivot_longer(
+    top_15_metropolitan_areas_new_york_city_metric_estimate:top_15_metropolitan_areas_seattle_metric_estimate,
+    names_to = "city",
+    values_to = "median_income") %>%
+  mutate(
+    city = str_remove(city, "top_15_metropolitan_areas_"),
+    city = str_remove(city, "_metric_estimate"))
+median_income
+```
+
+```{r}
+write.csv(median_income, "./data/median_income.csv")
+```
+
