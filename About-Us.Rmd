@@ -29,7 +29,8 @@ Kristi's Favorite Internet Cat:
 
 **Hobbies Include**: Dog walking, binge watching Netflix, eating pasta
 
-Blair's Favorite Internet Cat: 
+Blair's Favorite Internet Cat:
+
 ![](images/blair_cat.jpeg)
 
 
@@ -42,6 +43,7 @@ Blair's Favorite Internet Cat:
 **Hobbies Include**: Dancing, baking/cooking, in search for the best lavendar latte
 
 Alicia's Favorite Internet Cat: 
+
 ![](Images/alicia_cat.jpg)
 
 
