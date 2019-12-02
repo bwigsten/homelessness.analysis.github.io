@@ -1,0 +1,22 @@
+---
+title: "About Us"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## Meet the Contributors!
+
+
+### Kristi Chau
+
+
+### Blair Wigsten
+
+
+### Alicia Yang
+
+
+### Nora Zakaria
+
