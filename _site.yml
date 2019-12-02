@@ -4,9 +4,9 @@ navbar:
   title: "Home"
   right:
     - text: "Report"
-      href: Project-Report.html
+      href: Report.html
     - text: "Trends Over Time"
-      href: Homelessness-Dashboard.html  
+      href: Dashboard.html  
     - text: "Homelessness by State"
       href: https://kpc2124.shinyapps.io/homelessness_final_proj/
     - text: "Covariate Analysis"

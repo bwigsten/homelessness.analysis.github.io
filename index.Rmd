@@ -7,7 +7,7 @@ output:
     theme: flatly
 ---
 
-#### _An Analysis of Homelessness in the United States and a Case Study of California and New York_
+#### _An Analysis of Homelessness in the United States_
 **December 5th, 2019**
 
 ![](images/Homelessness_SF.jpg)
@@ -22,7 +22,9 @@ Over 500,000 individuals experience homelessness in the United States on a daily
 
 
 ### Data Source
-The primary data source for this analysis comes the United States Department of Housing and Urban Development [HUD Exchange](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). This dataset spans from 2007-2018, and includes point-in-time and housing inventory counts at the national and state level, as well as information on the national Continuum of Care (CoC) Program, designed to promote communitywide commitment to the goal of ending homelessness through providing funding for for nonprofit providers, rehousing individuals experiencing homelessness, and increase access and utilization of existing programs. In addition to estimates of homelessness, HUD also collects estimates on sheltered vs unsheltered homelessness, homeless family, chronic homeless, homeless veterans, and homeless youth. Additional employment and education covariates used in secondary analysis were pulled from the United State's Census Bureau's [American FactFinder](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).
+The primary data source for this analysis comes the United States Department of Housing and Urban Development [HUD Exchange](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). This dataset spans from 2007-2018, and includes point-in-time and housing inventory counts at the national and state level, as well as information on the national Continuum of Care (CoC) Program, designed to promote communitywide commitment to the goal of ending homelessness through providing funding for for nonprofit providers, rehousing individuals experiencing homelessness, and increase access and utilization of existing programs. In addition to estimates of homelessness, HUD also collects estimates on sheltered vs unsheltered homelessness, homeless family, chronic homeless, homeless veterans, and homeless youth. 
+
+Additional employment and education covariates used in secondary analysis were pulled from the United State's Census Bureau's [American FactFinder](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).
 
 
 ### Website Overview
@@ -36,9 +38,10 @@ _**Trends Over Time**_: This dashboard displays trends in homelessness counts fr
 _**Homelessness by State**_: This ShinyApp displays a map of the United States, with tools to search for homelessness counts and additional HUD variables by state and by year.
 
 
-_**Covariate Analysis**_: This ShinyApp links the HUD homelessness data with several covariates of interest, employment and education, using the years 2009 and 2018 as interactive comparisons. 
+_**Covariate Analysis**_: This ShinyApp links the HUD homelessness data with several covariates of interest, employment and education, using the years 2009 and 2017 as interactive comparisons. 
 
 
 To view a brief overview of our website, and its visualization functionalities, view our screencast here.
 
 #### Contributors: Kristi Chau, Blair Wigsten, Alicia Yang, Nora Zakaria
+Learn more about the contributors [here](about-us.html)!

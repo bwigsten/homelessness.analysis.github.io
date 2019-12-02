@@ -1,0 +1,269 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(plotly)
+```
+
+```{r include=FALSE}
+home_data_2018 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 1)
+home_data_2017 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 2)
+home_data_2016 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 3)
+home_data_2015 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 4)
+home_data_2014 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 5)
+home_data_2013 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 6)
+home_data_2012 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 7)
+home_data_2011 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 8)
+home_data_2010 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 9)
+home_data_2009 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 10)
+home_data_2008 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 11)
+home_data_2007 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 12)
+
+
+### Clean names, add year variable, remove _year from name to merge later, and select variables of interest for all years
+
+home_data_2018 = home_data_2018 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2018) %>%
+  rename_at(.vars = vars(ends_with("_2018")),
+            .funs = funs(sub("[_]2018$", "", .))) %>%
+  select(co_c_number, co_c_name, co_c_category, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
+
+home_data_2017 = home_data_2017 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2017) %>%
+  rename_at(.vars = vars(ends_with("_2017")),
+            .funs = funs(sub("[_]2017$", "", .))) %>%
+  select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
+
+home_data_2016 = home_data_2016 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2016) %>%
+  rename_at(.vars = vars(ends_with("_2016")),
+            .funs = funs(sub("[_]2016$", "", .))) %>%
+  select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
+
+home_data_2015 = home_data_2015 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2015) %>%
+  rename_at(.vars = vars(ends_with("_2015")),
+            .funs = funs(sub("[_]2015$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, homeless_unaccompanied_youth_under_18, year)
+
+home_data_2014 = home_data_2014 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2014) %>%
+  rename_at(.vars = vars(ends_with("_2014")),
+            .funs = funs(sub("[_]2014$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
+
+home_data_2013 = home_data_2013 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2013) %>%
+  rename_at(.vars = vars(ends_with("_2013")),
+            .funs = funs(sub("[_]2013$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
+
+home_data_2012 = home_data_2012 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2012) %>%
+  rename_at(.vars = vars(ends_with("_2012")),
+            .funs = funs(sub("[_]2012$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
+
+home_data_2011 = home_data_2011 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2011) %>%
+  rename_at(.vars = vars(ends_with("_2011")),
+            .funs = funs(sub("[_]2011$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, chronically_homeless, sheltered_total_chronically_homeless, unsheltered_chronically_homeless, homeless_veterans, sheltered_total_homeless_veterans, unsheltered_homeless_veterans, year)
+
+home_data_2010 = home_data_2010 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2010) %>%
+  rename_at(.vars = vars(ends_with("_2010")),
+            .funs = funs(sub("[_]2010$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
+
+home_data_2009 = home_data_2009 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2009) %>%
+  rename_at(.vars = vars(ends_with("_2009")),
+            .funs = funs(sub("[_]2009$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
+
+home_data_2008 = home_data_2008 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2008) %>%
+  rename_at(.vars = vars(ends_with("_2008")),
+            .funs = funs(sub("[_]2008$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
+
+home_data_2007 = home_data_2007 %>%
+  janitor::clean_names() %>%
+  mutate(year = 2007) %>%
+  rename_at(.vars = vars(ends_with("_2007")),
+            .funs = funs(sub("[_]2007$", "", .))) %>%
+   select(co_c_number, co_c_name, overall_homeless, sheltered_total_homeless, unsheltered_homeless, homeless_people_in_families, sheltered_total_homeless_people_in_families, unsheltered_homeless_people_in_families, homeless_family_households, sheltered_total_homeless_family_households, unsheltered_homeless_family_households, year)
+
+### Bind rows for all 12 datasets produced above
+
+library(dplyr)
+total_data = 
+bind_rows(mutate_all(home_data_2007, as.character), mutate_all(home_data_2008, as.character), mutate_all(home_data_2009, as.character), mutate_all(home_data_2010, as.character), mutate_all(home_data_2011, as.character), mutate_all(home_data_2012, as.character), mutate_all(home_data_2013, as.character), mutate_all(home_data_2014, as.character), mutate_all(home_data_2015, as.character), mutate_all(home_data_2016, as.character), mutate_all(home_data_2017, as.character), mutate_all(home_data_2018, as.character))
+
+### Clean up variable names
+
+homelessness_all = total_data %>%
+  rename(coc_number = co_c_number, 
+         coc_name = co_c_name, 
+         total_homeless = overall_homeless, 
+         sheltered_homeless = sheltered_total_homeless, 
+         total_in_families = homeless_people_in_families, 
+         sheltered_in_families = sheltered_total_homeless_people_in_families, 
+         unsheltered_in_families = unsheltered_homeless_people_in_families, 
+         total_households = homeless_family_households, 
+         sheltered_households = sheltered_total_homeless_family_households, 
+         unsheltered_households = unsheltered_homeless_family_households, 
+         total_chronic = chronically_homeless, 
+         sheltered_chronic = sheltered_total_chronically_homeless, 
+         unsheltered_chronic = unsheltered_chronically_homeless, 
+         total_veterans = homeless_veterans, 
+         sheltered_veterans = sheltered_total_homeless_veterans, 
+         unsheltered_veterans = unsheltered_homeless_veterans, 
+         youth = homeless_unaccompanied_youth_under_18, 
+         coc_category = co_c_category) %>%
+  mutate(total_homeless = as.numeric(total_homeless), 
+         sheltered_homeless = as.numeric(sheltered_homeless), 
+         unsheltered_homeless = as.numeric(unsheltered_homeless), 
+         total_in_families = as.numeric(total_in_families), 
+         sheltered_in_families = as.numeric(sheltered_in_families), 
+         unsheltered_in_families = as.numeric(unsheltered_in_families), 
+         total_households = as.numeric(total_households), 
+         sheltered_households = as.numeric(sheltered_households), 
+         unsheltered_households = as.numeric(unsheltered_households), 
+         year = as.numeric(year), 
+         total_chronic = as.numeric(total_chronic), 
+         sheltered_chronic = as.numeric(sheltered_chronic), 
+         unsheltered_chronic = as.numeric(unsheltered_chronic), 
+         total_veterans = as.numeric(total_veterans), 
+         sheltered_veterans = as.numeric(sheltered_veterans), 
+         unsheltered_veterans = as.numeric(unsheltered_veterans),
+         youth = as.numeric(youth)) %>%
+  separate(coc_number, into = c("state", "number")) %>% 
+  ## removing those 2 random blank rows that appear at the end of every dataset after the total
+  ## also removing DC, GU, MP, PR, and VI
+  subset(coc_name != "NA" & !(state %in% c("DC","GU","MP","PR","VI")))
+
+homelessness_all
+
+### Saving cleaned and compiled dataset as a csv file
+
+write.csv(homelessness_all, "./data/us_homelessness_07_18.csv")
+```
+
+```{r include=FALSE}
+total_by_state = homelessness_all %>%
+  select(state, total_homeless) %>%
+  group_by(state) %>% 
+  summarize(total = sum(total_homeless, na.rm = TRUE)) %>%
+  mutate(state = fct_reorder(state, total)) %>%
+  plot_ly(
+    x = ~state, 
+    y = ~total, 
+    type = "bar", 
+    title = "Total Homelessness in 2018 by State") %>% 
+    layout(title = "Total Homelessness From 2007-2018 by State", 
+         xaxis = list(title = "State"),
+         yaxis = list(side = 'left', title = "Number Homeless"))
+total_by_state
+
+
+```
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Figure 2. Total Homelessness Over Time 
+
+```{r}
+total_over_time = homelessness_all %>%
+  group_by(year) %>%
+  summarize(total = sum(total_homeless, na.rm = TRUE)) %>%
+  plot_ly(
+    x = ~year, 
+    y = ~total, 
+    type = "scatter", 
+    mode = "lines") %>% 
+    layout(title = "Total Homelessness Over Time", 
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number Homeless")) 
+
+total_over_time
+```
+
+### Figure 3. Total Homelessness Over Time Stratified by Shelter Status
+
+```{r}
+total_stratified = homelessness_all %>%
+  group_by(year) %>%
+  summarize(
+    sheltered = sum(sheltered_homeless, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_homeless, na.rm = TRUE)) %>%
+  plot_ly() %>%
+    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Sheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Unsheltered") %>%
+  layout(title = "Total Sheltered and Unsheltered Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number"))
+total_stratified
+```
+
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Figure 4. Chronic Homelessness Over Time by Shelter Status
+
+```{r}
+chronic_over_time = homelessness_all %>%
+  group_by(year) %>%
+  filter(year %in% c("2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")) %>%
+  summarize(
+    sheltered = sum(sheltered_chronic, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_chronic, na.rm = TRUE)) %>%
+  plot_ly() %>%
+    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Chronic Sheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Chronic Unsheltered") %>%
+  layout(title = "Total Chronically Homeless Sheltered and Unsheltered Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number"))
+chronic_over_time
+```
+
+### Figure 5. Veteran Homelessness Over Time by Shelter Status
+
+```{r}
+veterans_over_time = homelessness_all %>%
+  group_by(year) %>%
+  filter(year %in% c("2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018")) %>%
+  summarize(
+    sheltered = sum(sheltered_veterans, na.rm = TRUE), 
+    unsheltered = sum(unsheltered_veterans, na.rm = TRUE)) %>%
+  plot_ly() %>%
+    add_trace(x = ~year, y = ~sheltered, type = "scatter", mode = "lines", name = "Total Veterans Sheltered") %>%
+    add_trace(x = ~year, y = ~unsheltered, type = "scatter", mode = "lines", name = "Total Veterans Unsheltered") %>%
+  layout(title = "Total Veterans Homeless Sheltered and Unsheltered Over Time",
+         xaxis = list(title = "Year"),
+         yaxis = list(side = 'left', title = "Number")) 
+veterans_over_time
+```
+
