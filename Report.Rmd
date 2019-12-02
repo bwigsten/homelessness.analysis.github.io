@@ -431,5 +431,35 @@ Housing_Cost =
   janitor::clean_names()
 ```
 
+##Housing Adequacy by City
+```{r}
+housing_adequacy = read_excel("data/housing_adequacy.xlsx", 1, skip = 9) %>%
+  janitor::clean_names()
+
+housing_adequacy = 
+  housing_adequacy[c(2, 6, 12, 15),] %>%
+  pivot_longer(
+    new_york_city:seattle, 
+    names_to = "city", 
+    values_to = "estimates") %>%
+  pivot_wider(
+    names_from = "x1", 
+    values_from = "estimates"
+  ) %>%
+  janitor::clean_names() %>%
+  rename(
+    total_housing_units = total, 
+    severely_inadequate = severely_inadequate2, 
+    moderately_inadequate = moderately_inadequate2
+  ) %>%
+  arrange(city, severely_inadequate, moderately_inadequate, adequate, total_housing_units)
+housing_adequacy
+
+write.csv(housing_adequacy, "./data/housing_adequacy.csv")
+``
+
+
+
+
 
 
