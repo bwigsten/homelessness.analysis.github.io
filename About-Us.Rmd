@@ -6,17 +6,53 @@ output:
     toc_float: true
 ---
 
-## Meet the Contributors!
+### _Meet the Contributors!_
 
 
 ### Kristi Chau
 
+**Department**: Epidemiology
+
+**Certificate**: Chronic Disease Epidemiology
+
+**Hobbies Include**: Aerial yoga, playing ukulele, Sleep No More
+
+Kristi's Favorite Internet Cat: 
+![](kristi_cat.jpg)
+
 
 ### Blair Wigsten
+
+**Department**: Epidemiology
+
+**Certificate**: Advanced Epidemiology
+
+**Hobbies Include**: Dog walking, binge watching Netflix, eating pasta
+
+Blair's Favorite Internet Cat: 
+![](images/blair_cat.jpeg)
 
 
 ### Alicia Yang
 
+**Department**: Epidemiology
+
+**Certificate**: Infectious Disease Epidemiology
+
+**Hobbies Include**: Dancing, baking/cooking, in search for the best lavendar latte
+
+Alicia's Favorite Internet Cat: 
+![](Images/alicia_cat.jpg)
+
 
 ### Nora Zakaria
 
+**Department**: Epidemiology
+
+**Certificate**: Health Policy and Practice
+
+**Hobbies Include**: An excellent cup of coffee, travel, West Coast sports
+
+Nora's Favorite Internet Cat:
+
+![](Images/nora_cat.jpg)
