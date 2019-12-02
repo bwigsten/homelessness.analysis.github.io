@@ -1,0 +1,30 @@
+---
+title: "merged_covariates"
+author: "Nora Zakaria"
+date: "12/2/2019"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+# Load in the 3 Covariate Datasets
+
+```{r}
+median_income = read_csv(file = "./data/median_income.csv")
+```
+
+```{r}
+housing_adequacy = read_csv(file = "./data/housing_adequacy.csv")
+```
+
+```{r}
+housing_cost = read_csv(file = "./data/housing_cost.csv")
+```
+
+```{r}
+
+```
+
