@@ -1,0 +1,25 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(plotly)
+```
+
+```{r include=FALSE}
+homelessness_all = 
+  read_csv(file = "./data/us_homelessness_07_18.csv")
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+
+Column {data-width=350}
+-----------------------------------------------------------------------
