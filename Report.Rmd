@@ -456,7 +456,7 @@ housing_adequacy =
 housing_adequacy
 
 write.csv(housing_adequacy, "./data/housing_adequacy.csv")
-``
+```
 
 
 
