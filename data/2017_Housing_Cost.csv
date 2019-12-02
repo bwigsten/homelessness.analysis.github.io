@@ -1,0 +1,242 @@
+"Row Order","Survey","Survey Year","Area","Table Description","Tenure Filter","Geography Filter","Characteristics","Top 15 Metropolitan Areas: New York City|Metric: Estimate","Top 15 Metropolitan Areas: Los Angeles|Metric: Estimate","Top 15 Metropolitan Areas: Chicago|Metric: Estimate","Top 15 Metropolitan Areas: Dallas|Metric: Estimate","Top 15 Metropolitan Areas: Houston|Metric: Estimate","Top 15 Metropolitan Areas: Philadelphia|Metric: Estimate","Top 15 Metropolitan Areas: Washington DC|Metric: Estimate","Top 15 Metropolitan Areas: Miami|Metric: Estimate","Top 15 Metropolitan Areas: Atlanta|Metric: Estimate","Top 15 Metropolitan Areas: Boston|Metric: Estimate","Top 15 Metropolitan Areas: San Francisco|Metric: Estimate","Top 15 Metropolitan Areas: Phoenix|Metric: Estimate","Top 15 Metropolitan Areas: Riverside|Metric: Estimate","Top 15 Metropolitan Areas: Detroit|Metric: Estimate","Top 15 Metropolitan Areas: Seattle|Metric: Estimate"
+1,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Total",7428.0,4395.7,3526.5,2564.7,2329.0,2308.4,2178.8,2090.6,2108.8,1853.8,1706.2,1685.6,1314.5,1723.3,1485.7
+2,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    ",,,,,,,,,,,,,,,
+3,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Total Housing Costs",,,,,,,,,,,,,,,
+4,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+5,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $100",52.1,26.3,"S","S","S","S","S","S","S","S","S","S","S","S",7.6
+6,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $199",76.6,79.7,59.4,27.4,25.2,24.0,21.4,20.8,17.0,"S",15.7,11.6,12.9,"S",12.5
+7,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 to $249",106.6,35.3,53.0,31.3,26.1,22.6,22.8,29.2,14.3,13.0,"S",19.2,10.5,13.4,14.5
+8,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$250 to $299",86.1,65.3,43.7,30.2,29.3,43.8,11.5,22.3,25.8,29.8,18.1,19.0,12.6,23.7,14.7
+9,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$300 to $349",96.7,56.9,54.4,43.8,36.1,31.9,11.5,28.8,33.5,22.6,15.0,29.6,17.4,46.6,10.8
+10,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$350 to $399",95.7,62.3,56.8,35.6,39.3,40.8,10.6,35.1,42.0,20.2,11.9,29.8,20.9,44.0,10.7
+11,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$400 to $449",75.8,64.0,59.6,48.2,37.0,43.0,15.0,36.6,46.0,17.5,24.8,41.9,19.8,56.3,10.7
+12,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$450 to $499",68.6,54.6,52.3,32.7,39.5,52.0,17.5,40.1,53.3,22.7,15.2,43.9,27.4,47.7,13.7
+13,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$500 to $599",156.2,128.1,148.5,101.4,92.1,102.1,35.4,85.2,77.9,41.1,39.9,99.8,46.9,143.2,35.6
+14,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$600 to $699",164.1,112.4,169.1,106.2,130.3,105.4,53.2,96.5,72.5,58.8,40.7,96.1,53.8,144.0,55.9
+15,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$700 to $799",217.8,137.4,201.5,145.0,167.4,122.6,51.4,100.8,83.5,66.4,37.4,111.1,68.0,135.1,60.7
+16,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$800 to $999",588.5,348.9,459.4,365.7,355.0,250.9,126.0,227.2,291.2,163.3,94.6,175.5,122.8,255.9,128.7
+17,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,000 to $1,249",827.3,497.6,476.0,391.8,343.7,326.5,161.2,279.3,363.4,182.4,117.7,247.2,153.1,238.4,177.3
+18,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,250 to $1,499",923.5,450.5,323.9,320.4,251.8,228.3,199.1,249.1,311.3,171.8,116.3,237.4,150.9,171.2,171.6
+19,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,500 to $1,999",1178.8,786.6,583.3,410.5,321.6,373.7,473.5,388.2,342.5,301.6,245.4,250.7,240.4,183.2,265.3
+20,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,000 to $2,499",796.4,526.9,303.6,168.6,176.8,199.9,360.7,202.0,128.5,264.5,226.5,115.9,166.9,83.2,188.5
+21,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,500 or more",1798.0,922.5,431.8,272.1,222.8,311.9,586.6,218.6,187.2,445.3,660.9,135.5,177.6,95.3,293.9
+22,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","No cash rent",119.3,40.2,33.5,23.1,30.6,21.7,12.8,24.2,16.8,20.0,14.7,19.0,9.0,25.0,13.1
+23,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (excludes no cash rent) (dollars)",1549.0,1529.0,1190.0,1179.0,1117.0,1222.0,1844.0,1275.0,1188.0,1667.0,2095.0,1150.0,1381.0,937.0,1517.0
+24,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+25,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Total Housing Costs as Percent of Household Income",,,,,,,,,,,,,,,
+26,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+27,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than 5 percent",164.2,170.5,79.9,56.4,59.5,56.7,65.1,32.3,38.9,49.9,47.1,36.9,26.3,45.3,36.9
+28,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","5 to 9 percent",481.6,388.9,282.8,206.3,233.7,200.6,165.7,134.6,178.2,138.8,122.4,143.1,99.4,184.4,109.5
+29,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","10 to 14 percent",763.1,337.5,444.6,377.5,299.5,335.9,272.5,172.4,274.5,218.5,185.7,227.8,106.4,248.2,193.3
+30,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","15 to 19 percent",792.8,457.2,485.3,356.0,324.6,331.0,335.3,218.5,311.3,252.5,224.8,259.3,135.7,286.6,207.3
+31,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","20 to 24 percent",806.9,443.6,444.3,321.5,274.6,286.6,282.8,203.7,261.1,235.2,193.1,224.1,138.9,209.8,202.1
+32,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","25 to 29 percent",683.7,407.2,374.3,230.7,219.8,196.5,236.9,175.2,222.5,183.4,179.4,166.5,141.4,153.9,166.4
+33,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","30 to 34 percent",554.8,340.2,252.4,201.1,171.2,140.4,172.0,172.3,167.2,151.4,147.4,120.5,111.0,105.7,119.7
+34,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","35 to 39 percent",430.9,274.9,212.0,142.4,130.3,108.4,113.3,147.9,105.3,106.2,113.8,78.0,86.4,67.8,81.5
+35,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","40 to 49 percent",601.7,379.9,238.4,208.1,149.3,155.4,153.1,203.9,137.8,129.3,134.1,100.5,129.0,90.2,117.9
+36,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","50 to 59 percent",426.1,246.6,112.5,99.8,81.1,89.2,84.5,135.3,91.3,75.0,84.1,71.3,77.2,67.5,47.7
+37,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","60 to 69 percent",221.8,153.5,85.7,69.6,61.5,62.8,53.5,72.1,60.5,55.0,36.4,43.2,51.4,34.6,41.5
+38,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","70 to 99 percent",428.8,249.5,132.6,72.9,92.6,87.5,79.0,128.2,65.1,77.6,63.2,62.5,75.7,67.0,49.3
+39,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","100 percent or more",755.3,404.2,257.5,138.4,136.1,182.7,125.0,193.0,133.2,139.1,131.8,106.6,98.8,106.0,71.5
+40,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Zero or negative income",197.0,101.6,90.8,60.9,64.5,53.0,27.3,77.2,45.2,21.9,28.3,26.2,28.0,31.3,27.9
+41,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","No cash rent",119.3,40.2,33.5,23.1,30.6,21.7,12.8,24.2,16.8,20.0,14.7,19.0,9.0,25.0,13.1
+42,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (excludes 2 previous lines) (percent)",29.0,29.0,24.0,23.0,23.0,23.0,23.0,32.0,24.0,25.0,26.0,23.0,29.0,21.0,23.0
+43,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (excludes 3 lines before medians) (percent)",26.0,26.0,23.0,22.0,22.0,21.0,22.0,28.0,22.0,23.0,24.0,21.0,27.0,20.0,23.0
+44,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+45,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Total Mortgage Amount",,,,,,,,,,,,,,,
+46,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+47,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Households with at least one regular mortgage",2179.4,1299.0,1428.5,937.3,849.5,930.3,1040.1,679.5,912.7,706.4,605.1,722.7,563.6,645.0,567.2
+48,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $250",152.3,77.2,98.9,58.0,87.7,61.4,33.9,27.4,"S",26.8,26.3,"S",34.7,48.3,26.2
+49,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$250 to $499",99.9,53.9,128.1,104.9,90.7,70.4,24.8,74.7,"S",22.4,12.1,"S",30.4,119.5,21.9
+50,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$500 to $749",194.5,92.1,287.4,195.6,164.9,128.7,59.3,115.2,"S",63.5,35.3,"S",64.1,153.5,44.7
+51,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$750 to $999",242.8,129.3,243.0,193.0,167.5,157.5,97.2,137.2,"S",83.6,27.2,"S",82.5,122.4,73.2
+52,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,000 to $1,249",293.6,146.5,225.2,114.6,112.2,145.2,135.7,91.4,"S",96.0,45.7,"S",90.5,74.7,86.8
+53,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,250 to $1,499",242.4,122.8,126.7,79.7,72.4,110.6,159.5,71.5,"S",86.1,41.7,"S",83.1,41.2,63.5
+54,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,500 to $1,749",242.9,127.2,104.1,46.0,44.4,96.5,122.6,56.6,"S",98.1,59.3,"S",61.0,31.7,61.8
+55,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,750 to $1,999",161.2,123.9,81.6,44.2,27.9,45.3,97.5,32.6,"S",48.0,46.1,"S",45.6,18.4,50.4
+56,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,000 to $2,249",204.7,112.7,30.1,27.2,18.5,36.9,82.2,22.1,"S",49.5,48.5,"S",31.8,12.0,30.3
+57,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,250 to $2,499",76.8,58.2,19.4,12.7,"S",21.1,44.3,13.1,"S",24.7,35.9,"S",13.2,"S",24.4
+58,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,500 to $2,749",51.1,67.5,"S",18.8,"S","S",48.1,"S","S",32.0,41.1,"S",9.2,"S",24.0
+59,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,750 to $2,999","S",47.8,"S","S","S","S",26.2,"S","S",18.4,41.3,"S","S","S",13.3
+60,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$3,000 or more",187.3,139.8,60.2,32.0,34.7,39.5,108.8,20.6,"S",57.4,144.7,"S",11.9,10.9,47.0
+61,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",1376.0,1550.0,952.0,892.0,883.0,1056.0,1518.0,965.0,895.0,1429.0,2010.0,948.0,1195.0,751.0,1379.0
+62,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+63,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Mortgage Amount as Percent of Household Income",,,,,,,,,,,,,,,
+64,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+65,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Households with at least one regular mortgage",2179.4,1299.0,1428.5,937.3,849.5,930.3,1040.1,679.5,912.7,706.4,605.1,722.7,563.6,645.0,567.2
+66,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than 5 percent",248.5,105.4,133.0,92.2,119.3,97.2,52.9,42.5,"S","S","S",42.9,39.1,64.4,34.1
+67,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","5 to 9 percent",499.3,153.8,348.0,253.1,231.5,223.5,199.5,119.0,"S","S","S",151.6,62.9,225.2,102.2
+68,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","10 to 14 percent",397.4,276.9,387.5,240.0,208.4,242.2,271.4,135.4,"S","S","S",199.5,102.4,154.3,142.6
+69,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","15 to 19 percent",313.2,242.2,197.4,125.0,93.3,126.2,210.9,119.7,"S","S","S",120.3,108.1,87.8,114.0
+70,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","20 to 24 percent",184.5,131.5,103.7,66.8,63.4,64.2,99.6,81.9,"S","S","S",68.0,71.1,36.8,65.3
+71,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","25 to 29 percent",127.8,83.1,54.5,47.7,34.3,37.9,48.9,35.8,"S","S","S",28.0,48.6,22.4,35.6
+72,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","30 to 34 percent",63.8,67.1,44.6,33.8,21.9,30.5,40.4,48.4,"S","S","S",28.5,30.2,12.0,17.6
+73,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","35 to 39 percent","S",34.0,"S",16.0,18.1,12.3,27.2,19.0,"S","S","S",13.0,20.2,"S",9.9
+74,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","40 to 49 percent","S",52.0,24.1,23.8,"S",21.8,27.0,21.4,"S","S","S",23.8,27.2,"S",13.2
+75,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","50 to 59 percent","S",27.5,"S","S",12.0,"S",9.9,15.5,"S","S","S","S",8.9,"S","S"
+76,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","60 to 69 percent","S",20.0,"S","S","S","S",13.3,"S","S","S","S","S","S","S","S"
+77,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","70 to 99 percent",44.3,22.7,"S","S","S","S",10.2,"S","S","S","S","S",9.1,"S","S"
+78,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","100 percent or more",114.0,71.5,56.5,17.3,15.2,30.8,24.9,17.8,"S","S","S",27.2,23.9,11.4,11.1
+79,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Zero or negative income","S","S","S","S",12.7,"S","S",12.8,"S","S","S","S","S","S","S"
+80,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+81,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Rent",,,,,,,,,,,,,,,
+82,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+83,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","  Rent paid",3524.5,2240.6,1204.7,1037.1,866.2,712.5,789.0,829.7,777.6,694.9,759.2,574.3,470.4,502.4,600.4
+84,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $250",279.4,112.6,116.2,60.0,40.5,61.4,52.5,48.8,30.0,61.6,44.2,23.6,37.5,41.7,37.1
+85,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$250 to $499",266.4,124.8,77.0,30.1,32.9,57.3,20.2,26.8,44.7,74.3,32.3,24.4,22.4,65.2,21.1
+86,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$500 to $749",227.0,124.6,187.0,185.1,204.5,118.7,24.0,60.9,122.0,50.0,33.4,123.2,40.5,155.3,31.4
+87,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$750 to $999",379.9,300.6,304.8,318.8,270.0,166.8,47.9,154.1,242.7,69.6,43.1,140.6,82.7,136.0,76.0
+88,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,000 to $1,249",572.9,339.0,220.2,188.7,144.0,122.6,105.1,165.1,176.0,91.0,54.4,119.3,105.0,61.0,120.0
+89,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,250 to $1,499",465.4,264.7,99.3,106.5,77.8,73.7,153.4,135.4,92.4,71.1,59.6,77.8,67.6,20.9,92.1
+90,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,500 to $1,749",371.9,291.3,82.6,70.7,53.2,51.6,141.9,97.1,41.9,68.6,80.0,26.4,53.1,"S",76.7
+91,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$1,750 to $1,999",213.1,191.0,50.4,31.3,"S",23.1,89.6,53.1,"S",60.8,64.6,12.7,27.4,"S",39.9
+92,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,000 to $2,249",218.4,181.0,26.2,17.8,"S","S",53.2,29.6,"S",50.2,89.8,"S",20.2,"S",33.8
+93,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,250 to $2,499",98.7,64.9,"S","S","S",".",27.3,16.4,"S",30.6,50.8,"S","S","S",20.1
+94,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$2,500 to $2,999",155.3,125.4,"S","S","S","S",37.0,19.5,"S",27.1,74.8,"S","S","S",26.0
+95,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$3,000 or more",276.1,120.7,"S",16.1,"S",21.5,36.9,23.0,"S",40.0,132.2,10.4,"S","S",26.5
+96,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",1250.0,1350.0,900.0,915.0,864.0,925.0,1475.0,1200.0,930.0,1250.0,1815.0,925.0,1100.0,720.0,1295.0
+97,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","  ",,,,,,,,,,,,,,,
+98,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Real Estate Taxes",,,,,,,,,,,,,,,
+99,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+100,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","  Owner-occupied units",3784.2,2114.8,2288.3,1504.5,1432.2,1574.1,1377.1,1236.7,1314.3,1138.8,932.3,1092.3,835.2,1196.0,872.1
+101,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $25",160.9,139.4,69.2,80.2,82.9,38.0,27.9,49.6,68.3,16.6,21.8,61.1,37.1,35.1,31.4
+102,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$25 to $74","S",158.1,72.8,65.5,81.4,103.1,67.9,150.7,203.0,19.2,21.4,153.7,77.3,65.9,31.6
+103,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$75 to $124",77.7,106.1,175.4,142.4,85.4,184.3,67.0,170.8,265.0,25.5,31.6,276.4,84.9,143.2,24.8
+104,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$125 to $174",75.2,148.8,179.8,167.7,149.0,136.0,110.2,163.6,234.2,43.4,49.9,238.9,112.6,183.0,49.0
+105,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$175 to $224",115.8,134.4,139.0,127.6,128.9,111.4,120.7,150.6,157.2,53.5,48.1,142.8,118.5,161.5,71.5
+106,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$225 to $274",159.4,191.3,162.9,136.4,136.3,110.8,158.1,136.4,102.5,91.6,72.1,88.5,120.2,172.0,84.3
+107,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$275 to $324",114.7,171.4,156.3,139.2,131.9,99.1,137.5,79.1,67.1,85.0,50.0,41.4,76.4,116.9,101.3
+108,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$325 to $374",164.0,162.2,136.8,106.2,98.8,95.4,146.8,84.1,66.1,97.0,53.1,33.7,58.0,78.4,91.4
+109,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$375 to $424",211.1,181.0,213.0,107.5,95.2,122.8,117.8,58.9,57.4,125.9,61.9,19.6,43.4,76.3,75.8
+110,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$425 to $474",105.6,100.7,107.3,49.1,60.2,90.6,70.0,37.9,16.7,70.2,42.9,"S",16.7,28.0,55.7
+111,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$475 to $524",240.7,100.2,151.1,71.0,97.8,96.2,76.3,22.1,18.2,114.8,68.3,9.5,29.1,35.1,56.8
+112,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$525 or more",2329.8,521.3,724.8,311.7,284.5,386.4,276.8,132.8,58.7,396.1,411.2,19.1,61.0,100.5,198.4
+113,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",600.0,350.0,400.0,300.0,300.0,350.0,300.0,200.0,150.0,450.0,500.0,150.0,200.0,250.0,350.0
+114,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+115,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Homeowner or Renter Insurance",,,,,,,,,,,,,,,
+116,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+117,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","  Property insurance paid",4337.0,2652.2,2654.6,1988.1,1641.2,1872.7,1830.7,1204.6,1749.9,1322.7,1206.3,1378.1,926.9,1361.2,1201.6
+118,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $25",519.6,554.1,489.1,412.6,255.5,409.9,420.4,123.4,329.5,174.0,194.1,289.6,111.2,239.0,300.6
+119,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$25 to $49",561.6,390.8,468.2,311.3,234.5,289.3,243.0,140.3,307.1,131.4,179.1,272.5,130.7,236.7,196.7
+120,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $74",506.3,465.1,603.7,183.2,183.1,301.9,275.4,119.7,337.8,142.4,184.9,341.4,202.4,302.0,209.4
+121,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$75 to $99",636.6,237.8,415.1,213.3,159.8,326.9,254.1,117.7,257.9,211.8,150.9,164.6,128.9,229.5,138.6
+122,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149",1050.4,368.3,464.6,454.9,351.1,359.7,332.4,204.4,324.3,324.9,176.9,197.1,215.3,224.5,190.9
+123,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199",480.4,182.0,110.3,195.6,194.1,91.6,133.4,143.6,98.1,148.9,85.7,63.3,72.1,63.3,61.2
+124,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 or more",582.1,454.1,103.4,217.1,262.9,93.3,172.0,355.5,95.2,189.3,234.7,49.8,66.3,66.2,104.1
+125,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median per month (dollars)",92.0,67.0,67.0,83.0,96.0,67.0,70.0,119.0,67.0,100.0,80.0,58.0,75.0,67.0,60.0
+126,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+127,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Homeowner or Condominium Association Fee Amount",,,,,,,,,,,,,,,
+128,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+129,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Fee paid by owners",806.1,580.6,635.1,459.7,889.7,321.0,701.9,638.7,587.3,207.3,249.2,607.7,194.0,324.6,293.7
+130,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $50",46.7,37.4,173.2,237.2,448.5,115.3,136.9,53.9,282.9,15.5,32.7,163.9,25.3,189.5,138.2
+131,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $99",50.9,56.1,38.2,93.9,209.6,38.5,194.2,50.1,142.7,"S",26.0,209.4,34.5,22.1,37.5
+132,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149","S",58.9,35.8,19.2,41.4,30.8,100.1,85.6,36.8,10.8,23.4,87.6,26.9,10.0,"S"
+133,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199","S",59.7,55.9,"S",14.0,32.4,39.8,66.2,16.3,13.6,13.0,42.3,17.9,13.3,9.7
+134,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 to $299",113.7,99.2,110.1,"S",27.9,33.3,54.7,111.5,28.3,43.1,31.7,40.2,27.2,33.4,21.0
+135,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$300 to $499",125.9,117.9,83.9,12.3,26.8,19.5,65.8,154.1,27.1,56.0,61.7,14.1,14.3,19.4,31.2
+136,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$500 or more",270.3,46.1,62.8,"S",16.8,16.7,58.6,68.8,9.6,39.7,40.4,11.5,13.3,"S",13.8
+137,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Not reported",152.5,105.4,75.4,61.0,104.6,34.5,51.8,48.5,43.6,25.5,20.4,38.6,34.6,29.1,36.5
+138,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",358.0,202.0,180.0,42.0,42.0,79.0,97.0,228.0,46.0,300.0,270.0,70.0,125.0,25.0,42.0
+139,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    ",,,,,,,,,,,,,,,
+140,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Lot/Land Rent",,,,,,,,,,,,,,,
+141,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+142,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Fee paid by owners","S",55.7,19.4,19.0,16.4,20.3,"S",16.6,12.1,11.2,10.9,39.2,31.8,30.2,22.0
+143,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $100","S",".",".","S",".",".",".",".","S",".",".","S",".","S","."
+144,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $199",".","S",".",".","S",".",".",".",".",".",".","S",".",".","."
+145,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 to $299",".",".","S","S","S",".",".",".","S",".",".","S","S",".","."
+146,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$300 to $499","S","S","S",8.6,10.6,"S","S",".","S",8.7,".",16.4,10.7,18.9,"S"
+147,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$500 or more","S",51.3,13.3,"S","S",12.4,"S",16.6,"S","S",10.9,18.7,18.5,10.5,17.6
+148,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Not reported",".",".",".","S",".",".",".",".","S","S",".",".","S",".","S"
+149,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)","S",975.0,660.0,435.0,345.0,532.0,"S",620.0,475.0,431.0,730.0,485.0,550.0,459.0,650.0
+150,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+151,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Utilities",,,,,,,,,,,,,,,
+152,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+153,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Utilities paid separately",6786.6,4177.9,3422.3,2461.1,2273.0,2226.6,2014.1,2036.7,2070.5,1732.4,1627.0,1626.1,1284.1,1679.1,1424.0
+154,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $50",399.7,221.9,205.8,21.2,23.1,43.1,56.7,67.4,14.5,36.4,79.1,33.4,16.2,34.1,62.9
+155,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $99",1445.2,993.5,476.3,255.3,288.3,206.5,225.3,434.7,130.1,143.5,335.4,162.3,87.4,141.1,244.3
+156,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149",1094.9,730.9,583.3,354.7,378.3,267.4,277.8,422.7,286.1,186.2,200.1,232.7,142.4,191.2,196.7
+157,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199",906.5,648.0,643.6,357.8,385.0,360.1,270.7,396.1,285.0,227.5,223.3,274.2,172.8,321.3,198.2
+158,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 to $249",823.9,560.0,582.8,422.5,402.9,373.9,315.2,270.5,387.7,250.6,218.2,284.3,181.6,335.1,191.7
+159,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$250 to $299",625.4,401.8,395.9,361.0,288.4,314.6,276.9,191.0,313.6,244.0,199.2,242.4,220.0,264.9,184.9
+160,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$300 to $399",860.5,359.8,396.9,410.7,339.6,384.6,373.2,168.0,397.5,340.0,234.5,244.6,270.1,260.5,225.5
+161,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$400 or more",630.5,262.0,137.7,278.0,167.4,276.3,218.2,86.4,256.1,304.2,137.1,152.0,193.5,130.9,119.9
+162,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",172.0,161.0,186.0,226.0,207.0,231.0,227.0,160.0,241.0,253.0,195.0,216.0,257.0,222.0,202.0
+163,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+164,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Electricity",,,,,,,,,,,,,,,
+165,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+166,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Electricity paid separately",6717.3,4121.3,3389.7,2451.5,2266.6,2212.4,1980.5,2035.7,2055.8,1709.1,1602.9,1620.0,1272.2,1673.3,1413.0
+167,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $25",60.1,67.7,83.1,"S","S","S","S","S","S","S",27.2,"S","S",20.3,25.8
+168,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$25 to $49",981.4,712.0,627.8,50.5,50.7,150.7,134.0,82.7,71.8,128.1,288.0,54.6,55.2,127.4,187.8
+169,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $74",1599.2,987.2,796.8,217.3,254.8,390.6,268.4,252.1,197.5,241.0,416.4,148.5,136.7,311.8,346.3
+170,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$75 to $99",1117.2,757.4,671.8,401.1,376.8,402.4,344.8,369.4,358.9,291.5,334.3,226.7,191.4,333.8,312.6
+171,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149",1518.4,890.6,769.3,792.7,808.1,606.7,501.8,643.6,679.8,493.0,334.8,513.9,370.0,482.1,334.8
+172,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199",778.3,393.6,278.0,480.6,434.6,290.3,319.7,361.8,369.3,301.8,118.7,324.4,244.8,242.7,110.1
+173,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 or more",662.9,312.8,162.9,503.1,338.5,362.9,401.7,316.8,373.9,243.7,83.4,349.4,271.8,155.2,95.5
+174,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",90.0,83.0,81.0,132.0,125.0,110.0,120.0,119.0,125.0,115.0,79.0,135.0,133.0,103.0,85.0
+175,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Included in rent, other fee, or obtained free",700.6,261.2,126.3,113.2,62.3,92.2,198.3,54.9,52.9,141.6,97.9,65.6,41.3,49.0,71.3
+176,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+177,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Gas",,,,,,,,,,,,,,,
+178,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+179,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Gas paid separately",5225.5,3749.3,2923.7,1150.9,1428.7,1557.2,1298.7,151.3,1484.8,1175.0,1471.0,713.1,1214.4,1546.2,729.0
+180,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $25",1580.1,830.8,81.7,71.2,181.7,255.6,77.8,59.5,36.7,166.0,290.6,142.5,165.6,13.0,113.6
+181,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$25 to $49",957.7,1716.5,851.5,415.9,659.9,342.1,310.8,63.3,293.6,123.3,670.1,310.7,579.8,260.4,139.7
+182,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $74",1173.9,831.3,1064.8,343.1,359.8,398.2,349.5,12.9,400.3,155.6,346.7,137.7,299.3,585.3,194.5
+183,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$75 to $99",779.8,267.9,567.7,198.2,145.9,264.9,250.5,"S",328.1,210.2,103.9,65.3,111.0,386.5,137.9
+184,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149",565.7,92.2,289.2,95.1,66.6,200.0,210.8,"S",286.7,314.2,49.4,40.7,47.9,237.3,98.2
+185,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199",115.0,"S",34.8,21.5,"S",44.8,51.9,"S",94.8,129.2,"S",8.4,8.5,39.1,20.8
+186,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 or more",53.2,"S",33.9,"S","S",51.6,47.2,".",44.6,76.4,"S","S","S",24.5,24.3
+187,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",51.0,39.0,61.0,55.0,44.0,60.0,68.0,30.0,75.0,91.0,41.0,41.0,44.0,71.0,64.0
+188,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Included in rent, other fee, or obtained free",1363.1,458.2,423.4,79.2,103.6,131.1,229.9,30.5,46.1,209.7,127.7,45.9,56.4,127.7,46.6
+189,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+190,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Fuel Oil",,,,,,,,,,,,,,,
+191,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+192,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    Fuel oil paid separately",777.5,"S","S","S",".",320.2,78.0,".","S",443.3,"S","S",10.6,"S",34.3
+193,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $25",44.2,"S","S","S",".","S","S",".","S","S","S","S","S","S","S"
+194,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$25 to $49","S",".",".",".",".",44.0,"S",".","S",15.9,"S","S","S",".","S"
+195,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $74",44.7,"S","S",".",".",44.8,13.5,".","S",45.8,".",".","S","S","S"
+196,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$75 to $99",92.6,".",".",".",".",62.7,15.9,".",".",59.8,".",".",".",".","S"
+197,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149",200.1,".",".",".",".",79.3,18.4,".",".",124.6,".",".","S",".",9.2
+198,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199",129.8,".","S",".",".",39.9,"S",".",".",62.8,".",".",".","S","S"
+199,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 or more",241.9,".",".",".",".",39.5,10.0,".",".",123.9,".",".",".","S","S"
+200,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",142.0,"S",50.0,8.0,".",92.0,85.0,".","S",125.0,4.0,35.0,29.0,"S",83.0
+201,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Included in rent, other fee, or obtained free",1354.4,"S","S","S","S",29.6,10.3,"S","S",56.7,"S","S","S","S","S"
+202,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+203,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Other Fuel",,,,,,,,,,,,,,,
+204,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","    ",,,,,,,,,,,,,,,
+205,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","  Other fuel paid separately",147.6,64.7,50.3,20.4,18.0,75.1,50.3,12.5,35.9,96.8,24.1,"S",41.7,25.7,62.5
+206,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $25",86.4,29.8,26.4,19.3,15.8,47.5,27.1,"S",29.8,28.6,18.0,"S",27.5,10.0,31.1
+207,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$25 to $49","S",19.2,21.6,".","S",14.0,16.7,".","S",37.3,"S","S",9.3,"S",15.5
+208,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $74","S","S",".","S",".","S","S","S","S",16.2,"S",".","S","S",9.0
+209,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$75 to $99","S","S","S",".",".","S","S","S",".","S","S",".","S","S","S"
+210,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149","S",".",".",".",".","S","S","S",".","S",".",".","S","S","S"
+211,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199",".",".",".",".",".",".","S",".",".","S",".",".",".","S","S"
+212,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 or more","S",".",".",".",".","S","S",".",".","S",".",".",".",".","S"
+213,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",17.0,"S","S",8.0,"S","S",20.0,"S","S",33.0,17.0,21.0,"S","S","S"
+214,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Included in rent, other fee, or obtained free",176.6,71.2,56.7,49.4,30.3,95.2,80.8,"S",55.0,46.2,47.4,23.4,22.7,34.1,73.0
+215,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+216,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Trash Collection",,,,,,,,,,,,,,,
+217,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+218,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","  Trash collection paid separately",537.9,1839.6,1895.4,1871.7,1348.8,582.7,429.3,558.9,1163.5,307.3,981.7,1164.9,837.9,453.5,952.8
+219,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $25",131.6,638.3,851.7,579.1,431.7,213.1,214.7,121.2,721.2,150.6,213.0,344.1,254.0,289.6,235.7
+220,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$25 to $49",259.2,637.4,516.3,356.3,402.0,273.1,140.3,113.1,253.9,89.0,474.1,189.7,270.0,93.9,364.9
+221,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $74",82.6,208.6,219.8,299.6,270.7,52.0,37.5,88.5,96.1,38.9,160.0,269.7,141.4,35.3,171.2
+222,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$75 to $99","S",101.5,125.9,220.4,93.1,22.7,14.2,87.9,26.3,13.7,53.6,136.8,53.0,10.2,48.9
+223,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149","S",154.0,128.3,300.2,108.3,"S",17.8,105.6,39.9,"S",60.5,165.6,93.0,16.9,89.3
+224,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199","S",46.2,38.1,49.0,19.3,"S","S",18.2,"S","S","S",36.4,15.9,"S",21.3
+225,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 or more",".",53.5,"S",67.2,23.6,"S","S",24.4,16.5,"S",12.3,22.7,10.5,"S",21.6
+226,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",30.0,30.0,25.0,50.0,35.0,27.0,24.0,60.0,20.0,25.0,33.0,50.0,33.0,19.0,36.0
+227,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Included in rent, other fee, or obtained free",6739.4,2524.5,1612.0,668.6,931.0,1704.1,1692.5,1520.2,867.7,1488.9,723.7,511.0,470.1,1250.3,492.9
+228,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE",,,,,,,,,,,,,,,,
+229,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Monthly Cost Paid for Water",,,,,,,,,,,,,,,
+230,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","  ",,,,,,,,,,,,,,,
+231,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","  Water paid separately",2820.2,1520.6,1376.7,806.2,926.6,1437.6,1302.8,831.0,1378.5,804.3,990.1,484.1,732.3,972.7,767.6
+232,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Less than $25",549.5,192.3,257.5,164.3,185.7,182.9,211.2,155.3,256.9,151.5,98.4,94.1,76.4,138.7,78.5
+233,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$25 to $49",684.6,440.6,438.7,157.9,257.7,356.1,377.9,247.7,451.1,202.9,181.5,129.1,120.6,254.2,127.3
+234,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$50 to $74",521.9,382.8,316.6,204.5,244.1,436.6,348.1,217.4,354.9,190.8,221.7,108.6,204.7,249.4,171.6
+235,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$75 to $99",351.8,152.7,133.8,104.7,88.4,178.1,145.2,80.2,123.1,78.8,149.8,42.1,134.4,133.3,100.9
+236,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$100 to $149",381.5,195.3,154.7,121.9,90.1,211.0,164.8,91.0,137.8,116.5,209.6,90.0,147.6,140.7,196.1
+237,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$150 to $199",207.7,84.0,50.5,31.2,17.3,40.5,26.8,19.1,32.8,33.5,60.5,12.5,31.5,31.3,56.4
+238,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","$200 or more",123.2,72.8,24.7,21.7,43.2,32.5,28.9,20.2,21.8,30.4,68.5,"S",17.1,25.1,36.8
+239,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Median (dollars)",51.0,50.0,47.0,55.0,50.0,57.0,50.0,50.0,45.0,50.0,72.0,50.0,67.0,50.0,75.0
+240,"AHS",2017,,"Housing Costs - All Occupied Units","NONE","NONE","Included in rent, other fee, or obtained free",4607.8,2858.4,2140.8,1755.2,1402.4,869.6,876.0,1259.6,730.2,1049.4,713.8,1200.0,581.2,750.6,716.5
+
