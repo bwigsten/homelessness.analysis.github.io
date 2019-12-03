@@ -4,7 +4,7 @@ navbar:
   title: "Home"
   right:
     - text: "Report"
-      href: Report.html
+      href: Final-Report.html
     - text: "Trends Over Time"
       href: Dashboard.html  
     - text: "Homelessness by State"
