@@ -28,15 +28,18 @@ As a group consisting of California and New York residents, homelessness as a pu
 
 
 ## Initial Questions
-Without individual level data, we cannot hypothesize risk factors for homelessness in this report. We can, however, analyze current prevalences in homelessness and show trends between homelessness and other demographics (like state, employment, prevalence of veterans, and education level). We aimed to show interactive maps to show prevalences of homelessness types, in relation to other search variables like year, and further categories of homelessness (sheltered/unsheltered, household, chronic, veterans, youth).
+Without individual level data, we cannot hypothesize risk factors for homelessness in this report. We can, however, analyze current prevalences in homelessness and show trends between homelessness and other demographics (like state, median income, median monthly housing cost, and percent housing inadequacy). We aimed to show interactive maps and figures to show prevalences of homelessness types, in relation to other search variables like year, and further categories of homelessness (sheltered/unsheltered, household, chronic, veterans, youth).
 Our initial questions included:
 
 * What is the distribution of homelessness by state and year over the period of 2007 to 2008?
-* Are there certain subsets of homelessness (among the search variables listed above) that contribute 
-  more or less towards overall homelessness over time?
-* Are there correlations between demographics (listed above) and homelessness
+* Are there trends in certain subcategories of homelessness over time?
+* Are there correlations between demographics trends (listed above) and homelessness?
 
-Our original project goals were to compare rates of homelessness and weather patterns across the United States, but further analysis of weather data suggested this would not be meaningful. Therefore, we chose to look at homelessness over time as a general trend, stratified by types of homelessness, and compare this data to publicly available data on employment and education. 
+Our original project goals were to compare rates of homelessness and weather patterns across the United States, but further analysis of weather data suggested this would not be meaningful. Therefore, we chose to look at homelessness over time as a general trend, stratified by types of homelessness, and compare this data to publicly available data on income, housing cost, and housing inadequacy. 
+
+Over the course of the project, we changed our focus slightly. We realized that homelessness is likely a problem in large cities, so we decided to focus our secondary analysis on the top 15 metropolitan areas in the US. This worked well with available US census data on median household income, median monthly housing costs, and percent inadequate housing quality in each of these 15 cities. Therefore, we ultimately decided to display trends in total homelessness and homelessness subcategories over time, and total homelessness versus each predictor in two separate Shiny Apps. We would have liked to display homelessness as a percent of total city population, but due to a lack of concise available data and time constraints, kept homelessness as a number instead of a percent. 
+
+We hypothesized, in accordance with government reports, that homelessness would increase after the recession of 2008, and decrease once the economy had rebounded by 2012 or 2013. We also expected total homelessness to increase from 2016-2018 based on the articles linked in our background section. In terms of covariate analysis, we expected cities with known high homeless populations (NYC, San Francisco, and LA) to have high monthly housing costs, high rates of inadequate housing quality, and low median household income. 
 
 
 ## Facts About Homelessness
@@ -52,8 +55,7 @@ Our original project goals were to compare rates of homelessness and weather pat
 
 * Analyze trends in homelessness in each state from 2007 to 2018
 * Display trends in categories of homelessness 
-* Analyze trends in factors that may influence homelessness 
-      * Employment, number of veterans, education level distribution
+* Analyze trends in factors that may influence homelessness in relation to total homelessness (median household income, inadequate housing percentage, and median monthly housing costs)
       
 ## Introduction to the Data Used for This Project
 
@@ -61,7 +63,6 @@ Our original project goals were to compare rates of homelessness and weather pat
 
 * Below is the complete process for cleaning this dataset. 
     
-### Import all the data
 ```{r results = FALSE, message = FALSE, warning = FALSE}
 home_data_2018 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 1)
 home_data_2017 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 2)
@@ -217,95 +218,174 @@ homelessness_all = total_data %>%
 write.csv(homelessness_all, "./data/us_homelessness_07_18.csv")
 ```
 
-* Employment and education covariates used in secondary analysis were pulled from the United State's Census Bureau's [American FactFinder](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml). The full data cleaning process is shown below. We chose to seek data on employment and education because we thought those two would have the most interesting relationships to homelessness across the US. 
+Data on median household income, median monthly housing costs, and inadequate housing rates were obtained from the US Census Bureau website. Summary tables were made [here](https://www.census.gov/programs-surveys/ahs/data/interactive/ahstablecreator.html?s_areas=00100&s_year=2017&s_tablename=TABLE5&s_bygroup1=30&s_bygroup2=1&s_filtergroup1=1&s_filtergroup2=1). We resricted this section to only include 2017, as there was little data on other years, and 2017 is the closest to current data available. After creating 3 datasets for these variables (including cleaning and tidying each), we merged all three together. Finally, we merged this complete dataset with our homelessness dataset in order to create the covariate analysis Shiny App. The full cleaning process is shown in the code chunk below. 
 
-````{r results = FALSE, message = FALSE, warning = FALSE}
-#Loading and tidying datasets
+```{r results = FALSE, message = FALSE, warning = FALSE}
+library(readxl)
 
-Edu_Employ_09 = 
-  read.csv("./data/2009_Edu_Employ.csv") %>%
+# Download/clean/export housing adequacy data
+
+housing_adequacy = read_excel("data/housing_adequacy.xlsx", 1, skip = 9) %>%
+  janitor::clean_names()
+
+housing_adequacy = 
+  housing_adequacy[c(2, 6, 12, 15),] %>%
+  pivot_longer(
+    new_york_city:seattle, 
+    names_to = "city", 
+    values_to = "estimates") %>%
+  pivot_wider(
+    names_from = "x1", 
+    values_from = "estimates"
+  ) %>%
   janitor::clean_names() %>%
   rename(
-    state = geo_display_label, 
-    total_employ = hc01_est_vc01, 
-    employ_ratio = hc03_est_vc01, 
-    total_edu = hc01_est_vc31
-    ) %>%
-  select(
-    state, 
-    total_employ, 
-    total_edu
+    total_housing_units = total, 
+    severely_inadequate = severely_inadequate2, 
+    moderately_inadequate = moderately_inadequate2
+  ) %>%
+  arrange(city, severely_inadequate, moderately_inadequate, adequate, total_housing_units)
+housing_adequacy
+
+write.csv(housing_adequacy, "./data/housing_adequacy.csv")
+
+# Download/clean/export housing cost data
+
+housing_cost = 
+  read_csv("./data/2017_Housing_Cost.csv") %>%
+  janitor::clean_names() %>%
+  filter(characteristics == "Median (excludes no cash rent) (dollars)") %>%
+  select(-row_order, -survey, -survey_year, -area, -tenure_filter, -geography_filter) %>%
+  pivot_longer(
+    top_15_metropolitan_areas_new_york_city_metric_estimate:top_15_metropolitan_areas_seattle_metric_estimate, 
+    names_to = "city", 
+    values_to = "median_housing_cost"
+  ) %>%
+  mutate(
+    city = str_remove(city, "top_15_metropolitan_areas_"), 
+    city = str_remove(city, "_metric_estimate")
+  ) %>%
+  select(-characteristics, -table_description) %>%
+  janitor::clean_names()
+
+write.csv(housing_cost, "./data/housing_cost.csv")
+
+# Download/clean/export median income data
+
+median_income = read_excel("data/median_income.xlsx", 1) %>%
+  janitor::clean_names() %>%
+  filter(characteristics == "Median (excludes no cash rent) (dollars)") %>%
+  select(-tenure_filter, -row_order, -survey, -survey_year, -area, -table_description, - geography_filter, - characteristics) %>%
+  pivot_longer(
+    top_15_metropolitan_areas_new_york_city_metric_estimate:top_15_metropolitan_areas_seattle_metric_estimate,
+    names_to = "city",
+    values_to = "median_income") %>%
+  mutate(
+    city = str_remove(city, "top_15_metropolitan_areas_"),
+    city = str_remove(city, "_metric_estimate"))
+
+write.csv(median_income, "./data/median_income.csv")
+
+# Join these three datasets into full housing data
+
+merged_income_cost = 
+  inner_join(median_income, housing_cost)
+
+housing = 
+  left_join(merged_income_cost, housing_adequacy, by = "city")
+
+write.csv(housing, "./data/housing.csv")
+
+## Cleaning homeless dataset - cetting total homeless counts for top 15 metropolitan cities
+hmls_metro_15 =
+  homelessness_all %>% 
+  select(year, state, number, coc_name, total_homeless) %>% 
+  mutate(code = paste(state,number,sep = "_")) %>% 
+  filter(year == 2017, code %in% c("NY_600","CA_600","TX_600","TX_700","PA_500","DC_500","FL_600","GA_500","MA_500","CA_501","AZ_502","CA_608","MI_501","WA_500", "IL_502","IL_510")) %>% 
+  mutate(
+    city = str_remove(coc_name," CoC"),
+    city = case_when(
+      city == "Phoenix, Mesa/Maricopa County" ~ "Phoenix",
+      city == "San Francisco" ~ "San Francisco",
+      city == "Los Angeles City & County" ~ "Los Angeles",
+      city == "Riverside City & County" ~"Riverside",
+      city == "District of Columbia" ~ "Washington, DC",
+      city == "Miami-Dade County" ~ "Miami",
+      city == "Atlanta" ~ "Atlanta",
+      city == "Waukegan, North Chicago/Lake County" ~ "Chicago",
+      city == "Chicago" ~ "Chicago",
+      city == "Boston" ~ "Boston",
+      city == "Detroit" ~ "Detroit",
+      city == "New York City" ~ "New York City",
+      city == "Philadelphia" ~ "Philadelphia",
+      city == "Dallas City & County, Irving" ~ "Dallas",
+      city == "Houston, Pasadena, Conroe/Harris, Ft. Bend, Montgomery, Counties" ~ "Houston",
+      city == "Seattle/King County" ~"Seattle"
+      )
+    ) %>% 
+  group_by(city) %>% 
+  mutate(tot_hmls = sum(total_homeless)) %>% 
+  ungroup() %>% 
+  distinct(city, tot_hmls)
+
+## Cleaning housing characteristics merged dataset
+housing_metro_15 = 
+  housing %>% 
+  group_by(city) %>% 
+  mutate(
+    severely_inadequate = as.numeric(severely_inadequate),
+    total_housing_units = as.numeric(total_housing_units),
+    moderately_inadequate = as.numeric(moderately_inadequate),
+    adequate = as.numeric(adequate),
+    total_inadeq = moderately_inadequate + severely_inadequate,
+    per_inadeq = round((total_inadeq/total_housing_units)*100,2), 
+    median_income = as.numeric(median_income), 
+    median_housing_cost = as.numeric(median_housing_cost)
+  ) %>% 
+  ungroup() %>% 
+  select(city, median_income, median_housing_cost, per_inadeq) %>% 
+  mutate(
+    city = case_when(
+      city == "phoenix" ~ "Phoenix",
+      city == "san_francisco" ~ "San Francisco",
+      city == "los_angeles" ~ "Los Angeles",
+      city == "riverside" ~"Riverside",
+      city == "washington_dc" ~ "Washington, DC",
+      city == "miami" ~ "Miami",
+      city == "atlanta" ~ "Atlanta",
+      city == "chicago" ~ "Chicago",
+      city == "boston" ~ "Boston",
+      city == "detroit" ~ "Detroit",
+      city == "new_york_city" ~ "New York City",
+      city == "philadelphia" ~ "Philadelphia",
+      city == "dallas" ~ "Dallas",
+      city == "houston" ~ "Houston",
+      city == "seattle" ~"Seattle"
+      )
+    )
+
+## Merge datasets
+hmls_hous_final = 
+  left_join(hmls_metro_15,housing_metro_15,by = "city") %>% 
+  rename(City = city) %>% 
+  pivot_longer(
+    tot_hmls:per_inadeq,
+    names_to = "variables",
+    values_to = "stats"
   ) %>% 
   mutate(
-    year = 2009, 
-    state = recode(state, "Arkansas" = "AK", "Alabama" = "AL", "Alaska" = "AK", "Arizona" = "AZ", "California" = "CA", "Colorado" = "CO", "Connecticut" = "CT", "Delaware" = "DE", "Florida" = "FL", "Georgia" = "GA", "Hawaii" = "HI", "Idaho" = "ID", "Illinois" = "ID", "Indiana" = "IN", "Iowa" = "IA", "Kansas" = "KS", "Kentucky" = "KY", "Louisiana" = "LA", "Maine" = "ME", "Maryland" = "MD", "Massachusetts" = "MA", "Michigan" = "MI", "Minnesota" = "MN", "Mississippi" = "MS", "Missouri" = "MO", "Montana" = "MT", "Nebraska" = "NE", "Nevada" = "NV", "New Hampshire" = "NH", "New Jersey" = "NJ", "New Mexico" = "NM", "New York" = "NY", "North Carolina" = "NC", "North Dakota" = "ND", "Ohio" = "OH", "Oklahoma" = "OK", "Oregon" = "OR", "Pennsylvania" = "PA", "Rhode Island" = "RI", "South Carolina" = "SC", "South Dakota" = "SD", "Tennessee" = "TN", "Texas" = "TX", "Utah" = "UT", "Vermont" = "VT", "Virginia" = "VA", "Washington" = "WA", "West Virginia" = "WV", "Wisconsin" = "WI", "Wyoming" = "WY"))
-  
-Edu_Employ_09 =   
-  Edu_Employ_09[-c(52),]
-
-Edu_Employ_09 = 
-  Edu_Employ_09[-c(9),]
-
-  
-
-Edu_Employ_17 = 
-  read.csv("./data/2017_Edu_Employ.csv") %>%
-  janitor::clean_names() %>%
-  rename(
-    state = geo_display_label, 
-    total_employ = hc01_est_vc01, 
-    employ_ratio = hc03_est_vc01, 
-    total_edu = hc01_est_vc43
-    ) %>%
-  select(
-    state, total_employ, total_edu
-  ) %>%
-mutate (
-  year = 2017,
-  state = recode(state, "Arkansas" = "AK", "Alabama" = "AL", "Alaska" = "AK", "Arizona" = "AZ", "California" = "CA", "Colorado" = "CO", "Connecticut" = "CT", "Delaware" = "DE", "Florida" = "FL", "Georgia" = "GA", "Hawaii" = "HI", "Idaho" = "ID", "Illinois" = "ID", "Indiana" = "IN", "Iowa" = "IA", "Kansas" = "KS", "Kentucky" = "KY", "Louisiana" = "LA", "Maine" = "ME", "Maryland" = "MD", "Massachusetts" = "MA", "Michigan" = "MI", "Minnesota" = "MN", "Mississippi" = "MS", "Missouri" = "MO", "Montana" = "MT", "Nebraska" = "NE", "Nevada" = "NV", "New Hampshire" = "NH", "New Jersey" = "NJ", "New Mexico" = "NM", "New York" = "NY", "North Carolina" = "NC", "North Dakota" = "ND", "Ohio" = "OH", "Oklahoma" = "OK", "Oregon" = "OR", "Pennsylvania" = "PA", "Rhode Island" = "RI", "South Carolina" = "SC", "South Dakota" = "SD", "Tennessee" = "TN", "Texas" = "TX", "Utah" = "UT", "Vermont" = "VT", "Virginia" = "VA", "Washington" = "WA", "West Virginia" = "WV", "Wisconsin" = "WI", "Wyoming" = "WY"))
-
-Edu_Employ_17 = 
-  Edu_Employ_17 [-c(1),] 
-
-Edu_Employ_17 = 
-  Edu_Employ_17[-c(53),]
-
-Edu_Employ_17 = 
-  Edu_Employ_17[-c(10),]
-
-  
-Homelessness = 
-  read.csv("./data/us_homelessness_07_18.csv") %>%
-  select(state, year, total_homeless)
-
-
-# Merging datasets 
-Edu_Employ = rbind(Edu_Employ_09, Edu_Employ_17)
-  
-HEE_merged = 
-  inner_join(Homelessness, Edu_Employ) %>%
-  mutate(
-    total_homeless = as.numeric(total_homeless), 
-    total_employ = as.numeric(total_employ), 
-    total_edu = as.numeric(total_edu)
-  ) %>%
-  pivot_longer(
-    total_homeless:total_edu,
-    names_to = "covariates",
-    values_to = "stats"
-  ) %>%
-  mutate(
-    covariates = case_when(
-      covariates == "total_homeless" ~ "Homeless",
-      covariates == "total_employ" ~"Employment",
-      covariates == "total_edu" ~ "Education"
+    variables = case_when(
+      variables == "tot_hmls" ~ "Homeless (count)",
+      variables == "median_income" ~ "Median Income ($)",
+      variables == "median_housing_cost" ~ "Median Monthly Housing Cost ($)",
+      variables == "per_inadeq" ~ "Housing Inadequacy (%)"
     )
   )
 ```
 
 
 ## Exploratory Data Analysis
-Over the course of the 12 years included in the homelessness analysis (excluding covariates of education and employment), California and New York had the highest numbers of homeless individuals. This matches the HUD reports, as these two states are consistently the highest contributors to homelessness in the US. We chose to model several trends in homelessness over time
+Over the course of the 12 years included in the homelessness analysis, California and New York had the highest numbers of homeless individuals. This matches the HUD reports, as these two states are consistently the highest contributors to homelessness in the US. We chose to model several trends in homelessness over time
 
 ### Figure 1: Summed Homelessness Over 12 Years by State
 ```{r}
@@ -411,52 +491,6 @@ youth_over_time = homelessness_all %>%
 youth_over_time
 ```
 
-##Median Housing Costs by City
-```{r}
-Housing_Cost = 
-  read_csv("./data/2017_Housing_Cost.csv") %>%
-  janitor::clean_names() %>%
-  filter(characteristics == "Median (excludes no cash rent) (dollars)") %>%
-  select(-row_order, -survey, -survey_year, -area, -tenure_filter, -geography_filter) %>%
-  pivot_longer(
-    top_15_metropolitan_areas_new_york_city_metric_estimate:top_15_metropolitan_areas_seattle_metric_estimate, 
-    names_to = "city", 
-    values_to = "median_housing_cost"
-  ) %>%
-  mutate(
-    city = str_remove(city, "top_15_metropolitan_areas_"), 
-    city = str_remove(city, "_metric_estimate")
-  ) %>%
-  select(-characteristics, -table_description) %>%
-  janitor::clean_names()
-```
-
-##Housing Adequacy by City
-```{r}
-housing_adequacy = read_excel("data/housing_adequacy.xlsx", 1, skip = 9) %>%
-  janitor::clean_names()
-
-housing_adequacy = 
-  housing_adequacy[c(2, 6, 12, 15),] %>%
-  pivot_longer(
-    new_york_city:seattle, 
-    names_to = "city", 
-    values_to = "estimates") %>%
-  pivot_wider(
-    names_from = "x1", 
-    values_from = "estimates"
-  ) %>%
-  janitor::clean_names() %>%
-  rename(
-    total_housing_units = total, 
-    severely_inadequate = severely_inadequate2, 
-    moderately_inadequate = moderately_inadequate2
-  ) %>%
-  arrange(city, severely_inadequate, moderately_inadequate, adequate, total_housing_units)
-housing_adequacy
-
-write.csv(housing_adequacy, "./data/housing_adequacy.csv")
-```
 
 
 
