@@ -501,11 +501,4 @@ We originally hypothesized that trends in median income, median housing cost, an
 
 
 ## Ideas for Future Analysis 
-Aside from formal statistical testing, we could model the relationship between economic factors, including the recession of 2008 and recovery, and homelessness in the US. This would require population demographic data, including economic factors, which we did not include in this analysis. We also had population level data on homelessness counts, but would be interested to find individual level data on risk factors for homelessness in order to build a model for risk of homelessness by state or city.  
-
-
-
-
-
-
-
+Aside from formal statistical testing, we could model the relationship between economic factors, including the recession of 2008 and recovery, and homelessness in the US. This would require population demographic data, including economic factors, which we did not include in this analysis. We also had population level data on homelessness counts, but would be interested to find individual level data on risk factors for homelessness in order to build a model for risk of homelessness by state or city.
