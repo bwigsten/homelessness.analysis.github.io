@@ -30,7 +30,7 @@ As a group consisting of California and New York residents, homelessness as a pu
 Without individual level data, we cannot hypothesize risk factors for homelessness in this report. We can, however, analyze current prevalences in homelessness and show trends between homelessness and other demographics (like state, median income, median monthly housing cost, and percent housing inadequacy). We aimed to show interactive maps and figures to show prevalences of homelessness types, in relation to other search variables like year, and further categories of homelessness (sheltered/unsheltered, household, chronic, veterans, youth).
 Our initial questions included:
 
-* What is the distribution of homelessness by state and year over the period of 2007 to 2008?
+* What is the distribution of homelessness by state and year over the period of 2007 to 2018?
 * Are there trends in certain subcategories of homelessness over time?
 * Are there correlations between demographics trends (listed above) and homelessness?
 
