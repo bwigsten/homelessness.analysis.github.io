@@ -59,9 +59,9 @@ We hypothesized, in accordance with government reports, that homelessness would 
       
 ## Introduction to the Data Used for This Project
 
-* Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data on homelessness. The data can be accessed [here](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). Variable definitions can be found in the [2018 Annual Homelessness Assessment Report to Congress](https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf). Data cleaning involved cleaning variable names, fixing the format of the year variable, and selecting variables of interest for future analysis. We chose to analyze total homeless, total sheltered, total unsheltered, total homeless in families, chronically homeless, homeless veterans, and homeless youth. Note: not all variables selected during data cleaning process were displayed or used during the exploratory analysis section. We decided which variables to keep before choosing which relationships to display. 
+Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data on homelessness. The data can be accessed [here](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). Variable definitions can be found in the [2018 Annual Homelessness Assessment Report to Congress](https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf). Data cleaning involved cleaning variable names, fixing the format of the year variable, and selecting variables of interest for future analysis. We chose to analyze total homeless, total sheltered, total unsheltered, total homeless in families, chronically homeless, homeless veterans, and homeless youth. Note: not all variables selected during data cleaning process were displayed or used during the exploratory analysis section. We decided which variables to keep before choosing which relationships to display. 
 
-* Below is the complete process for cleaning this dataset. 
+Below is the complete process for importing and cleaning this dataset. 
     
 ```{r results = FALSE, message = FALSE, warning = FALSE}
 home_data_2018 = read_excel("data/2007-2018-PIT-Counts-by-CoC.xlsx", 1)
@@ -385,10 +385,22 @@ hmls_hous_final =
 
 
 ## Exploratory Data Analysis
-Over the course of the 12 years included in the homelessness analysis, California and New York had the highest numbers of homeless individuals. This matches the HUD reports, as these two states are consistently the highest contributors to homelessness in the US. We chose to model several trends in homelessness over time
 
-### Figure 1: Summed Homelessness Over 12 Years by State
-```{r}
+### Trend Data
+
+Over the course of the 12 years included in the homelessness analysis, California and New York had the highest numbers of homeless individuals, shown in Figure 1. This matches the HUD reports, as these two states are consistently the highest contributors to homelessness in the US. We chose to model several trends in homelessness over time, including total sheltered/unsheltered, chronic sheltered and unsheltered, and veterans sheltered and unsheltered over time. We originally planned to model youth homeless over time, but insufficient data led to this graph being excluded from the report. 
+
+Shown in Figure 2, total homelessness decreased from 2007-2009, slightly increased until 2010, and decreased until 2016. As we predicted, and as government reports show, total homelessness increased from 2016-2018. This is alarming, and the rise in homelessness should be addressed by the US government. 
+
+Figure 3 shows the change in homelessness over time, stratified by sheltered status. There are many more sheltered individuals than unsheltered, however, recent years show that the lines are beginning to move closer together. This is troubling, as the number of unsheltered individuals is rising while the number of sheltered individuals decreases. 
+
+Figure 4 shows the trends in chronic homelessness over time, stratified by shelter status. Contrasting with the previous figure, there are consistently many more unsheltered chronically homeless individuals. However, numbers of sheltered chronically homeless individuals are increasing in recent years. 
+
+Figure 5 shows the number of sheltered and unsheltered veterans over time. There are consistently more sheltered veterans than unsheltered, and these numbers have mostly declined from 2007 to 2018. 
+
+For a better comparison of graphs side by side, view our [dashboard](https://bwigsten.github.io/homelessness.analysis.github.io/Dashboard.html)
+
+```{r warning = FALSE}
 total_by_state = homelessness_all %>%
   select(state, total_homeless) %>%
   group_by(state) %>% 
@@ -404,8 +416,9 @@ total_by_state = homelessness_all %>%
          yaxis = list(side = 'left', title = "Number Homeless"))
 total_by_state
 ```
+Figure 1: Summed Homelessness Over 12 Years by State
 
-### Figure 2: Total Homelessness Over Time 
+
 ```{r}
 total_over_time = homelessness_all %>%
   group_by(year) %>%
@@ -421,8 +434,9 @@ total_over_time = homelessness_all %>%
 
 total_over_time
 ```
+Figure 2: Total Homelessness Over Time 
 
-## Figure 3: Total Homelessness Over Time Stratified by Shelter Status
+
 ```{r}
 total_stratified = homelessness_all %>%
   group_by(year) %>%
@@ -438,9 +452,9 @@ total_stratified = homelessness_all %>%
 total_stratified
 
 ```
+Figure 3: Total Homelessness Over Time Stratified by Shelter Status
 
 
-## Figure 4: Chronic Homelessness Over Time Stratified by Shelter Status
 ```{r}
 chronic_over_time = homelessness_all %>%
   group_by(year) %>%
@@ -456,9 +470,10 @@ chronic_over_time = homelessness_all %>%
          yaxis = list(side = 'left', title = "Number"))
 chronic_over_time
 ```
+Figure 4: Chronic Homelessness Over Time Stratified by Shelter Status
 * no data available for the years 2007-2010
 
-## Figure 5: Veteran Homelessness Over Time by Shelter Status
+
 ```{r}
 veterans_over_time = homelessness_all %>%
   group_by(year) %>%
@@ -474,23 +489,11 @@ veterans_over_time = homelessness_all %>%
          yaxis = list(side = 'left', title = "Number")) 
 veterans_over_time
 ```
+Figure 5: Veteran Homelessness Over Time by Shelter Status
 * no data available for the years 2007-2010
 
-## Youth Homelessness Over Time by Shelter Status
-```{r}
-youth_over_time = homelessness_all %>%
-  group_by(year) %>%
-  select(year, youth) %>%
-  drop_na() %>%
-  summarize(youth = sum(youth), na.rm = TRUE) %>%
-  plot_ly(
-    x = ~year, 
-    y = ~youth, 
-    type = "scatter", 
-    mode = "lines")
-youth_over_time
-```
-
+### Shiny Apps
+We created two Shiny Apps to better show exploratory trends. This first map allows users to view the distribution of homelessness in the US between the years of 2007 and 2018. This distribution is visualized either as an overall count of homeless by state or a percentage of each state’s homeless population as defined by particular characteristics. These characteristics are defined in the description section and are from the U.S. Department of Housing and Urban Development in their 2018 Annual Homeless Assessment Report (AHAR) to Congress. The second Shiny allows users to view different covariates, and their numbers or percentages in each of the top 15 metropolitan areas in the US. The bottom graph remains constant, in order to better visualize trends between the covariate of choice (median household income, median monthly housing cost, and percent inadequate housing) and the number of homeless individuals in each city. The description tab contains variable definitions. 
 
 
 
