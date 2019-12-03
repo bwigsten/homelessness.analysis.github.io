@@ -388,17 +388,17 @@ hmls_hous_final =
 
 ### Trend Data
 
-Over the course of the 12 years included in the homelessness analysis, California and New York had the highest numbers of homeless individuals, shown in Figure 1. This matches the HUD reports, as these two states are consistently the highest contributors to homelessness in the US. We chose to model several trends in homelessness over time, including total sheltered/unsheltered, chronic sheltered and unsheltered, and veterans sheltered and unsheltered over time. We originally planned to model youth homeless over time, but insufficient data led to this graph being excluded from the report. 
+Over the course of the 12 years included in the homelessness analysis, California and New York had the highest numbers of homeless individuals, shown in Figure 1. This matches the HUD reports, as these two states are consistently the highest contributors to homelessness in the US. We chose to model several trends in homelessness over time, including total sheltered/unsheltered, chronic sheltered and unsheltered, and veterans sheltered and unsheltered over time.  
 
-Shown in Figure 2, total homelessness decreased from 2007-2009, slightly increased until 2010, and decreased until 2016. As we predicted, and as government reports show, total homelessness increased from 2016-2018. This is alarming, and the rise in homelessness should be addressed by the US government. 
+Shown in Figure 2, total homelessness decreased from 2007-2009, slightly increased until 2010, and decreased until 2016. As we predicted, and as government reports show, total homelessness increased from 2016-2018. 
 
-Figure 3 shows the change in homelessness over time, stratified by sheltered status. There are many more sheltered individuals than unsheltered, however, recent years show that the lines are beginning to move closer together. This is troubling, as the number of unsheltered individuals is rising while the number of sheltered individuals decreases. 
+Figure 3 shows the change in homelessness over time, stratified by sheltered status. There are many more sheltered individuals than unsheltered, however, recent years show that the lines are beginning to move closer together.  
 
 Figure 4 shows the trends in chronic homelessness over time, stratified by shelter status. Contrasting with the previous figure, there are consistently many more unsheltered chronically homeless individuals. However, numbers of sheltered chronically homeless individuals are increasing in recent years. 
 
 Figure 5 shows the number of sheltered and unsheltered veterans over time. There are consistently more sheltered veterans than unsheltered, and these numbers have mostly declined from 2007 to 2018. 
 
-For a better comparison of graphs side by side, view our [dashboard](https://bwigsten.github.io/homelessness.analysis.github.io/Dashboard.html)
+For a better comparison of graphs side by side, view our [Trends Over Time Dashboard](https://bwigsten.github.io/homelessness.analysis.github.io/Dashboard.html).
 
 ```{r warning = FALSE}
 total_by_state = homelessness_all %>%
@@ -493,7 +493,19 @@ Figure 5: Veteran Homelessness Over Time by Shelter Status
 * no data available for the years 2007-2010
 
 ### Shiny Apps
-We created two Shiny Apps to better show exploratory trends. This first map allows users to view the distribution of homelessness in the US between the years of 2007 and 2018. This distribution is visualized either as an overall count of homeless by state or a percentage of each state’s homeless population as defined by particular characteristics. These characteristics are defined in the description section and are from the U.S. Department of Housing and Urban Development in their 2018 Annual Homeless Assessment Report (AHAR) to Congress. The second Shiny allows users to view different covariates, and their numbers or percentages in each of the top 15 metropolitan areas in the US. The bottom graph remains constant, in order to better visualize trends between the covariate of choice (median household income, median monthly housing cost, and percent inadequate housing) and the number of homeless individuals in each city. The description tab contains variable definitions. 
+We created two Shiny Apps to better show exploratory trends. This [first map](https://kpc2124.shinyapps.io/homelessness_final_proj/) allows users to view the distribution of homelessness in the US between the years of 2007 and 2018. This distribution is visualized either as an overall count of homeless by state or a percentage of each state’s homeless population as defined by particular characteristics. These characteristics are defined in the description section and are from the U.S. Department of Housing and Urban Development in their 2018 Annual Homeless Assessment Report (AHAR) to Congress. The [second](https://kpc2124.shinyapps.io/housing_covariates/) allows users to view different covariates, and their numbers or percentages in each of the top 15 metropolitan areas in the US. The bottom graph remains constant, in order to better visualize trends between the covariate of choice (median household income, median monthly housing cost, and percent inadequate housing) and the number of homeless individuals in each city. The description tab contains variable definitions. 
+
+## Discussion and Findings
+We confirmed government reports of decreasing homelessness from 2012-2016 and increasing from 2016-2018, shown in the [Trends Over Time Dashboard](https://bwigsten.github.io/homelessness.analysis.github.io/Dashboard.html). However, formal statistical analysis would need to be performed to determine the significance of this increase, and if it should truly be cause for alarm. When stratified by shelter status and veterans, there are consistently more sheltered individuals than unsheltered, which is promising for the future. However, once we analyzed trends in chronically homeless individuals, there are consistently more unsheltered. This could act as a point for public health intervention; working towards getting chronically homeless individuals access to shelters or studying why such individuals underutilize shelters. We had also originally planned to model youth homeless over time, but insufficient data led to this graph being excluded from the report. Better data on this topic could enhance future reports on ways to decrease homelessness.
+
+Using our [Homelessness by State ShinyApp](https://kpc2124.shinyapps.io/homelessness_final_proj/), we confirmed that the two states that contribute the highest number of homeless individuals are California and New York. However, California consistently contributes the most to the unsheltered homeless population in the US, and could be a source for public health intervention. 
+
+We originally hypothesized that trends in median income, median housing cost, and housing inadequacy would impact the total homelessness in the top US 15 Metropolitan areas defined by the US Census Bureau. However, the [Covariate Analysis ShinyApp](https://kpc2124.shinyapps.io/housing_covariates/), shows that there are no apparent correlations in these trends. We analyzed total homelessness as a count of individuals, but would need to modify this to homelessness as a percent of total city population in order to validate this null association. 
+
+
+## Ideas for Future Analysis 
+Aside from formal statistical testing, we could model the relationship between economic factors, including the recession of 2008 and recovery, and homelessness in the US. This would require population demographic data, including economic factors, which we did not include in this analysis. We also had population level data on homelessness counts, but would be interested to find individual level data on risk factors for homelessness in order to build a model for risk of homelessness by state or city.  
+
 
 
 
