@@ -20,11 +20,10 @@ library(viridis)
 
 
 ## Motivation
-
 Due to a lack of accessible mental health resources, rising cost of living with stagnant wages, and housing insecurity, homelessness is on the rise in the United States. Data from the Department of Housing and Urban Development (HUD) has shown that homelessness was declining historically, but has risen every year since 2016. Seemingly declaring war on homelessness after this rise, President Donald Trump argues that the homeless individuals are living in "our best highways, our best highways, our best streets, our best entrances to building". While countrywide data on this issue is presented by the US government each year, deep analysis into state stratification and potential correlating factors is rarely performed. As a group consisting of California and New York residents, where homelessness is thought to be the highest in the country, we set out to explain trends in homelessness over the last 12 years. 
 
 ## Related Work 
-As a group consisting of California and New York residents, homelessness as a public health issue is at the forefront. Throughout coursework at Columbia, we have all been exposed to this glaring issue, and chose to analyze available public data to see the magnitude of the problem firsthand. Recent statements by President Trump on [homelessness](https://www.washingtonpost.com/business/2019/09/18/surprising-holes-our-knowledge-americas-homeless-population/) have made headlines, and definitely caught our attention. Shown in [Figure 1](file:///Users/blairwigsten/Desktop/Data%20Science/homelessness.analysis.github.io/Homelessness-Dashboard.html), New York and California have the highest sum of total homelessness over the 12-year period of 2007 to 2018. This, along with the political relevance of homelessness as a public health issue, compelled us to focus our final project on this topic. 
+As a group consisting of California and New York residents, homelessness as a public health issue is at the forefront. Throughout coursework at Columbia, we have all been exposed to this glaring issue, and chose to analyze available public data to see the magnitude of the problem firsthand. Recent statements by President Trump on [homelessness](https://www.washingtonpost.com/business/2019/09/18/surprising-holes-our-knowledge-americas-homeless-population/) have made headlines, and caught our attention. This compelled us to focus our final project on this topic. 
 
 
 ## Initial Questions
@@ -39,11 +38,10 @@ Our original project goals were to compare rates of homelessness and weather pat
 
 Over the course of the project, we changed our focus slightly. We realized that homelessness is likely a problem in large cities, so we decided to focus our secondary analysis on the top 15 metropolitan areas in the US. This worked well with available US census data on median household income, median monthly housing costs, and percent inadequate housing quality in each of these 15 cities. Therefore, we ultimately decided to display trends in total homelessness and homelessness subcategories over time, and total homelessness versus each predictor in two separate Shiny Apps. We would have liked to display homelessness as a percent of total city population, but due to a lack of concise available data and time constraints, kept homelessness as a number instead of a percent. 
 
+## Main Hypotheses
 We hypothesized, in accordance with government reports, that homelessness would increase after the recession of 2008, and decrease once the economy had rebounded by 2012 or 2013. We also expected total homelessness to increase from 2016-2018 based on the articles linked in our background section. In terms of covariate analysis, we expected cities with known high homeless populations (NYC, San Francisco, and LA) to have high monthly housing costs, high rates of inadequate housing quality, and low median household income. 
 
-
 ## Facts About Homelessness
-
 * Nearly half a million Americans are homeless on any given night of the year
 * California has the highest rate of unsheltered homelessness out of the 50 states, but East Coast cities (New York City, Boston, Washington D.C.) have the highest rates of sheltered homelessness
 * Government housing regulations have worsened the homelessness problem (rent control, zoning laws, rehabilitation codes, etc.)
@@ -52,13 +50,11 @@ We hypothesized, in accordance with government reports, that homelessness would 
 * Sources [here](https://acton.org/publications/transatlantic/2019/09/23/10-facts-about-homelessness-america)
 
 ## Goals of This Project
-
 * Analyze trends in homelessness in each state from 2007 to 2018
 * Display trends in categories of homelessness 
 * Analyze trends in factors that may influence homelessness in relation to total homelessness (median household income, inadequate housing percentage, and median monthly housing costs)
       
-## Introduction to the Data Used for This Project
-
+## Introduction to the Data 
 Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data on homelessness. The data can be accessed [here](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). Variable definitions can be found in the [2018 Annual Homelessness Assessment Report to Congress](https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf). Data cleaning involved cleaning variable names, fixing the format of the year variable, and selecting variables of interest for future analysis. We chose to analyze total homeless, total sheltered, total unsheltered, total homeless in families, chronically homeless, homeless veterans, and homeless youth. Note: not all variables selected during data cleaning process were displayed or used during the exploratory analysis section. We decided which variables to keep before choosing which relationships to display. 
 
 Below is the complete process for importing and cleaning this dataset. 
