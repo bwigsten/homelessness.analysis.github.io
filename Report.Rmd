@@ -53,6 +53,7 @@ We hypothesized, in accordance with government reports, that homelessness would 
 * Analyze trends in homelessness in each state from 2007 to 2018
 * Display trends in categories of homelessness 
 * Analyze trends in factors that may influence homelessness in relation to total homelessness (median household income, inadequate housing percentage, and median monthly housing costs)
+* Visualize possible correlations between homelessness in the top 15 US Metropolitan areas and covariates of interest listed above
       
 ## Introduction to the Data 
 Using data Point-in-Time Estimates of Homelessness from the HUD website on yearly homelessness, we cleaned and combined 12 years of data on homelessness. The data can be accessed [here](https://www.hudexchange.info/resource/5783/2018-ahar-part-1-pit-estimates-of-homelessness-in-the-us/). Variable definitions can be found in the [2018 Annual Homelessness Assessment Report to Congress](https://files.hudexchange.info/resources/documents/2018-AHAR-Part-1.pdf). Data cleaning involved cleaning variable names, fixing the format of the year variable, and selecting variables of interest for future analysis. We chose to analyze total homeless, total sheltered, total unsheltered, total homeless in families, chronically homeless, homeless veterans, and homeless youth. Note: not all variables selected during data cleaning process were displayed or used during the exploratory analysis section. We decided which variables to keep before choosing which relationships to display. 
