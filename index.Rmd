@@ -41,7 +41,10 @@ _**Homelessness by State**_: This ShinyApp displays a map of the United States, 
 _**Covariate Analysis**_: This ShinyApp links the HUD homelessness data with several covariates of interest, median income, housing quality, and housing cost, using 2017 census data. 
 
 
-To view a brief overview of our website, and its visualization functionalities, view our screencast here.
+To view a brief overview of our website, and its visualization functionalities, view our screencast [here](https://www.youtube.com/watch?v=12_7VA_KUAQ).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/12_7VA_KUAQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 #### Contributors: Kristi Chau, Blair Wigsten, Alicia Yang, Nora Zakaria
 Learn more about the contributors [here](About-Us.html)!
